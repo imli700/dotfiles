@@ -3,6 +3,7 @@
 #######################
 
 # style
+smart_borders               no_gaps 
 smart_gaps                  on
 default_border 		        pixel 	1
 titlebar_border_thickness 		    1
