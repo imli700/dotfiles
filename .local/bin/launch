@@ -1,0 +1,11 @@
+#!/bin/bash
+export _JAVA_AWT_WM_NONREPARENTING=1
+export SDL_VIDEODRIVER=wayland
+export GDK_BACKEND=wayland
+export CLUTTER_BACKEND=wayland
+export XDG_CURRENT_DESKTOP=sway
+export XDG_SESSION_DESKTOP=sway
+export EDITOR=/usr/bin/nvim
+export VISUAL=/usr/bin/nvim
+
+sway
