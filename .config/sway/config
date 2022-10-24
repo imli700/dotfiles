@@ -276,7 +276,7 @@ exec {
 }
 
 #wallpaper
-output * bg $HOME/Pictures/wallpapers/lighthouse.jpg fit
+output * bg $HOME/pictures/wallpapers/lighthouse.jpg fit
 
 #application startup
 exec mako
