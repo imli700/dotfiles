@@ -1,7 +1,5 @@
-@theme "/usr/share/rofi/themes/catppuccin-mocha.rasi"
-
 configuration{
-    modi: "run,drun";
+    modi: "run,drun,window";
     icon-theme: "Oranchelo";
     show-icons: true;
     terminal: "alacritty";
@@ -15,3 +13,6 @@ configuration{
     display-Network: " 󰤨  Network";
     sidebar-mode: true;
 }
+
+@theme "catppuccin-mocha"
+
