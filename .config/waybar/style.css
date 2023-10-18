@@ -189,3 +189,47 @@ label:focus {
 #scratchpad.empty {
 	background-color: transparent;
 }
+
+
+
+
+/* for colorful workspace numbers */
+
+#workspaces button.focused {
+    box-shadow: inset 0 -3px #1e1e2e; /* black indicator */
+}
+#workspaces button:nth-child(1) {
+    background-color: #64727D; /* similar to #mode */
+}
+
+#workspaces button:nth-child(2) {
+    background-color: #2ac3de; /* similar to #clock, #memory, and #pulseaudio */
+}
+
+#workspaces button:nth-child(3) {
+    background-color: #f7768e; /* similar to #battery */
+}
+
+#workspaces button:nth-child(4) {
+    background-color: #bb9af7; /* similar to #battery.charging and #battery.plugged */
+}
+
+#workspaces button:nth-child(5) {
+    background-color: #9ece6a; /* similar to #battery.critical */
+}
+
+#workspaces button:nth-child(6) {
+    background-color: #e0af68; /* similar to #cpu and #keyboard-state */
+}
+
+#workspaces button:nth-child(7) {
+    background-color: #73daca; /* similar to #pulseaudio.muted */
+}
+
+/* For workspaces beyond 7, repeat the colors */
+#workspaces button:nth-child(8) {
+    background-color: #64727D; /* color for workspace 8 (same as workspace 1) */
+}
+
+/* And so on... */
+
