@@ -275,14 +275,14 @@ exec {
 }
 
 #wallpaper
-output * bg $HOME/Pictures/wallpapers/green-scene.jpg fit
+output * bg $HOME/Pictures/wallpapers/hashtags-black.png fit
 
 #application startup
 exec mako
 exec sleep 4s && megasync #megasync works properly if opened after a few seconds after startup
 exec nm-applet --indicator
 exec powerprofilesctl set power-saver
-output eDP-1 mode 1920x1080@48.014Hz position 0,0
+output eDP-1 mode 1920x1080@69.001Hz position 0,0
 
 #system statups
 exec pactl set-source-mute @DEFAULT_SOURCE@ toggle # mutes microphone on startup
