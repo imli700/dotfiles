@@ -29,3 +29,7 @@ export PATH="$HOME/.local/bin:$PATH"
 
 # For bare git repo
 alias config='/usr/bin/git --git-dir=$HOME/dotfiles/ --work-tree=$HOME'
+
+# to make nvim the default editor
+export VISUAL=nvim
+export EDITOR="$VISUAL"
