@@ -33,3 +33,6 @@ alias config='/usr/bin/git --git-dir=$HOME/dotfiles/ --work-tree=$HOME'
 # to make nvim the default editor
 export VISUAL=nvim
 export EDITOR="$VISUAL"
+
+# to make zathura read shit
+export XDG_CONFIG_HOME="$HOME/.config"
