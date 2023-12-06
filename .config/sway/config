@@ -287,5 +287,3 @@ output eDP-1 mode 1920x1080@60.001Hz position 0,0 #kinda useless rn cause this i
 
 #system statups
 exec pactl set-source-mute @DEFAULT_SOURCE@ toggle # mutes microphone on startup
-exec pactl set-sink-volume @DEFAULT_SINK@ 50% #sets volume to 50 on startup
-exec pactl set-sink-mute @DEFAULT_SINK@ toggle #mutes volume on startup
