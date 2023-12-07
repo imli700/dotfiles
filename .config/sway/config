@@ -283,7 +283,9 @@ exec mako #wayland notification application
 exec sleep 4s && megasync #megasync works properly if opened after a few seconds after startup
 exec nm-applet --indicator #for wifi and shit
 exec powerprofilesctl set power-saver #sets laptop to powersaver mode
-output eDP-1 mode 1920x1080@60.001Hz position 0,0 #kinda useless rn cause this is the default and can't set fps to something lower, but I'm keeping it so I don't forget
+
+#kinda useless rn cause this is the default and can't set fps to something lower, but I'm keeping it so I don't forget
+output eDP-1 mode 1920x1080@60.001Hz position 0,0 
 
 #system statups
-exec pactl set-source-mute @DEFAULT_SOURCE@ toggle # mutes microphone on startup
+exec pactl set-source-mute @DEFAULT_SOURCE@ toggle #mutes microphone on startup
