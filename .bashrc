@@ -36,6 +36,3 @@ export EDITOR="$VISUAL"
 
 # to make zathura read shit
 export XDG_CONFIG_HOME="$HOME/.config"
-
-# to change default browser to floorp
-xdg-settings set default-web-browser one.ablaze.floorp.desktop
