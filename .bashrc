@@ -37,20 +37,6 @@ export EDITOR="$VISUAL"
 # to make zathura read shit
 export XDG_CONFIG_HOME="$HOME/.config"
 
-# to set up nvm
-lazy_load_nvm() {
-	unset -f node npm
-	export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
-	[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
-	[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
-}
-
-node() {
-	lazy_load_nvm
-	node $@
-}
-
-npm() {
-	lazy_load_nvm
-	npm $@
-}
+# fnm
+export PATH="/home/imli700/.local/share/fnm:$PATH"
+eval "$(fnm env)"
