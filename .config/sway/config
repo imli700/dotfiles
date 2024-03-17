@@ -1,86 +1,74 @@
-#######################
-### STYLE SETTINGS ####
-#######################
+###################################
+### GENERAL SETTINGS AND STYLE  ###
+###################################
 
-# style
-smart_borders               no_gaps 
-smart_gaps                  on
-default_border 		        pixel 	1
-titlebar_border_thickness 		    1
-gaps 			            top	    10
-gaps 			            bottom	0
-gaps 			            left	5
-gaps 			            right	5
-gaps 			            inner 	10
+# Style preferences
+smart_borders no_gaps
+smart_gaps on
+default_border pixel 1
+titlebar_border_thickness 1
 
-# window decorations
-# class			        border	    background	text        indicator   child_border
-client.focused          #80a0ff     #303030     #c6c6c6     #80a0ff     #80a0ff
-client.unfocused        #80a0ff     #080808     #c6c6c6     #80a0ff     #303030
-client.urgent           #80a0ff     #80a0ff     #080808     #80a0ff     #80a0ff
+# Consistent gap sizes
+gaps top 10
+gaps inner 10
+gaps bottom 0
+gaps left 5
+gaps right 5
 
+# Window decorations
+client.focused   #80a0ff #303030 #c6c6c6 #80a0ff #80a0ff
+client.focused_inactive #80a0ff #080808 #c6c6c6 #80a0ff #303030 
+client.urgent    #80a0ff #80a0ff #080808 #80a0ff #80a0ff
 
-# Default config for sway
-#
-# Copy this to ~/.config/sway/config and edit it to your liking.
-#
-# Read `man 5 sway` for a complete reference.
+###################################
+### VARIABLES AND CUSTOMIZATION ###
+###################################
 
-### Variables
-#
-# Logo key. Use Mod1 for Alt.
+# Main ones
 set $mod Mod4
+set $term foot
+set $menu "rofi -show drun"
+
 # Home row direction keys, like vim
 set $left h
 set $down j
 set $up k
 set $right l
-# Your preferred terminal emulator
-set $term foot
-# Your preferred application launcher
-# Note: pass the final command to swaymsg so that the resulting window can be opened
-# on the original workspace that the command was run on.
-#default: set $menu dmenu_path | dmenu | xargs swaymsg exec --
-set $menu "rofi -show drun"
 
-### Output configuration
-#
-#
-# Example configuration:
-#
-#   output HDMI-A-1 resolution 1920x1080 position 1920,0
-#
-# You can get the names of your outputs by running: swaymsg -t get_outputs
+# Wallpaper: Update with your correct path
+set $wallpaper_path  $HOME/Pictures/wallpapers/hashtags-black.png
 
-### Idle configuration
-#
-# Example configuration:
-#
-# exec swayidle -w \
-#          timeout 300 'swaylock -f -c 000000' \
-#          timeout 600 'swaymsg "output * dpms off"' resume 'swaymsg "output * dpms on"' \
-#          before-sleep 'swaylock -f -c 000000'
-#
-# This will lock your screen after 300 seconds of inactivity, then turn off
-# your displays after another 300 seconds, and turn your screens back on when
-# resumed. It will also lock your screen before your computer goes to sleep.
+################################
+### OUTPUT CONFIGURATION     ###
+################################
 
-### Input configuration
-#
-# Example configuration:
-#
-#   input "2:14:SynPS/2_Synaptics_TouchPad" {
-#       dwt enabled
-#       tap enabled
-#       natural_scroll enabled
-#       middle_emulation enabled
-#   }
-#
-# You can get the names of your inputs by running: swaymsg -t get_inputs
-# Read `man 5 sway-input` for more information about this section.
+# Add output configuration here
+# Example: output HDMI-A-1 resolution 1920x1080 position 1920,0
 
-### Key bindings
-#
+# **Original setting restored:**
+output eDP-1 mode 1920x1080@60.001Hz position 0,0
+
+################################
+### IDLE SETTINGS            ###
+################################
+
+# Add idle settings here, if desired
+
+################################
+### INPUT CONFIGURATION      ###
+################################
+
+input type:touchpad {
+    tap enabled
+    natural_scroll enabled
+    middle_emulation enabled
+    pointer_accel 0.3
+}
+
+################################
+### KEYBINDINGS              ###
+################################
+
 # Basics:
 #
     # Start a terminal
@@ -215,37 +203,27 @@ mode "resize" {
 }
 bindsym $mod+r mode "resize"
 
-include /etc/sway/config.d/*
+################################
+### CUSTOM SETTINGS          ###
+################################
 
-#######################
-### CUSTOM SETTINGS ###
-#######################
-
-#touchpad
-input type:touchpad {
-tap enabled
-natural_scroll enabled
-middle_emulation enabled
-pointer_accel 0.3 #Changing the pointer speed
-}
-
-#sets bar to waybar
+# Bar (assuming Waybar)
 bar {
-swaybar_command waybar
-}
+    swaybar_command waybar
+} 
 
-#volume keys
+# Volume control
 bindsym XF86AudioMute exec pactl set-sink-mute @DEFAULT_SINK@ toggle
 bindsym XF86AudioMicMute exec pactl set-source-mute @DEFAULT_SOURCE@ toggle
 bindsym XF86AudioLowerVolume exec pactl set-sink-volume @DEFAULT_SINK@ -5%
 bindsym XF86AudioRaiseVolume exec pactl set-sink-volume @DEFAULT_SINK@ +5%
 
-#Brightness
+# Brightness
 bindsym XF86MonBrightnessDown exec brightnessctl s 5%-
 bindsym XF86MonBrightnessUp exec brightnessctl s +5%
 
-# shutdown / restart / suspend...
-set $Locker swaylock -i "~/Pictures/wallpapers/moon.jpg", mode "default" #not really necessary but looks cleaner below
+# Shutdown / Restart / Suspend
+set $Locker swaylock -i "~/Pictures/wallpapers/moon.jpg", mode "default" 
 set $mode_system System (l) lock, (e) logout, (s) suspend, (r) reboot, (CTRL+s) shutdown
 
 mode "$mode_system" {
@@ -262,30 +240,28 @@ mode "$mode_system" {
 
 bindsym $mod+BackSpace mode "$mode_system"
 
-#flameshot. In seperate section becaues this is very complicated
+# Flameshot 
 exec systemctl --user import-environment DISPLAY WAYLAND_DISPLAY SWAYSOCK
 exec hash dbus-update-activation-environment 2>/dev/null && \ dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY SWAYSOCK
 bindsym $mod+Shift+s exec flameshot gui
 
-#wayland gtk settings
+################################
+### STARTUP APPLICATIONS & MISC ###
+################################
+
+# Wayland GTK Settings:
 exec {
     gsettings set $gnome-schema gtk-theme 'Catppuccin-Mocha'
     gsettings set $gnome-schema icon-theme 'Papirus'
-#    gsettings set $gnome-schema cursor-theme 'Your cursor Theme'
-#    gsettings set $gnome-schema font-name 'Your font name'
 }
 
-#wallpaper
-output * bg $HOME/Pictures/wallpapers/hashtags-black.png fit
+# Wallpaper
+output * bg $wallpaper_path fit 
 
-#application startup
-exec mako #wayland notification application
-exec sleep 4s && megasync #megasync works properly if opened after a few seconds after startup
-exec nm-applet --indicator #for wifi and shit
-exec powerprofilesctl set power-saver #sets laptop to powersaver mode
+exec mako
+exec sleep 4s && megasync 
+exec nm-applet --indicator 
+exec powerprofilesctl set power-saver 
 
-#kinda useless rn cause this is the default and can't set fps to something lower, but I'm keeping it so I don't forget
-output eDP-1 mode 1920x1080@60.001Hz position 0,0 
-
-#system statups
-exec pactl set-source-mute @DEFAULT_SOURCE@ toggle #mutes microphone on startup
+# Mute microphone on startup
+exec pactl set-source-mute @DEFAULT_SOURCE@ toggle 
