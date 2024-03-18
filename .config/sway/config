@@ -244,9 +244,9 @@ bindsym $mod+BackSpace mode "$mode_system"
 bindsym $mod+Shift+s exec grim -g "$(slurp)" - | swappy -f -
 
 # Screenrecorder
-set $screenrecorder "bash $HOME/scripts/toggle-screen-recorder.sh"
-set $partialscreenrecorder "bash $HOME/scripts/toggle-partial-screen-recorder.sh"
-set $screenrecorderwithsound "bash $HOME/scripts/toggle-screen-recorder-with-sound.sh"
+set $screenrecorder "bash $HOME/.config/sway/scripts/toggle-screen-recorder.sh"
+set $partialscreenrecorder "bash $HOME/.config/sway/scripts/toggle-partial-screen-recorder.sh"
+set $screenrecorderwithsound "bash $HOME/.config/sway/scripts/toggle-screen-recorder-with-sound.sh"
 bindsym --to-code $mod+Shift+R exec $screenrecorder
 bindsym --to-code $mod+Shift+Ctrl+R exec $partialscreenrecorder
 bindsym --to-code $mod+Alt+R exec $screenrecorderwithsound
