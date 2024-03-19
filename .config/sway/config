@@ -16,8 +16,8 @@ gaps left 5
 gaps right 5
 
 # Window decorations
-client.focused #80a0ff #303030 #c6c6c6 #80a0ff #80a0ff
-client.focused_inactive #80a0ff #080808 #c6c6c6 #80a0ff #303030 
+client.focused #80a0ff #080808  #c6c6c6 #80a0ff #80a0ff
+client.focused_inactive #80a0ff #222222 #c6c6c6 #80a0ff #303030 
 client.urgent #80a0ff #80a0ff #080808 #80a0ff #80a0ff
 
 ###################################
