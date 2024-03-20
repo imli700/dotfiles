@@ -14,12 +14,12 @@
     },
 
     "tray": {
-        // "icon-size": 21,
+        "icon-size": 24,
         "spacing": 10
     },
 
     "clock": {
-        "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
+        "tooltip-format": "{:%Y %B}\n{calendar}",
         "format-alt": "{:%Y-%m-%d}"
     },
 
@@ -34,16 +34,13 @@
 
     "battery": {
         "states": {
-            // "good": 95,
             "warning": 30,
             "critical": 15
         },
         "format": "{capacity}% {icon}",
-        "format-charging": "{capacity}% 󰂄" ,
+        "format-charging": "{capacity}% 󰂄",
         "format-plugged": "{capacity}%  ",
         "format-alt": "{time} {icon}",
-        // "format-good": "", // An empty format will hide the module
-        // "format-full": "",
         "format-icons": ["", "", "", "", ""]
     },
 
@@ -67,4 +64,7 @@
         },
         "on-click": "pavucontrol"
     },
+
+    // Increased bar height
+    "height": 30
 }

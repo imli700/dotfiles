@@ -1,68 +1,68 @@
 * {
-    /* `otf-font-awesome` is required to be installed for icons */
-    border-radius: 6px;
-    font-family: FontAwesome, Roboto, Helvetica, Arial, sans-serif;
-    font-size: 13px;
+  /* `otf-font-awesome` is required to be installed for icons */
+  border-radius: 6px;
+  font-family: FontAwesome, Roboto, Helvetica, Arial, sans-serif;
+  font-size: 20px;
 }
 
 window#waybar {
-    background-color: rgba(43, 48, 59, 0);
-    border-bottom: 3px solid rgba(100, 114, 125, 0.5);
-    color: #ffffff;
-    transition-property: background-color;
-    transition-duration: .5s;
+  background-color: rgba(43, 48, 59, 0);
+  border-bottom: 3px solid rgba(100, 114, 125, 0.5);
+  color: #ffffff;
+  transition-property: background-color;
+  transition-duration: .5s;
 }
 
 window#waybar.hidden {
-    opacity: 0.2;
+  opacity: 0.2;
 }
 
 window#waybar.termite {
-    background-color: #3F3F3F;
+  background-color: #3F3F3F;
 }
 
 window#waybar.chromium {
-    background-color: #000000;
-    border: none;
+  background-color: #000000;
+  border: none;
 }
 
 button {
-    /* Use box-shadow instead of border so the text isn't offset */
-    box-shadow: inset 0 -3px transparent;
-    /* Avoid rounded borders under each button name */
-    border: 6px;
-    border-radius: 0;
+  /* Use box-shadow instead of border so the text isn't offset */
+  box-shadow: inset 0 -3px transparent;
+  /* Avoid rounded borders under each button name */
+  border: 6px;
+  border-radius: 0;
 }
 
 /* https://github.com/Alexays/Waybar/wiki/FAQ#the-workspace-buttons-have-a-strange-hover-effect */
 button:hover {
-    background: inherit;
-    box-shadow: inset 0 -3px #ffffff;
+  background: inherit;
+  box-shadow: inset 0 -3px #ffffff;
 }
 
 #workspaces button {
-    padding: 0 5px;
-    background-color: transparent;
-    color: #000000;
+  padding: 0 5px;
+  background-color: transparent;
+  color: #000000;
 }
 
 #workspaces button:hover {
-    background: rgba(0, 0, 0, 0.2);
+  background: rgba(0, 0, 0, 0.2);
 }
 
 #workspaces button.focused {
-    background-color: #2ac3de;
-    box-shadow: inset 0 -3px #2ac3de;
-    color: #000000;
+  background-color: #2ac3de;
+  box-shadow: inset 0 -3px #2ac3de;
+  color: #000000;
 }
 
 #workspaces button.urgent {
-    background-color: #eb4d4b;
+  background-color: #eb4d4b;
 }
 
 #mode {
-    background-color: #64727D;
-    border-bottom: 3px solid #ffffff;
+  background-color: #64727D;
+  border-bottom: 3px solid #ffffff;
 }
 
 #clock,
@@ -75,119 +75,120 @@ button:hover {
 #scratchpad,
 #window,
 #workspaces {
-    margin: 0 4px;
+  margin: 0 4px;
 }
 
 /* If workspaces is the leftmost module, omit left margin */
-.modules-left > widget:first-child > #workspaces {
-    margin-left: 0;
+.modules-left>widget:first-child>#workspaces {
+  margin-left: 0;
 }
 
 /* If workspaces is the rightmost module, omit right margin */
-.modules-right > widget:last-child > #workspaces {
-    margin-right: 0;
+.modules-right>widget:last-child>#workspaces {
+  margin-right: 0;
 }
 
 #clock {
-    background-color: #2ac3de;
-    color: #000000;
-    padding: 0 5px
+  background-color: #2ac3de;
+  color: #000000;
+  padding: 0 5px
 }
 
 #battery {
-    background-color: #f7768e;
-    color: #000000;
-    padding: 0 10px;
+  background-color: #f7768e;
+  color: #000000;
+  padding: 0 10px;
 }
 
-#battery.charging, #battery.plugged {
-    color: #000000;
-    background-color: #bb9af7;
-    padding: 0 5px;
+#battery.charging,
+#battery.plugged {
+  color: #000000;
+  background-color: #bb9af7;
+  padding: 0 5px;
 }
 
 @keyframes blink {
-    to {
-        background-color: #000000;
-        color: #000000;
-    }
+  to {
+    background-color: #000000;
+    color: #000000;
+  }
 }
 
 #battery.critical:not(.charging) {
-    background-color: #9ece6a;
-    color: #000000;
-    animation-name: blink;
-    animation-duration: 0.5s;
-    animation-timing-function: linear;
-    animation-iteration-count: infinite;
-    animation-direction: alternate;
+  background-color: #9ece6a;
+  color: #000000;
+  animation-name: blink;
+  animation-duration: 0.5s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
 }
 
 label:focus {
-    background-color: #000000;
+  background-color: #000000;
 }
 
 #cpu {
-    background-color: #e0af68;
-    color: #000000;
-    padding: 0 5px;
+  background-color: #e0af68;
+  color: #000000;
+  padding: 0 5px;
 }
 
 #memory {
-    background-color: #2ac3de;
-    color: #000000;
-    padding: 0 5px;
+  background-color: #2ac3de;
+  color: #000000;
+  padding: 0 5px;
 }
 
 #pulseaudio {
-    background-color: #2ac3de;
-    color: #000000;
-    padding: 0 5px;
+  background-color: #2ac3de;
+  color: #000000;
+  padding: 0 5px;
 }
 
 #pulseaudio.muted {
-    background-color: #73daca;
-    color: #000000;
-    padding: 0 5px;
+  background-color: #73daca;
+  color: #000000;
+  padding: 0 5px;
 }
 
 #tray {
-    background-color: #2980b9;
-    color: #000000;
-    padding: 0 5px
+  background-color: #2980b9;
+  color: #000000;
+  padding: 0 5px
 }
 
-#tray > .passive {
-    -gtk-icon-effect: dim;
+#tray>.passive {
+  -gtk-icon-effect: dim;
 }
 
-#tray > .needs-attention {
-    -gtk-icon-effect: highlight;
-    background-color: #2ac3de;
+#tray>.needs-attention {
+  -gtk-icon-effect: highlight;
+  background-color: #2ac3de;
 }
 
 #keyboard-state {
-    background: #e0af68;
-    color: #000000;
-    /*padding: 0 0px;
+  background: #e0af68;
+  color: #000000;
+  /*padding: 0 0px;
     margin: 0 5px;*/
-    min-width: 16px;
+  min-width: 16px;
 }
 
-#keyboard-state > label {
-    padding: 0 5px;
+#keyboard-state>label {
+  padding: 0 5px;
 }
 
-#keyboard-state > label.locked {
-    background: rgba(0, 0, 0, 0.2);
+#keyboard-state>label.locked {
+  background: rgba(0, 0, 0, 0.2);
 }
 
 #scratchpad {
-    background: rgba(0, 0, 0, 0.2);
+  background: rgba(0, 0, 0, 0.2);
 }
 
 #scratchpad.empty {
-	background-color: transparent;
+  background-color: transparent;
 }
 
 
@@ -196,40 +197,48 @@ label:focus {
 /* for colorful workspace numbers */
 
 #workspaces button.focused {
-    box-shadow: inset 0 -3px #ffffff;
+  box-shadow: inset 0 -3px #ffffff;
 }
+
 #workspaces button:nth-child(1) {
-    background-color: #64727D; /* similar to #mode */
+  background-color: #64727D;
+  /* similar to #mode */
 }
 
 #workspaces button:nth-child(2) {
-    background-color: #2ac3de; /* similar to #clock, #memory, and #pulseaudio */
+  background-color: #2ac3de;
+  /* similar to #clock, #memory, and #pulseaudio */
 }
 
 #workspaces button:nth-child(3) {
-    background-color: #f7768e; /* similar to #battery */
+  background-color: #f7768e;
+  /* similar to #battery */
 }
 
 #workspaces button:nth-child(4) {
-    background-color: #bb9af7; /* similar to #battery.charging and #battery.plugged */
+  background-color: #bb9af7;
+  /* similar to #battery.charging and #battery.plugged */
 }
 
 #workspaces button:nth-child(5) {
-    background-color: #9ece6a; /* similar to #battery.critical */
+  background-color: #9ece6a;
+  /* similar to #battery.critical */
 }
 
 #workspaces button:nth-child(6) {
-    background-color: #e0af68; /* similar to #cpu and #keyboard-state */
+  background-color: #e0af68;
+  /* similar to #cpu and #keyboard-state */
 }
 
 #workspaces button:nth-child(7) {
-    background-color: #73daca; /* similar to #pulseaudio.muted */
+  background-color: #73daca;
+  /* similar to #pulseaudio.muted */
 }
 
 /* For workspaces beyond 7, repeat the colors */
 #workspaces button:nth-child(8) {
-    background-color: #64727D; /* color for workspace 8 (same as workspace 1) */
+  background-color: #64727D;
+  /* color for workspace 8 (same as workspace 1) */
 }
 
 /* And so on... */
-
