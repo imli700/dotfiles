@@ -1,3 +1,5 @@
+// config for waybar (for AI)
+
 {
     "modules-left": ["sway/workspaces"],
     "modules-center": ["sway/window"],
