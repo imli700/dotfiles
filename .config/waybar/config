@@ -1,70 +1,82 @@
 // config for waybar (for AI)
 
 {
-    "modules-left": ["sway/workspaces"],
+    "modules-left": ["sway/workspaces", "custom/system-mode"],
     "modules-center": ["sway/window"],
     "modules-right": ["pulseaudio", "cpu", "memory", "battery", "clock", "tray"],
 
+    // Power and Session Management Mode
+    "custom/system-mode": {
+      "format": "{}", // Waybar expects a basic format string even when using JSON output
+      "return-type": "json",
+      "exec": "~/.config/waybar/scripts/sway-mode-indicator.sh",
+      // How often to run the script (in seconds). Adjust as needed.
+      // 1 second is usually responsive enough.
+      "interval": 1,
+      // Optional: Set max width if the text is too long
+      // "max-length": 50
+    },
+
     "keyboard-state": {
-        "numlock": true,
-        "capslock": true,
-        "format": "{name} {icon}",
-        "format-icons": {
-            "locked": "",
-            "unlocked": ""
-        }
+      "numlock": true,
+      "capslock": true,
+      "format": "{name} {icon}",
+      "format-icons": {
+        "locked": "",
+        "unlocked": ""
+      }
     },
 
     "tray": {
-        "icon-size": 24,
-        "spacing": 10
+      "icon-size": 24,
+      "spacing": 10
     },
 
     "clock": {
-        "tooltip-format": "{:%Y %B}\n{calendar}",
-        "format-alt": "{:%Y-%m-%d}"
+      "tooltip-format": "{:%Y %B}\n{calendar}",
+      "format-alt": "{:%Y-%m-%d}"
     },
 
     "cpu": {
-        "format": "{usage}% ",
-        "tooltip": false
+      "format": "{usage}% ",
+      "tooltip": false
     },
 
     "memory": {
-        "format": "{}% "
+      "format": "{}% "
     },
 
     "battery": {
-        "states": {
-            "warning": 30,
-            "critical": 15
-        },
-        "format": "{capacity}% {icon}",
-        "format-charging": "{capacity}% 󰂄",
-        "format-plugged": "{capacity}%  ",
-        "format-alt": "{time} {icon}",
-        "format-icons": ["", "", "", "", ""]
+      "states": {
+        "warning": 30,
+        "critical": 15
+      },
+      "format": "{capacity}% {icon}",
+      "format-charging": "{capacity}% 󰂄",
+      "format-plugged": "{capacity}%  ",
+      "format-alt": "{time} {icon}",
+      "format-icons": ["", "", "", "", ""]
     },
 
     "pulseaudio": {
-        "on-scroll-up": "pactl set-sink-volume @DEFAULT_SINK@ +1%",
-        "on-scroll-down": "pactl set-sink-volume @DEFAULT_SINK@ -1%",
-        "format": "{volume}% {icon} {format_source}",
-        "format-bluetooth": "{volume}% {icon} {format_source}",
-        "format-bluetooth-muted": " {icon} {format_source}",
-        "format-muted": " {format_source}",
-        "format-source": "{volume}% ",
-        "format-source-muted": "",
-        "format-icons": {
-            "headphone": "",
-            "hands-free": "",
-            "headset": "",
-            "phone": "",
-            "portable": "",
-            "car": "",
-            "default": ["", "", ""]
-        },
-        "on-click": "pavucontrol"
+      "on-scroll-up": "pactl set-sink-volume @DEFAULT_SINK@ +1%",
+      "on-scroll-down": "pactl set-sink-volume @DEFAULT_SINK@ -1%",
+      "format": "{volume}% {icon} {format_source}",
+      "format-bluetooth": "{volume}% {icon} {format_source}",
+      "format-bluetooth-muted": " {icon} {format_source}",
+      "format-muted": " {format_source}",
+      "format-source": "{volume}% ",
+      "format-source-muted": "",
+      "format-icons": {
+        "headphone": "",
+        "hands-free": "",
+        "headset": "",
+        "phone": "",
+        "portable": "",
+        "car": "",
+        "default": ["", "", ""]
+      },
+      "on-click": "pavucontrol"
     },
 
     // Increased bar height

@@ -242,4 +242,14 @@ label:focus {
   /* color for workspace 8 (same as workspace 1) */
 }
 
+/* Power and Session Management Mode */
+#custom-system-mode.system-mode-active {
+  background-color: #64727D; /* Color from #mode / workspace 1 */
+  color: #000000;           /* Standard text color for modules */
+  padding: 0 10px;          /* A bit more padding as the text is long */
+  margin: 0 4px;            /* Standard module margin */
+  font-weight: bold;        /* Make it stand out slightly */
+  border-radius: 0;         /* Ensure sharp corners like other modules */
+}
+
 /* And so on... */
