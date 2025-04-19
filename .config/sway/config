@@ -19,7 +19,7 @@ gaps right 5
 
 # Window decorations
 client.focused #80a0ff #080808  #c6c6c6 #80a0ff #80a0ff
-client.focused_inactive #80a0ff #222222 #c6c6c6 #80a0ff #303030 
+client.focused_inactive #80a0ff #222222 #c6c6c6 #80a0ff #303030
 client.urgent #80a0ff #80a0ff #080808 #80a0ff #80a0ff
 
 ###################################
@@ -29,7 +29,7 @@ client.urgent #80a0ff #80a0ff #080808 #80a0ff #80a0ff
 # Main ones
 set $mod Mod4
 set $term foot
-set $menu "rofi -show drun"
+# set $menu "rofi -show drun" # Replaced by new definition in "Changes by AI" section
 
 # Home row direction keys, like vim
 set $left h
@@ -210,12 +210,12 @@ bindsym $mod+r mode "resize"
 ################################
 
 # authentication helper
-exec "/usr/lib/polkit-1/polkit-agent-helper-1"
+# exec "/usr/lib/polkit-1/polkit-agent-helper-1" # Replaced by graphical agent in "Changes by AI" section
 
 # Bar (assuming Waybar)
 bar {
     swaybar_command waybar
-} 
+}
 
 # Volume control
 bindsym XF86AudioMute exec pactl set-sink-mute @DEFAULT_SINK@ toggle
@@ -224,15 +224,15 @@ bindsym XF86AudioLowerVolume exec pactl set-sink-volume @DEFAULT_SINK@ -5%
 bindsym XF86AudioRaiseVolume exec pactl set-sink-volume @DEFAULT_SINK@ +5%
 
 # Brightness
-bindsym XF86MonBrightnessDown exec brightnessctl s 5%-
-bindsym XF86MonBrightnessUp exec brightnessctl s +5%
+# bindsym XF86MonBrightnessDown exec brightnessctl s 5%- # Replaced by binding with notification in "Changes by AI" section
+# bindsym XF86MonBrightnessUp exec brightnessctl s +5%   # Replaced by binding with notification in "Changes by AI" section
 
 # Shutdown / Restart / Suspend
-set $Locker swaylock -i "~/Pictures/wallpapers/moon.jpg", mode "default" 
+set $Locker swaylock -i "~/Pictures/wallpapers/moon.jpg", mode "default"
 set $mode_system System (l) lock, (e) logout, (s) suspend, (r) reboot, (CTRL+s) shutdown
 
 mode "$mode_system" {
-    bindsym l exec --no-startup-id swaylock 
+    bindsym l exec --no-startup-id swaylock
     bindsym e exec --no-startup-id swaymsg exit, mode "default"
     bindsym s exec --no-startup-id systemctl suspend && $Locker
     bindsym r exec --no-startup-id systemctl reboot, mode "default"
@@ -267,12 +267,73 @@ exec {
 }
 
 # Wallpaper
-output * bg $wallpaper_path fit 
+output * bg $wallpaper_path fit
 
 exec mako
-exec sleep 4s && megasync 
-exec nm-applet --indicator 
-exec powerprofilesctl set power-saver 
+exec sleep 4s && megasync
+exec nm-applet --indicator
+exec powerprofilesctl set power-saver
 
 # Mute microphone on startup
 exec sleep 5s && pactl set-source-mute 53 1
+
+##############################################################################
+### Changes by AI ###
+##############################################################################
+
+# 1. Graphical PolicyKit Authentication Agent
+# -------------------------------------------
+# Starts a graphical agent for handling privilege escalation prompts.
+# Requires: lxqt-policykit (or similar Wayland-compatible agent)
+exec /usr/libexec/lxqt-policykit-agent
+# Makes the agent's window float nicely.
+for_window [app_id="lxqt-policykit-agent"] floating enable, move position center
+
+# 2. Brightness Notifications
+# ---------------------------
+# Requires: brightnessctl, libnotify (for notify-send)
+# Defines a command to show a brightness notification.
+set $brightness_notification_cmd  command -v notify-send >/dev/null && \
+        VALUE=$(brightnessctl --percentage get) && \
+        notify-send -e -h string:x-canonical-private-synchronous:brightness \
+            -h "int:value:$VALUE" -t 800 "Brightness: ${VALUE}%"
+# Bindings for brightness control with notification.
+bindsym XF86MonBrightnessDown exec brightnessctl -q set 5%- && $brightness_notification_cmd
+bindsym XF86MonBrightnessUp exec brightnessctl -q set +5% && $brightness_notification_cmd
+
+# 3. Application-Specific Rules (Beyond Polkit)
+# ---------------------------------------------
+# Automatically float pavucontrol (Volume Control) if installed.
+# Requires: pavucontrol
+for_window [app_id="pavucontrol"] floating enable, move position center
+
+# Mark browser windows for specific rules. Adjust app_id/class as needed.
+# Requires: A web browser like firefox, chromium-browser, brave-browser
+for_window [app_id="firefox"] mark Browser
+for_window [app_id="chromium-browser"] mark Browser # For Chromium/Chrome
+for_window [app_id="Brave-browser"] mark Browser # For Brave
+# You might also need class-based rules for XWayland versions:
+# for_window [class="firefox"] mark Browser
+# for_window [class="Chromium-browser"] mark Browser
+# for_window [class="Brave-browser"] mark Browser
+
+# Inhibit idle (screen blanking/locking) when a marked browser is fullscreen.
+for_window [con_mark="Browser"] inhibit_idle fullscreen
+
+# Float the Firefox screensharing indicator window.
+# Requires: firefox
+for_window [app_id="firefox" title="Firefox — Sharing Indicator"] floating enable
+
+# 4. XDG User Directories Update
+# ------------------------------
+# Ensures standard user directories (Downloads, Documents, etc.) are set up.
+# Requires: xdg-user-dirs
+exec /usr/bin/xdg-user-dirs-update
+
+# 5. Robust Rofi Command
+# ----------------------
+# Uses rofi's combi mode to show applications (drun) and run commands (run).
+# Requires: rofi
+set $menu "rofi -show combi -combi-modes drun,run -modes combi"
+
+# --- End of Changes by AI ---
