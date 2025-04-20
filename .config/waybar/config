@@ -1,5 +1,5 @@
 // config for waybar (for AI)
-// config.txt
+
 { // Start of main config object
     "modules-left": ["sway/workspaces", "sway/mode"],
     "modules-center": ["sway/window"],
