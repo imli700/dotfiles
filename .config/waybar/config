@@ -8,7 +8,7 @@
 
     // Sway Mode Module definition
     "sway/mode": {
-        "format": "(l)ock (e)xit (s)leep (r)eboot (Ctrl+s)off",
+        "format": "(l)ock (e)xit (s)uspend (r)eboot (Ctrl+s)off",
         "format-map": {
             "System (l) lock, (e) logout, (s) suspend, (r) reboot, (CTRL+s) shutdown": "Sys: (L)lck (E)xit (S)lsp (R)eboot (^S)off"
         },
