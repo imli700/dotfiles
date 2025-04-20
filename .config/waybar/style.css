@@ -61,10 +61,17 @@ button:hover {
   background-color: #eb4d4b;
 }
 
+/* Style for the sway/mode module (when active/not default) */
 #mode {
-  background-color: #64727D;
-  border-bottom: 3px solid #ffffff;
+  background-color: #64727D; /* Color from original #mode / workspace 1 */
+  color: #000000;           /* Standard text color for modules */
+  padding: 0 10px;          /* Padding like the original custom script */
+  margin: 0 4px;            /* Standard module margin */
+  font-weight: bold;        /* Make it stand out slightly */
+  border-radius: 0;         /* Ensure sharp corners like other modules */
+  /* border-bottom: 3px solid #ffffff; Optional: remove or keep border */ /* <-- FIXED NESTED COMMENT */
 }
+
 
 #clock,
 #battery,
@@ -72,7 +79,7 @@ button:hover {
 #memory,
 #pulseaudio,
 #tray,
-#mode,
+/* #mode is styled above */
 #scratchpad,
 #window,
 #workspaces {
@@ -83,6 +90,9 @@ button:hover {
 .modules-left>widget:first-child>#workspaces {
   margin-left: 0;
 }
+
+/* If mode is the rightmost module in modules-left, omit right margin? No, keep margin */
+/* .modules-left>widget:last-child>#mode { margin-right: 0; } */
 
 /* If workspaces is the rightmost module, omit right margin */
 .modules-right>widget:last-child>#workspaces {
@@ -242,14 +252,6 @@ label:focus {
   /* color for workspace 8 (same as workspace 1) */
 }
 
-/* Power and Session Management Mode */
-#custom-system-mode.system-mode-active {
-  background-color: #64727D; /* Color from #mode / workspace 1 */
-  color: #000000;           /* Standard text color for modules */
-  padding: 0 10px;          /* A bit more padding as the text is long */
-  margin: 0 4px;            /* Standard module margin */
-  font-weight: bold;        /* Make it stand out slightly */
-  border-radius: 0;         /* Ensure sharp corners like other modules */
-}
+/* Removed #custom-system-mode.system-mode-active selector */
 
 /* And so on... */

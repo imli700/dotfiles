@@ -1,22 +1,29 @@
 // config for waybar (for AI)
-
-{
-    "modules-left": ["sway/workspaces", "custom/system-mode"],
+// config.txt
+{ // Start of main config object
+    "modules-left": ["sway/workspaces", "sway/mode"],
     "modules-center": ["sway/window"],
     "modules-right": ["pulseaudio", "cpu", "memory", "battery", "clock", "tray"],
+    // Comma needed after the previous line if modules follow, which they do.
 
-    // Power and Session Management Mode
-    "custom/system-mode": {
-      "format": "{}", // Waybar expects a basic format string even when using JSON output
-      "return-type": "json",
-      "exec": "~/.config/waybar/scripts/sway-mode-indicator.sh",
-      // How often to run the script (in seconds). Adjust as needed.
-      // 1 second is usually responsive enough.
-      "interval": 1,
-      // Optional: Set max width if the text is too long
-      // "max-length": 50
-    },
+    // Sway Mode Module definition
+    "sway/mode": {
+        "format": "(l)ock (e)xit (s)leep (r)eboot (Ctrl+s)off",
+        "format-map": {
+            "System (l) lock, (e) logout, (s) suspend, (r) reboot, (CTRL+s) shutdown": "Sys: (L)lck (E)xit (S)lsp (R)eboot (^S)off"
+        },
+        "ignored-modes": ["default"],
+        "tooltip": true
+    }, // <-- VERY IMPORTANT: Comma needed here to separate sway/mode from sway/window
 
+    // Sway Window Module definition
+    "sway/window": {
+        "format": "{}",
+        "max-length": 50, // Adjust as needed
+        "tooltip": true
+    }, // <-- VERY IMPORTANT: Comma needed here to separate sway/window from the *next* module (e.g., keyboard-state)
+
+    // Keyboard State Module definition (example of next module)
     "keyboard-state": {
       "numlock": true,
       "capslock": true,
@@ -25,27 +32,32 @@
         "locked": "",
         "unlocked": ""
       }
-    },
+    }, // <-- Comma needed here if more modules follow...
 
+    // Tray Module definition
     "tray": {
       "icon-size": 24,
       "spacing": 10
-    },
+    }, // <-- Comma needed...
 
+    // Clock Module definition
     "clock": {
       "tooltip-format": "{:%Y %B}\n{calendar}",
       "format-alt": "{:%Y-%m-%d}"
-    },
+    }, // <-- Comma needed...
 
-    "cpu": {
+    // CPU Module definition
+     "cpu": {
       "format": "{usage}% ",
       "tooltip": false
-    },
+    }, // <-- Comma needed...
 
+    // Memory Module definition
     "memory": {
       "format": "{}% "
-    },
+    }, // <-- Comma needed...
 
+    // Battery Module definition
     "battery": {
       "states": {
         "warning": 30,
@@ -56,8 +68,9 @@
       "format-plugged": "{capacity}%  ",
       "format-alt": "{time} {icon}",
       "format-icons": ["", "", "", "", ""]
-    },
+    }, // <-- Comma needed...
 
+    // Pulseaudio Module definition
     "pulseaudio": {
       "on-scroll-up": "pactl set-sink-volume @DEFAULT_SINK@ +1%",
       "on-scroll-down": "pactl set-sink-volume @DEFAULT_SINK@ -1%",
@@ -77,8 +90,9 @@
         "default": ["", "", ""]
       },
       "on-click": "pavucontrol"
-    },
+    }, // <-- Comma needed...
 
-    // Increased bar height
-    "height": 30
-}
+    // Height setting (Assuming this is the LAST entry before the final '}')
+    "height": 30 // <-- NO comma here if it's the absolute last item
+
+} // End of main config object
