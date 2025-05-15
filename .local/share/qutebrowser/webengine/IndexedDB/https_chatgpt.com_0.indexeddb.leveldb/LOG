@@ -1,0 +1,6 @@
+2025/05/15-21:37:07.383 968d Creating DB /home/imli700/.local/share/qutebrowser/webengine/IndexedDB/https_chatgpt.com_0.indexeddb.leveldb since it was missing.
+2025/05/15-21:37:07.388 968d Reusing MANIFEST /home/imli700/.local/share/qutebrowser/webengine/IndexedDB/https_chatgpt.com_0.indexeddb.leveldb/MANIFEST-000001
+2025/05/15-22:08:05.018 968e Level-0 table #5: started
+2025/05/15-22:08:05.020 968e Level-0 table #5: 12461 bytes OK
+2025/05/15-22:08:05.023 968e Delete type=0 #3
+2025/05/15-22:08:05.023 968e Manual compaction at level-0 from (begin) .. (end); will stop at (end)

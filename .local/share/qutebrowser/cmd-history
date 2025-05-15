@@ -1,0 +1,18 @@
+:greasemonkey-reload 
+:open -t telegram web
+:open -t aistudio.google.com
+:open -t gmial
+/notifica
+:open -t https://aistudio.google.com/
+:open -t chat.openai.com
+:open -t www.theodinproject.com
+:open -t github.com
+:open -t swayam.gov.in
+:open -t discord.com
+:open -t drive.google.com
+:open -t youtube.com
+:open -t what is qutebrowser with ranger
+:undo
+:open -t firefox to qutebrowser bookmarks reddit
+:open -t what browser engine does qutebrowser use
+:bookmark-list

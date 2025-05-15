@@ -1,0 +1,95 @@
+windows:
+- active: true
+  geometry: !!binary |
+    AdnQywADAAAAAAAAAAAAAAAAB38AAAPjAAAAAAAAAAAAAAd/AAAD4wAAAAAAAAAAB4AAAAAAAAAA
+    AAAAB38AAAPj
+  tabs:
+  - history:
+    - last_visited: '2025-05-15T22:08:20'
+      pinned: false
+      title: WhatsApp
+      url: https://web.whatsapp.com/
+    - active: true
+      last_visited: '2025-05-15T22:08:37'
+      pinned: false
+      scroll-pos:
+        x: 0
+        y: 0
+      title: WhatsApp
+      url: https://web.whatsapp.com/
+      zoom: 1.5
+  - history:
+    - last_visited: '2025-05-15T22:08:19'
+      pinned: false
+      title: Discord
+      url: https://discord.com/channels/@me/1190115016012222566
+    - active: true
+      last_visited: '2025-05-15T22:08:25'
+      pinned: false
+      scroll-pos:
+        x: 0
+        y: 0
+      title: Discord
+      url: https://discord.com/login?redirect_to=%2Fchannels%2F%40me%2F1190115016012222566
+      zoom: 1.5
+  - history:
+    - active: true
+      last_visited: '2025-05-15T22:08:21'
+      pinned: false
+      scroll-pos:
+        x: 0
+        y: 0
+      title: Telegram
+      url: https://web.telegram.org/a/
+      zoom: 1.5
+  - history:
+    - active: true
+      last_visited: '2025-05-15T22:08:23'
+      pinned: false
+      scroll-pos:
+        x: 0
+        y: 0
+      title: Inbox - imlijangba@gmail.com - Gmail
+      url: https://mail.google.com/mail/u/0/#inbox
+      zoom: 1.5
+  - history:
+    - active: true
+      last_visited: '2025-05-15T22:08:22'
+      pinned: false
+      scroll-pos:
+        x: 0
+        y: 0
+      title: Firefox Bookmarks Import to Qu | Google AI Studio
+      url: https://aistudio.google.com/prompts/1-R72k9rWnBvL6_9_hMX5y90NxHiH-FFc
+      zoom: 1.5
+  - history:
+    - active: true
+      last_visited: '2025-05-15T22:08:20'
+      pinned: false
+      scroll-pos:
+        x: 0
+        y: 0
+      title: Qutebrowser bookmarks and tags
+      url: https://chatgpt.com/c/68261129-8950-8008-9ce8-5f35a5a45efb
+      zoom: 1.5
+  - history:
+    - active: true
+      last_visited: '2025-05-15T22:08:22'
+      pinned: false
+      scroll-pos:
+        x: 0
+        y: 0
+      title: Form Basics | The Odin Project
+      url: https://www.theodinproject.com/lessons/node-path-intermediate-html-and-css-form-basics
+      zoom: 1.5
+  - active: true
+    history:
+    - active: true
+      last_visited: '2025-05-15T22:08:19'
+      pinned: false
+      scroll-pos:
+        x: 0
+        y: 0
+      title: Swayam Central
+      url: https://swayam.gov.in/
+      zoom: 1.5
