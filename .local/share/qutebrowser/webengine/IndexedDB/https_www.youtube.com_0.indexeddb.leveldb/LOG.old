@@ -1,5 +1,0 @@
-2025/05/15-19:12:59.563 89ac Creating DB /home/imli700/.local/share/qutebrowser/webengine/IndexedDB/https_www.youtube.com_0.indexeddb.leveldb since it was missing.
-2025/05/15-19:12:59.567 89ac Reusing MANIFEST /home/imli700/.local/share/qutebrowser/webengine/IndexedDB/https_www.youtube.com_0.indexeddb.leveldb/MANIFEST-000001
-2025/05/15-19:14:48.087 89ad Level-0 table #5: started
-2025/05/15-19:14:48.096 89ad Level-0 table #5: 1195174 bytes OK
-2025/05/15-19:14:48.099 89ad Delete type=0 #3
