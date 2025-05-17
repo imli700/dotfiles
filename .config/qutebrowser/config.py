@@ -109,6 +109,7 @@ c.content.blocking.adblock.lists = [
 # === Other useful settings (optional) ===
 # ===================================================================
 c.downloads.location.directory = "~/Downloads"
+c.spellcheck.languages = ["en-US"]
 
 # ===================================================================
 # === Notification settings ===
