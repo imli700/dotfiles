@@ -115,5 +115,8 @@ c.spellcheck.languages = ["en-US"]
 # === Notification settings ===
 # ===================================================================
 config.set("content.notifications.enabled", True, "https://web.whatsapp.com")
+config.set("content.notifications.enabled", True, "https://mail.google.com")
+config.set("content.notifications.enabled", True, "https://web.telegram.org")
+config.set("content.notifications.enabled", True, "https://discord.com")
 
 # End of config.py
