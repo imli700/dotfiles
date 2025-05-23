@@ -83,10 +83,28 @@ c.url.default_page = "https://www.google.com"
 # ===================================================================
 # === Keybindings ===
 # ===================================================================
+# Fix inverted tab movement
 config.unbind("J", mode="normal")
 config.unbind("K", mode="normal")
 config.bind("J", "tab-prev", mode="normal")
 config.bind("K", "tab-next", mode="normal")
+
+# Keybinds to toggle statusbar, tabs, or both
+config.bind("xs", "config-cycle statusbar.show always never")
+config.bind("xt", "config-cycle tabs.show always never")
+config.bind(
+    "xx",
+    "config-cycle statusbar.show always never;; config-cycle tabs.show always never",
+)
+
+# ===================================================================
+# === Download bar ===
+# ===================================================================
+# Position the download bar at the bottom of the window.
+c.downloads.position = "bottom"
+
+# Remove the download bar in set milliseconds after download finishes
+c.downloads.remove_finished = 20000
 
 # ===================================================================
 # === Appearance / Zoom ===
