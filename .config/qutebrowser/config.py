@@ -97,6 +97,22 @@ config.bind(
     "config-cycle statusbar.show always never;; config-cycle tabs.show always never",
 )
 
+# 1. Change Shift+J from default 'tab-next' (right tab) to 'back' (previous site in history)
+#    Note: 'J' in qutebrowser bindings implies Shift+j
+config.bind("J", "back", mode="normal")
+
+# 2. Change Shift+K from default 'tab-prev' (left tab) to 'forward' (next site in history)
+#    Note: 'K' in qutebrowser bindings implies Shift+k
+config.bind("K", "forward", mode="normal")
+
+# 3. Change Shift+H from default 'back' (previous site in history) to 'tab-prev' (left tab)
+#    Note: 'H' in qutebrowser bindings implies Shift+h
+config.bind("H", "tab-prev", mode="normal")
+
+# 4. Change Shift+L from default 'forward' (next site in history) to 'tab-next' (right tab)
+#    Note: 'L' in qutebrowser bindings implies Shift+l
+config.bind("L", "tab-next", mode="normal")
+
 # ===================================================================
 # === Download bar ===
 # ===================================================================
