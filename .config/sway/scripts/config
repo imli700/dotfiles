@@ -1,0 +1,339 @@
+# config for sway (for AI)
+
+###################################
+### GENERAL SETTINGS AND STYLE  ###
+###################################
+
+# Style preferences
+smart_borders no_gaps
+smart_gaps on
+default_border pixel 1
+titlebar_border_thickness 1
+
+# Consistent gap sizes
+gaps top 10
+gaps inner 10
+gaps bottom 0
+gaps left 5
+gaps right 5
+
+# Window decorations
+client.focused #80a0ff #080808  #c6c6c6 #80a0ff #80a0ff
+client.focused_inactive #80a0ff #222222 #c6c6c6 #80a0ff #303030
+client.urgent #80a0ff #80a0ff #080808 #80a0ff #80a0ff
+
+###################################
+### VARIABLES AND CUSTOMIZATION ###
+###################################
+
+# Main ones
+set $mod Mod4
+set $term foot
+# set $menu "rofi -show drun" # Replaced by new definition in "Changes by AI" section
+
+# Home row direction keys, like vim
+set $left h
+set $down j
+set $up k
+set $right l
+
+# Wallpaper: Update with your correct path
+set $wallpaper_path  $HOME/Pictures/wallpapers/Rainnight.jpg
+
+################################
+### OUTPUT CONFIGURATION     ###
+################################
+
+# Add output configuration here
+# Example: output HDMI-A-1 resolution 1920x1080 position 1920,0
+
+# **Original setting restored:**
+output eDP-1 mode 1920x1080@60.001Hz position 0,0
+
+################################
+### IDLE SETTINGS            ###
+################################
+
+# Add idle settings here, if desired
+
+################################
+### INPUT CONFIGURATION      ###
+################################
+
+input type:touchpad {
+    tap enabled
+    natural_scroll enabled
+    middle_emulation enabled
+    pointer_accel 0.3
+}
+
+################################
+### KEYBINDINGS              ###
+################################
+
+# Basics:
+#
+    # Start a terminal
+    bindsym $mod+Return exec $term
+
+    # Kill focused window
+    bindsym $mod+Shift+q kill
+
+    # Start your launcher
+    bindsym $mod+d exec $menu
+
+    # Drag floating windows by holding down $mod and left mouse button.
+    # Resize them with right mouse button + $mod.
+    # Despite the name, also works for non-floating windows.
+    # Change normal to inverse to use left mouse button for resizing and right
+    # mouse button for dragging.
+    floating_modifier $mod normal
+
+    # Reload the configuration file
+    bindsym $mod+Shift+c reload
+#
+# Moving around:
+#
+    # Move your focus around
+    bindsym $mod+$left focus left
+    bindsym $mod+$down focus down
+    bindsym $mod+$up focus up
+    bindsym $mod+$right focus right
+    # Or use $mod+[up|down|left|right]
+    bindsym $mod+Left focus left
+    bindsym $mod+Down focus down
+    bindsym $mod+Up focus up
+    bindsym $mod+Right focus right
+
+    # Move the focused window with the same, but add Shift
+    bindsym $mod+Shift+$left move left
+    bindsym $mod+Shift+$down move down
+    bindsym $mod+Shift+$up move up
+    bindsym $mod+Shift+$right move right
+    # Ditto, with arrow keys
+    bindsym $mod+Shift+Left move left
+    bindsym $mod+Shift+Down move down
+    bindsym $mod+Shift+Up move up
+    bindsym $mod+Shift+Right move right
+#
+# Workspaces:
+#
+    # Switch to workspace
+    bindsym $mod+1 workspace number 1
+    bindsym $mod+2 workspace number 2
+    bindsym $mod+3 workspace number 3
+    bindsym $mod+4 workspace number 4
+    bindsym $mod+5 workspace number 5
+    bindsym $mod+6 workspace number 6
+    bindsym $mod+7 workspace number 7
+    bindsym $mod+8 workspace number 8
+    bindsym $mod+9 workspace number 9
+    bindsym $mod+0 workspace number 10
+    # Move focused container to workspace
+    bindsym $mod+Shift+1 move container to workspace number 1
+    bindsym $mod+Shift+2 move container to workspace number 2
+    bindsym $mod+Shift+3 move container to workspace number 3
+    bindsym $mod+Shift+4 move container to workspace number 4
+    bindsym $mod+Shift+5 move container to workspace number 5
+    bindsym $mod+Shift+6 move container to workspace number 6
+    bindsym $mod+Shift+7 move container to workspace number 7
+    bindsym $mod+Shift+8 move container to workspace number 8
+    bindsym $mod+Shift+9 move container to workspace number 9
+    bindsym $mod+Shift+0 move container to workspace number 10
+    # Note: workspaces can have any name you want, not just numbers.
+    # We just use 1-10 as the default.
+#
+# Layout stuff:
+#
+    # You can "split" the current object of your focus with
+    # $mod+b or $mod+v, for horizontal and vertical splits
+    # respectively.
+    # Switched from intended meaning to my intuitive meaning of splitting directions
+    bindsym $mod+v splith
+    bindsym $mod+b splitv
+
+    # Switch the current container between different layout styles
+    bindsym $mod+s layout stacking
+    bindsym $mod+w layout tabbed
+    bindsym $mod+e layout toggle split
+
+    # Make the current focus fullscreen
+    bindsym $mod+f fullscreen
+
+    # Toggle the current focus between tiling and floating mode
+    bindsym $mod+Shift+space floating toggle
+
+    # Swap focus between the tiling area and the floating area
+    bindsym $mod+space focus mode_toggle
+
+    # Move focus to the parent container
+    bindsym $mod+a focus parent
+#
+# Scratchpad:
+#
+    # Sway has a "scratchpad", which is a bag of holding for windows.
+    # You can send windows there and get them back later.
+
+    # Move the currently focused window to the scratchpad
+    bindsym $mod+Shift+minus move scratchpad
+
+    # Show the next scratchpad window or hide the focused scratchpad window.
+    # If there are multiple scratchpad windows, this command cycles through them.
+    bindsym $mod+minus scratchpad show
+#
+# Resizing containers:
+#
+mode "resize" {
+    # left will shrink the containers width
+    # right will grow the containers width
+    # up will shrink the containers height
+    # down will grow the containers height
+    bindsym $left resize shrink width 10px
+    bindsym $down resize grow height 10px
+    bindsym $up resize shrink height 10px
+    bindsym $right resize grow width 10px
+
+    # Ditto, with arrow keys
+    bindsym Left resize shrink width 10px
+    bindsym Down resize grow height 10px
+    bindsym Up resize shrink height 10px
+    bindsym Right resize grow width 10px
+
+    # Return to default mode
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+bindsym $mod+r mode "resize"
+
+################################
+### CUSTOM SETTINGS          ###
+################################
+
+# authentication helper
+# exec "/usr/lib/polkit-1/polkit-agent-helper-1" # Replaced by graphical agent in "Changes by AI" section
+
+# Bar (assuming Waybar)
+bar {
+    swaybar_command waybar
+}
+
+# Volume control
+bindsym XF86AudioMute exec pactl set-sink-mute @DEFAULT_SINK@ toggle
+bindsym XF86AudioMicMute exec pactl set-source-mute @DEFAULT_SOURCE@ toggle
+bindsym XF86AudioLowerVolume exec pactl set-sink-volume @DEFAULT_SINK@ -5%
+bindsym XF86AudioRaiseVolume exec pactl set-sink-volume @DEFAULT_SINK@ +5%
+
+# Brightness
+# bindsym XF86MonBrightnessDown exec brightnessctl s 5%- # Replaced by binding with notification in "Changes by AI" section
+# bindsym XF86MonBrightnessUp exec brightnessctl s +5%   # Replaced by binding with notification in "Changes by AI" section
+
+# Shutdown / Restart / Suspend
+set $Locker swaylock -i "~/Pictures/wallpapers/moon.jpg", mode "default"
+set $mode_system System (l) lock, (e) logout, (s) suspend, (r) reboot, (CTRL+s) shutdown
+
+mode "$mode_system" {
+    bindsym l exec --no-startup-id swaylock
+    bindsym e exec --no-startup-id swaymsg exit, mode "default"
+    bindsym s exec --no-startup-id systemctl suspend && $Locker
+    bindsym r exec --no-startup-id systemctl reboot, mode "default"
+    bindsym Ctrl+s exec --no-startup-id systemctl poweroff -i, mode "default"
+
+    # back to normal: Enter or Escape
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+
+bindsym $mod+BackSpace mode "$mode_system"
+
+# Screenshot
+bindsym $mod+Shift+s exec grim -g "$(slurp)" - | swappy -f -
+
+# Screenrecorder
+set $screenrecorder "bash $HOME/.config/sway/scripts/toggle-screen-recorder.sh"
+set $partialscreenrecorder "bash $HOME/.config/sway/scripts/toggle-partial-screen-recorder.sh"
+set $screenrecorderwithsound "bash $HOME/.config/sway/scripts/toggle-screen-recorder-with-sound.sh"
+bindsym --to-code $mod+Shift+R exec $screenrecorder
+bindsym --to-code $mod+Shift+Ctrl+R exec $partialscreenrecorder
+bindsym --to-code $mod+Alt+R exec $screenrecorderwithsound
+
+###################################
+### STARTUP APPLICATIONS & MISC ###
+###################################
+
+# Wayland GTK Settings:
+exec {
+    gsettings set $gnome-schema gtk-theme 'Catppuccin-Mocha'
+    gsettings set $gnome-schema icon-theme 'Papirus'
+}
+
+# Wallpaper
+output * bg $wallpaper_path fit
+
+exec mako
+exec sleep 4s && megasync
+exec nm-applet --indicator
+exec powerprofilesctl set power-saver
+
+# Mute microphone on startup
+exec sleep 5s && pactl set-source-mute 53 1
+
+##############################################################################
+### Changes by AI ###
+##############################################################################
+
+# 1. Graphical PolicyKit Authentication Agent
+# -------------------------------------------
+# Starts a graphical agent for handling privilege escalation prompts.
+# Requires: lxqt-policykit (or similar Wayland-compatible agent)
+exec /usr/libexec/lxqt-policykit-agent
+# Makes the agent's window float nicely.
+for_window [app_id="lxqt-policykit-agent"] floating enable, move position center
+
+# 2. Brightness Notifications
+# ---------------------------
+# Requires: brightnessctl, libnotify (for notify-send)
+# Defines a command to show a brightness notification.
+set $brightness_notification_cmd  command -v notify-send >/dev/null && \
+        VALUE=$(brightnessctl --percentage get) && \
+        notify-send -e -h string:x-canonical-private-synchronous:brightness \
+            -h "int:value:$VALUE" -t 800 "Brightness: ${VALUE}%"
+# Bindings for brightness control with notification.
+bindsym XF86MonBrightnessDown exec brightnessctl -q set 5%- && $brightness_notification_cmd
+bindsym XF86MonBrightnessUp exec brightnessctl -q set +5% && $brightness_notification_cmd
+
+# 3. Application-Specific Rules (Beyond Polkit)
+# ---------------------------------------------
+# Automatically float pavucontrol (Volume Control) if installed.
+# Requires: pavucontrol
+for_window [app_id="pavucontrol"] floating enable, move position center
+
+# Mark browser windows for specific rules. Adjust app_id/class as needed.
+# Requires: A web browser like firefox, chromium-browser, brave-browser
+for_window [app_id="firefox"] mark Browser
+for_window [app_id="chromium-browser"] mark Browser # For Chromium/Chrome
+for_window [app_id="Brave-browser"] mark Browser # For Brave
+# You might also need class-based rules for XWayland versions:
+# for_window [class="firefox"] mark Browser
+# for_window [class="Chromium-browser"] mark Browser
+# for_window [class="Brave-browser"] mark Browser
+
+# Inhibit idle (screen blanking/locking) when a marked browser is fullscreen.
+for_window [con_mark="Browser"] inhibit_idle fullscreen
+
+# Float the Firefox screensharing indicator window.
+# Requires: firefox
+for_window [app_id="firefox" title="Firefox — Sharing Indicator"] floating enable
+
+# 4. XDG User Directories Update
+# ------------------------------
+# Ensures standard user directories (Downloads, Documents, etc.) are set up.
+# Requires: xdg-user-dirs
+exec /usr/bin/xdg-user-dirs-update
+
+# 5. Robust Rofi Command
+# ----------------------
+# Uses rofi's combi mode to show applications (drun) and run commands (run).
+# Requires: rofi
+set $menu "rofi -show combi -combi-modes drun,run -modes combi"
+
+# --- End of Changes by AI ---
