@@ -4,6 +4,9 @@
 import os
 from urllib.request import urlopen
 
+# For opening pdf files
+import subprocess
+
 # Third-party imports
 # (catppuccin module import removed as it's no longer used directly)
 
@@ -152,5 +155,9 @@ config.set("content.notifications.enabled", True, "https://web.whatsapp.com")
 config.set("content.notifications.enabled", True, "https://mail.google.com")
 config.set("content.notifications.enabled", True, "https://web.telegram.org")
 config.set("content.notifications.enabled", True, "https://discord.com")
+
+# ===================================================================
+# === Open pdf links after downloading (To fix this later) ===
+# ===================================================================
 
 # End of config.py
