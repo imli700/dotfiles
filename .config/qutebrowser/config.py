@@ -157,7 +157,18 @@ config.set("content.notifications.enabled", True, "https://web.telegram.org")
 config.set("content.notifications.enabled", True, "https://discord.com")
 
 # ===================================================================
-# === Open pdf links after downloading (To fix this later) ===
+# === Open Youtube videos in mpv ===
 # ===================================================================
+# Bindings for playing videos in mpv
+
+# 1. Play the video URL of the *current* page in mpv
+# This is useful when you are already on the YouTube video's page.
+# Keybinding: Ctrl+Shift+M (as seen in your video)
+config.bind("<Ctrl-Shift-m>", "spawn mpv {url}")
+
+# 2. Use hints to select a link on the page and play it in mpv
+# This is useful for playing a video from the YouTube homepage or a subscription feed.
+# Keybinding: Ctrl+M (as seen in your video)
+config.bind("<Ctrl-m>", "hint links spawn mpv {hint-url}")
 
 # End of config.py
