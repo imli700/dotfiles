@@ -1,61 +1,72 @@
 #!/bin/bash
+# ----------------------------------------
+# Full‑screen recorder → .mkv → WhatsApp‑.mp4
+# ----------------------------------------
 
 PID_FILE="/tmp/current_wf_recorder.pid"
+RAW_PATH_FILE="${PID_FILE}.path"
 REC_DIR="$HOME/Videos/screen-recordings"
-WF_LOG_FILE="/tmp/wf_recorder_output.log" # Log file for wf-recorder's own output
+WF_LOG_FILE="/tmp/wf_recorder_output.log"
 
-# Ensure recording directory exists
+# WhatsApp settings
+WA_VBITRATE=800k
+WA_ABITRATE=128k
+WA_PROFILE="baseline"
+WA_LEVEL="3.0"
+
 mkdir -p "$REC_DIR"
-# Clear old log file for this session when starting a new recording instance
-# If PID file doesn't exist, it implies we are trying to start.
-if [ ! -f "$PID_FILE" ]; then
-  >"$WF_LOG_FILE"
-fi
+[ ! -f "$PID_FILE" ] && >"$WF_LOG_FILE"
 
 if [ -f "$PID_FILE" ]; then
-  # PID file exists, so we try to stop the recording
-  PID_TO_KILL=$(cat "$PID_FILE")
-  if ps -p "$PID_TO_KILL" >/dev/null && grep -q "wf-recorder" "/proc/$PID_TO_KILL/comm" 2>/dev/null; then
-    echo "Stopping wf-recorder (PID: $PID_TO_KILL)... Log: $WF_LOG_FILE" | tee -a "$WF_LOG_FILE"
-    notify-send -t 3000 -i "media-record" "Screen Recording" "Stopping..."
-    kill -INT "$PID_TO_KILL" # Send SIGINT to the specific process
+  # --- STOP RECORDING ---
+  RAW_PID=$(<"$PID_FILE")
+  RAW_FILE=$(<"$RAW_PATH_FILE")
 
-    wait_time=0
-    max_wait_seconds=5 # Wait up to 5 seconds
-    while ps -p "$PID_TO_KILL" >/dev/null && [ $(echo "$wait_time < $max_wait_seconds" | bc -l) -eq 1 ]; do
-      sleep 0.1
-      wait_time=$(echo "$wait_time + 0.1" | bc -l)
-    done
+  echo "Stopping wf-recorder (PID: $RAW_PID)..." | tee -a "$WF_LOG_FILE"
+  kill -INT "$RAW_PID"
 
-    if ps -p "$PID_TO_KILL" >/dev/null; then
-      echo "wf-recorder (PID: $PID_TO_KILL) did not terminate gracefully after $max_wait_seconds seconds. Forcing kill." | tee -a "$WF_LOG_FILE"
-      kill -KILL "$PID_TO_KILL"
-      notify-send -t 5000 -u critical -i "media-record" "Screen Recording" "Forced stop. Video might be corrupt."
-    else
-      echo "wf-recorder (PID: $PID_TO_KILL) stopped." | tee -a "$WF_LOG_FILE"
-      notify-send -t 5000 -i "video-x-generic" "Screen Recording" "Stopped. File saved."
-    fi
-    rm -f "$PID_FILE"
+  # wait up to 5s for it to exit
+  for i in {1..50}; do
+    ps -p "$RAW_PID" &>/dev/null || break
+    sleep 0.1
+  done
+  ps -p "$RAW_PID" &>/dev/null && kill -KILL "$RAW_PID"
+
+  # Immediate stop notification
+  notify-send -t 3000 -i media-record "Stopped Recording" \
+    "Raw file saved: $RAW_FILE"
+
+  # --- TRANSCODE to WhatsApp format ---
+  WA_OUT="${RAW_FILE%.mkv}_wa.mp4"
+  echo "Transcoding → WhatsApp format: $WA_OUT" | tee -a "$WF_LOG_FILE"
+
+  ffmpeg -y -i "$RAW_FILE" \
+    -c:v libx264 -profile:v $WA_PROFILE -level $WA_LEVEL -pix_fmt yuv420p \
+    -vf "scale=trunc(iw/2)*2:trunc(ih/2)*2" \
+    -b:v $WA_VBITRATE -maxrate $WA_VBITRATE -bufsize $WA_VBITRATE \
+    -c:a aac -b:a $WA_ABITRATE \
+    -movflags +faststart \
+    "$WA_OUT" >>"$WF_LOG_FILE" 2>&1
+
+  if [ $? -eq 0 ]; then
+    rm -f "$RAW_FILE" "$RAW_PATH_FILE" "$PID_FILE"
+    notify-send -t 3000 -i video-x-generic "Converted" \
+      "WhatsApp‑ready file:\n$WA_OUT"
   else
-    echo "Stale PID file found (PID: $PID_TO_KILL potentially). Process not running or not wf-recorder. Removing PID file." | tee -a "$WF_LOG_FILE"
-    rm -f "$PID_FILE"
+    notify-send -u critical -t 3000 -i dialog-error "Converted" \
+      "Transcode FAILED! See $WF_LOG_FILE"
   fi
+
 else
-  # PID file does not exist, so start recording
-  FILENAME="$REC_DIR/$(date +'recording-%Y_%m_%d-%Hh_%Mm_%Ss.mp4')" # Changed to .mp4
-  echo "Attempting to start wf-recorder, saving to $FILENAME. Log: $WF_LOG_FILE" | tee -a "$WF_LOG_FILE"
+  # --- START RECORDING to MKV ---
+  RAW_FILE="$REC_DIR/$(date +'%Y_%m_%d-%H%M%S').mkv"
+  echo "Starting wf-recorder → $RAW_FILE" | tee -a "$WF_LOG_FILE"
 
-  wf-recorder -f "$FILENAME" >"$WF_LOG_FILE" 2>&1 &
-  NEW_PID=$!
+  wf-recorder -f "$RAW_FILE" &>>"$WF_LOG_FILE" &
+  echo $! >"$PID_FILE"
+  echo "$RAW_FILE" >"$RAW_PATH_FILE"
 
-  sleep 0.5
-
-  if ps -p "$NEW_PID" >/dev/null && grep -q "wf-recorder" "/proc/$NEW_PID/comm" 2>/dev/null; then
-    echo "$NEW_PID" >"$PID_FILE"
-    notify-send -t 5000 -i "media-record" "Screen Recording" "Started. Saving to:\n$FILENAME"
-    echo "wf-recorder started successfully (PID: $NEW_PID)." | tee -a "$WF_LOG_FILE"
-  else
-    notify-send -t 5000 -u critical -i "dialog-error" "Screen Recording" "FAILED to start. Check log:\n$WF_LOG_FILE"
-    echo "wf-recorder FAILED to start or exited immediately. Check $WF_LOG_FILE for errors." | tee -a "$WF_LOG_FILE"
-  fi
+  # start notification
+  notify-send -t 3000 -i media-record "Screen Recording" \
+    "Started. Raw file:\n$RAW_FILE"
 fi
