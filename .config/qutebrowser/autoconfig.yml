@@ -9,9 +9,17 @@ settings:
   content.javascript.clipboard:
     https://aistudio.google.com: access-paste
     https://chatgpt.com: access-paste
+    https://discord.com: access-paste
     https://github.com: access-paste
+    https://mega.io: access-paste
     https://notebooklm.google.com: access-paste
     https://web.whatsapp.com: access-paste
+    https://www.kaggle.com: access-paste
+    https://www.reddit.com: access-paste
+  content.media.audio_capture:
+    https://chatgpt.com: true
+  content.media.video_capture:
+    https://web.whatsapp.com: true
   content.notifications.enabled:
     https://discord.com: true
     https://mail.google.com: true

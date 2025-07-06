@@ -171,4 +171,9 @@ config.bind("<Ctrl-Shift-m>", "spawn mpv {url}")
 # Keybinding: Ctrl+M (as seen in your video)
 config.bind("<Ctrl-m>", "hint links spawn mpv {hint-url}")
 
+# ===================================================================
+# === Always show scrollbar ===
+# ===================================================================
+c.scrolling.bar = "always"
+
 # End of config.py
