@@ -6,6 +6,8 @@
 
 config_version: 2
 settings:
+  colors.webpage.darkmode.enabled:
+    global: true
   content.javascript.clipboard:
     https://aistudio.google.com: access-paste
     https://chatgpt.com: access-paste
@@ -25,6 +27,7 @@ settings:
     https://mail.google.com: true
     https://web.telegram.org: true
     https://web.whatsapp.com: true
+    https://www.lenovo.com: true
     https://www.youtube.com: true
   content.register_protocol_handler:
     https://mail.google.com?extsrc=mailto&url=%25s: true
