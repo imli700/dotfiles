@@ -293,47 +293,51 @@ for_window [app_id="lxqt-policykit-agent"] floating enable, move position center
 # ---------------------------
 # Requires: brightnessctl, libnotify (for notify-send)
 # Defines a command to show a brightness notification.
-set $brightness_notification_cmd  command -v notify-send >/dev/null && \
-        VALUE=$(brightnessctl --percentage get) && \
-        notify-send -e -h string:x-canonical-private-synchronous:brightness \
-            -h "int:value:$VALUE" -t 800 "Brightness: ${VALUE}%"
+# This is the NEW, FIXED line. Replace the old one with this.
+set $brightness_notification_cmd command -v notify-send >/dev/null && \
+      CURRENT=$(brightnessctl get) && \
+      MAX=$(brightnessctl max) && \
+      PERCENTAGE=$((CURRENT * 100 / MAX)) && \
+      notify-send -e -h string:x-canonical-private-synchronous:brightness \
+      -h "int:value:$PERCENTAGE" -t 800 "Brightness: ${PERCENTAGE}%"
+
 # Bindings for brightness control with notification.
-bindsym XF86MonBrightnessDown exec brightnessctl -q set 5%- && $brightness_notification_cmd
-bindsym XF86MonBrightnessUp exec brightnessctl -q set +5% && $brightness_notification_cmd
+      bindsym XF86MonBrightnessDown exec brightnessctl -q set 5%- && $brightness_notification_cmd
+      bindsym XF86MonBrightnessUp exec brightnessctl -q set +5% && $brightness_notification_cmd
 
 # 3. Application-Specific Rules (Beyond Polkit)
 # ---------------------------------------------
 # Automatically float pavucontrol (Volume Control) if installed.
 # Requires: pavucontrol
-for_window [app_id="pavucontrol"] floating enable, move position center
+      for_window [app_id="pavucontrol"] floating enable, move position center
 
 # Mark browser windows for specific rules. Adjust app_id/class as needed.
 # Requires: A web browser like firefox, chromium-browser, brave-browser
-for_window [app_id="firefox"] mark Browser
-for_window [app_id="chromium-browser"] mark Browser # For Chromium/Chrome
-for_window [app_id="Brave-browser"] mark Browser # For Brave
+      for_window [app_id="firefox"] mark Browser
+      for_window [app_id="chromium-browser"] mark Browser # For Chromium/Chrome
+      for_window [app_id="Brave-browser"] mark Browser # For Brave
 # You might also need class-based rules for XWayland versions:
 # for_window [class="firefox"] mark Browser
 # for_window [class="Chromium-browser"] mark Browser
 # for_window [class="Brave-browser"] mark Browser
 
 # Inhibit idle (screen blanking/locking) when a marked browser is fullscreen.
-for_window [con_mark="Browser"] inhibit_idle fullscreen
+      for_window [con_mark="Browser"] inhibit_idle fullscreen
 
 # Float the Firefox screensharing indicator window.
 # Requires: firefox
-for_window [app_id="firefox" title="Firefox — Sharing Indicator"] floating enable
+      for_window [app_id="firefox" title="Firefox — Sharing Indicator"] floating enable
 
 # 4. XDG User Directories Update
 # ------------------------------
 # Ensures standard user directories (Downloads, Documents, etc.) are set up.
 # Requires: xdg-user-dirs
-exec /usr/bin/xdg-user-dirs-update
+      exec /usr/bin/xdg-user-dirs-update
 
 # 5. Robust Rofi Command
 # ----------------------
 # Uses rofi's combi mode to show applications (drun) and run commands (run).
 # Requires: rofi
-set $menu "rofi -show combi -combi-modes drun,run -modes combi"
+      set $menu "rofi -show combi -combi-modes drun,run -modes combi"
 
 # --- End of Changes by AI ---
