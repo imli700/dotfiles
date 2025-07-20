@@ -17,6 +17,7 @@ settings:
     https://notebooklm.google.com: access-paste
     https://web.whatsapp.com: access-paste
     https://www.kaggle.com: access-paste
+    https://www.perplexity.ai: access-paste
     https://www.reddit.com: access-paste
   content.media.audio_capture:
     https://chatgpt.com: true

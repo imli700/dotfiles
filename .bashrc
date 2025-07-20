@@ -34,6 +34,28 @@ alias config='/usr/bin/git --git-dir=$HOME/dotfiles/ --work-tree=$HOME'
 export VISUAL=nvim
 export EDITOR="$VISUAL"
 
+# Colors
+if [ -x /usr/bin/dircolors ]; then
+  eval "$(dircolors -b)"
+  alias ls='ls --color=auto' # Linux
+  # alias ls='ls -G'             # macOS
+  alias grep='grep --color=auto'
+  alias fgrep='fgrep --color=auto'
+  alias egrep='egrep --color=auto'
+fi
+
+if [ -n "$force_color_prompt" ]; then
+  if tput setaf 1 &>/dev/null; then
+    color_prompt=yes
+  fi
+fi
+
+if [ "$color_prompt" = yes ]; then
+  PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
+else
+  PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
+fi
+
 # to make zathura read shit
 export XDG_CONFIG_HOME="$HOME/.config"
 
