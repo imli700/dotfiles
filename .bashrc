@@ -35,6 +35,8 @@ export VISUAL=nvim
 export EDITOR="$VISUAL"
 
 # Colors
+force_color_prompt=yes
+
 if [ -x /usr/bin/dircolors ]; then
   eval "$(dircolors -b)"
   alias ls='ls --color=auto' # Linux
