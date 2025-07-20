@@ -1,11 +1,10 @@
 // ==UserScript==
 // @name         AI Chat Scroller - Scroll to Previous/Next User Message
-// @version      1.5
+// @version      1.6
 // @namespace    http://tampermonkey.net/  // Or your own unique namespace (e.g., your website, GitHub username)
-// @description  Scrolls to the previous and next message sent by the user in Gemini, AI Studio, and ChatGPT. Fixes button disappearing on ChatGPT.
+// @description  Scrolls to the previous and next message sent by the user in Gemini and ChatGPT. Fixes button disappearing on ChatGPT.
 // @author       WideKnotLabs
 // @match        https://gemini.google.com/*
-// @match        https://aistudio.google.com/*
 // @match        https://chatgpt.com/*
 // @grant        GM_addStyle
 // @license      MIT // Or another open-source license you prefer (e.g., GPL-3.0-or-later)
@@ -27,11 +26,6 @@
     'span.user-query-bubble-with-background', // Gemini User
     'div.response-content',                   // Gemini AI
 
-    // AI Studio selectors
-    'div.user-prompt-container[data-turn-role="User"]', // AI Studio User
-    'div.chat-turn-container.model',           // AI Studio AI (model turn)
-    // 'div[data-turn-role="Model"]',          // Alternative for AI Studio AI if data-turn-role="Model" exists
-
     // ChatGPT selectors
     'div[data-message-author-role="user"]',    // ChatGPT User
     'div[data-message-author-role="assistant"]' // ChatGPT AI
@@ -41,10 +35,6 @@
   function isUserMessage(messageElement) {
     // Check for Gemini user message pattern
     if (messageElement.matches('span.user-query-bubble-with-background')) {
-      return true;
-    }
-    // Check for AI Studio user message pattern
-    if (messageElement.matches('div.user-prompt-container[data-turn-role="User"]')) {
       return true;
     }
     // Check for ChatGPT user message pattern
@@ -348,7 +338,7 @@ bottom: 20px !important;
       }
     });
 
-    console.log("Universal Chat Scroller Active (Gemini, AI Studio, ChatGPT). Buttons added. Shortcuts: Ctrl+Shift+ArrowUp/Down");
+    console.log("Universal Chat Scroller Active (Gemini, ChatGPT). Buttons added. Shortcuts: Ctrl+Shift+ArrowUp/Down");
   }
 
   // --- Main Execution ---
@@ -360,9 +350,8 @@ bottom: 20px !important;
     console.log("ChatGPT detected. Delaying UI initialization by 3 seconds.");
     setTimeout(initializeUI, 3000);
   } else {
-    // For AI Studio and Gemini, initialize immediately as they don't have this issue.
-    // This uses the original script's robust loading logic.
-    console.log("AI Studio or Gemini detected. Initializing UI immediately.");
+    // For Gemini, initialize immediately as it doesn't have the button disappearing issue.
+    console.log("Gemini detected. Initializing UI immediately.");
     if (document.body) {
       initializeUI();
     } else {
