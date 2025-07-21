@@ -28,7 +28,7 @@ client.urgent #80a0ff #80a0ff #080808 #80a0ff #80a0ff
 
 # Main ones
 set $mod Mod4
-set $term foot
+set $term wezterm
 # set $menu "rofi -show drun" # Replaced by new definition in "Changes by AI" section
 
 # Home row direction keys, like vim
