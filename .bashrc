@@ -58,6 +58,10 @@ else
   PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
 fi
 
+# Set default browser
+export BROWSER="qutebrowser"
+export BROWSER_PATH="$(which qutebrowser)"
+
 # to make zathura read shit
 export XDG_CONFIG_HOME="$HOME/.config"
 
