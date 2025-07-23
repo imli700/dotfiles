@@ -1,5 +1,6 @@
 -- Final working WezTerm configuration.
 -- Uses WezTerm default keybinds for splitting and tmux-style leader keys for everything else.
+-- With added smart navigation for Neovim splits.
 
 local wezterm = require("wezterm")
 local config = wezterm.config_builder()
@@ -64,7 +65,41 @@ end)
 
 --=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 --                              Keybindings
---=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+--=-=--=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+-- Helper function for smart split navigation
+local direction_keys = {
+	h = "Left",
+	j = "Down",
+	k = "Up",
+	l = "Right",
+}
+
+-- Helper function for smart split navigation
+local direction_keys = {
+	h = "Left",
+	j = "Down",
+	k = "Up",
+	l = "Right",
+}
+
+local function split_nav(key)
+	return {
+		key = key,
+		mods = "CTRL",
+		action = wezterm.action_callback(function(win, pane)
+			-- This check is now more robust.
+			if pane:get_user_vars().IS_NVIM == "true" then
+				-- pass the keys through to vim/nvim
+				win:perform_action({
+					SendKey = { key = key, mods = "CTRL" },
+				}, pane)
+			else
+				win:perform_action({ ActivatePaneDirection = direction_keys[key] }, pane)
+			end
+		end),
+	}
+end
 
 config.leader = { key = "m", mods = "ALT", timeout_milliseconds = 2000 }
 
@@ -78,11 +113,11 @@ config.keys = {
 	{ key = "%", mods = "CTRL|SHIFT", action = wezterm.action.SplitVertical({ domain = "CurrentPaneDomain" }) },
 	{ key = '"', mods = "CTRL|SHIFT", action = wezterm.action.SplitHorizontal({ domain = "CurrentPaneDomain" }) },
 
-	-- Your tmux-navigator style pane switching
-	{ key = "h", mods = "CTRL", action = wezterm.action.ActivatePaneDirection("Left") },
-	{ key = "j", mods = "CTRL", action = wezterm.action.ActivatePaneDirection("Down") },
-	{ key = "k", mods = "CTRL", action = wezterm.action.ActivatePaneDirection("Up") },
-	{ key = "l", mods = "CTRL", action = wezterm.action.ActivatePaneDirection("Right") },
+	-- Smart pane switching with Neovim awareness
+	split_nav("h"),
+	split_nav("j"),
+	split_nav("k"),
+	split_nav("l"),
 
 	-- Your tmux-style LEADER keybindings
 	{ key = "c", mods = "LEADER", action = wezterm.action.SpawnTab("CurrentPaneDomain") },
