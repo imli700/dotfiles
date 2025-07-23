@@ -92,6 +92,13 @@ config.keys = {
 	{ key = "x", mods = "LEADER", action = wezterm.action.CloseCurrentPane({ confirm = true }) },
 	{ key = "z", mods = "LEADER", action = wezterm.action.TogglePaneZoomState },
 	{ key = "[", mods = "LEADER", action = wezterm.action.ActivateCopyMode },
+
+	-- Disable the default fullscreen toggle
+	{
+		key = "Enter",
+		mods = "ALT",
+		action = wezterm.action.DisableDefaultAssignment,
+	},
 }
 
 -- Add numeric tab navigation
