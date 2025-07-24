@@ -13,6 +13,9 @@ config.font = wezterm.font("JetBrainsMono Nerd Font Mono")
 config.font_size = 16
 config.term = "xterm-256color"
 
+-- This line moves the tab bar to the bottom
+config.tab_bar_at_bottom = true
+
 config.colors = {
 	foreground = "#cdd6f4",
 	background = "#1e1e2e",
