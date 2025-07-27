@@ -62,6 +62,9 @@ fi
 export BROWSER="qutebrowser"
 export BROWSER_PATH="$(which qutebrowser)"
 
+# For arch repo refreshment
+alias refreshmirrors='sudo reflector --age 6 --latest 15 --protocol https --sort rate --save /etc/pacman.d/mirrorlist && sudo pacman -Syy'
+
 # to make zathura read shit
 export XDG_CONFIG_HOME="$HOME/.config"
 
