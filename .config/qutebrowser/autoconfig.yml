@@ -24,13 +24,16 @@ settings:
   content.media.video_capture:
     https://web.whatsapp.com: true
   content.notifications.enabled:
+    https://calendar.google.com: true
     https://discord.com: true
+    https://drive.google.com: true
     https://mail.google.com: true
     https://web.telegram.org: true
     https://web.whatsapp.com: true
     https://www.lenovo.com: true
     https://www.youtube.com: true
   content.register_protocol_handler:
+    https://calendar.google.com?cid=%25s: true
     https://mail.google.com?extsrc=mailto&url=%25s: true
   statusbar.show:
     global: always

@@ -47,6 +47,11 @@ if os.path.exists(_catppuccin_local_theme_script):
             f"ERROR: Could not apply Catppuccin UI theme from {_catppuccin_local_theme_script}: {e}"
         )
 
+# ===================================================================
+# === Gruvbox theme (UI) ===
+# ===================================================================
+# config.source("./themes/gruvbox.py")
+
 
 # ===================================================================
 # === Web Content Theming (Qutebrowser Built-in Dark Mode) ===
