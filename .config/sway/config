@@ -1,26 +1,42 @@
-# config for sway (for AI)
-
 ###################################
 ### GENERAL SETTINGS AND STYLE  ###
 ###################################
 
-# Style preferences
-smart_borders no_gaps
-smart_gaps on
-default_border pixel 1
-titlebar_border_thickness 1
+# --- Style preferences from to-copy-config ---
+# New font, but with a larger size (12) for better readability than the original 10.
+font pango: Roboto Condensed Bold 12
+title_align center
+titlebar_padding 1
+titlebar_border_thickness 0
 
-# Consistent gap sizes
+# Borders: Using the style from to-copy-config but keeping your 1px size.
+default_border none
+default_floating_border none
+for_window [app_id="^.*"] border pixel 1
+for_window [class=".*"] title_format "*%title"
+
+# smart_borders no_gaps # Removed in favor of the new border style
+smart_gaps on
+
+# --- Gaps settings from your original config (preserved for size) ---
 gaps top 10
 gaps inner 10
 gaps bottom 0
 gaps left 5
 gaps right 5
+#
+# --- Color variables from to-copy-config ---
+set $color1     #222222
+set $color2     #d8a657
+set $color3     #ea6962
 
-# Window decorations
-client.focused #80a0ff #080808  #c6c6c6 #80a0ff #80a0ff
-client.focused_inactive #80a0ff #222222 #c6c6c6 #80a0ff #303030
-client.urgent #80a0ff #80a0ff #080808 #80a0ff #80a0ff
+# --- Window colors from to-copy-config ---
+#app_id                          border          bground         text            indicator       child_border
+client.focused               $color2           $color2         $color1           $color2         $color2
+client.unfocused             $color2           $color1         $color2           $color1         $color1
+client.focused_inactive      $color2           $color1         $color2           $color1         $color1
+client.urgent                $color3           $color3         $color1           $color3         $color1
+
 
 ###################################
 ### VARIABLES AND CUSTOMIZATION ###
@@ -29,7 +45,6 @@ client.urgent #80a0ff #80a0ff #080808 #80a0ff #80a0ff
 # Main ones
 set $mod Mod4
 set $term wezterm
-# set $menu "rofi -show drun" # Replaced by new definition in "Changes by AI" section
 
 # Home row direction keys, like vim
 set $left h
@@ -38,7 +53,7 @@ set $up k
 set $right l
 
 # Wallpaper: Update with your correct path
-set $wallpaper_path  $HOME/Pictures/wallpapers/Rainnight.jpg
+set $wallpaper_path  $HOME/Pictures/wallpapers/gruvbox1.jpg
 
 ################################
 ### OUTPUT CONFIGURATION     ###
@@ -208,9 +223,6 @@ bindsym $mod+r mode "resize"
 ################################
 ### CUSTOM SETTINGS          ###
 ################################
-
-# authentication helper
-# exec "/usr/lib/polkit-1/polkit-agent-helper-1" # Replaced by graphical agent in "Changes by AI" section
 
 # Bar (assuming Waybar)
 bar {

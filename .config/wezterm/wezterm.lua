@@ -17,37 +17,37 @@ config.term = "xterm-256color"
 config.tab_bar_at_bottom = true
 
 config.colors = {
-	foreground = "#cdd6f4",
-	background = "#1e1e2e",
-	cursor_bg = "#f5e0dc",
-	cursor_border = "#f5e0dc",
-	cursor_fg = "#11111b",
-	selection_bg = "#585b70",
-	selection_fg = "#cdd6f4",
+	foreground = "#fff4d2",
+	background = "#222222",
+	cursor_bg = "#928374",
+	cursor_border = "#928374",
+	cursor_fg = "#222222",
+	selection_bg = "#fff4d2",
+	selection_fg = "#222222",
 	ansi = {
-		"#45475a",
-		"#f38ba8",
-		"#a6e3a1",
-		"#f9e2af",
-		"#89b4fa",
-		"#f5c2e7",
-		"#94e2d5",
-		"#bac2de",
+		"#1d1d1d",
+		"#cc241d",
+		"#98971a",
+		"#d79921",
+		"#458588",
+		"#b16286",
+		"#689d6a",
+		"#a89984",
 	},
 	brights = {
-		"#585b70",
-		"#f38ba8",
-		"#a6e3a1",
-		"#f9e2af",
-		"#89b4fa",
-		"#f5c2e7",
-		"#94e2d5",
-		"#a6adc8",
+		"#a89984",
+		"#fb4934",
+		"#b8bb26",
+		"#fabd2f",
+		"#83a598",
+		"#d3869b",
+		"#8ec07c",
+		"#fff4d2",
 	},
 }
 
 config.window_background_gradient = {
-	colors = { "#1e1e2ecc" },
+	colors = { "#222222cc" },
 }
 
 --=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
@@ -69,14 +69,6 @@ end)
 --=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 --                              Keybindings
 --=-=--=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-
--- Helper function for smart split navigation
-local direction_keys = {
-	h = "Left",
-	j = "Down",
-	k = "Up",
-	l = "Right",
-}
 
 -- Helper function for smart split navigation
 local direction_keys = {

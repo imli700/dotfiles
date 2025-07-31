@@ -19,38 +19,38 @@ from pathlib import Path  # Still used for _catppuccin_local_theme_script
 config: ConfigAPI = config  # type: ignore
 c: ConfigContainer = c  # type: ignore
 
+config.load_autoconfig()
+
 # ===================================================================
 # === Catppuccin Theme (UI) ===
 # ===================================================================
-config.load_autoconfig()
-
-catppuccin_qutebrowser_setup_py_url = (
-    "https://raw.githubusercontent.com/catppuccin/qutebrowser/main/setup.py"
-)
-_catppuccin_local_theme_script = config.configdir / "theme.py"
-
-if not os.path.exists(_catppuccin_local_theme_script):
-    try:
-        with urlopen(catppuccin_qutebrowser_setup_py_url) as themehtml:
-            with open(_catppuccin_local_theme_script, "a", encoding="utf-8") as file:
-                file.writelines(themehtml.read().decode("utf-8"))
-    except Exception as e:
-        print(f"ERROR: Could not download Catppuccin theme setup script: {e}")
-
-if os.path.exists(_catppuccin_local_theme_script):
-    try:
-        import theme  # type: ignore
-
-        theme.setup(c, "mocha", True)  # type: ignore
-    except Exception as e:
-        print(
-            f"ERROR: Could not apply Catppuccin UI theme from {_catppuccin_local_theme_script}: {e}"
-        )
+# catppuccin_qutebrowser_setup_py_url = (
+#    "https://raw.githubusercontent.com/catppuccin/qutebrowser/main/setup.py"
+# )
+# _catppuccin_local_theme_script = config.configdir / "theme.py"
+#
+# if not os.path.exists(_catppuccin_local_theme_script):
+#    try:
+#        with urlopen(catppuccin_qutebrowser_setup_py_url) as themehtml:
+#            with open(_catppuccin_local_theme_script, "a", encoding="utf-8") as file:
+#                file.writelines(themehtml.read().decode("utf-8"))
+#    except Exception as e:
+#        print(f"ERROR: Could not download Catppuccin theme setup script: {e}")
+#
+# if os.path.exists(_catppuccin_local_theme_script):
+#    try:
+#        import theme  # type: ignore
+#
+#        theme.setup(c, "mocha", True)  # type: ignore
+#    except Exception as e:
+#        print(
+#            f"ERROR: Could not apply Catppuccin UI theme from {_catppuccin_local_theme_script}: {e}"
+#        )
 
 # ===================================================================
 # === Gruvbox theme (UI) ===
 # ===================================================================
-# config.source("./themes/gruvbox.py")
+config.source("./themes/gruvbox.py")
 
 
 # ===================================================================
