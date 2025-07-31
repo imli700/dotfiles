@@ -1,0 +1,22 @@
+# ~/.config/sworkstyle/config.toml
+
+fallback = ''
+separator = ' '
+
+[matching]
+# Corrected name for Wezterm
+'org.wezfurlong.wezterm' = '󰧨'
+
+# Browser Icon (likely needs to be corrected)
+'org.qutebrowser.qutebrowser' = '󰈹'
+
+# Code Editor Icon
+'/(?i)nvim/' = ''
+
+# File Manager Icons
+'thunar' = ''
+'nautilus' = ''
+
+# Media Player Icons
+'mpv' = '󱓷'
+'vlc' = '󱓷'

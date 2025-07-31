@@ -1,98 +1,80 @@
-// config for waybar (for AI)
+// ~/.config/waybar/config
+{
+  "layer": "top",
+  "height": 30, // Increased from 20 to 30 for better readability
+  "spacing": 5,
+  "margin-top": 5,
+  "margin-left": 5,
+  "margin-right": 5,
 
-{ // Start of main config object
-    "modules-left": ["sway/workspaces", "sway/mode"],
-    "modules-center": ["sway/window"],
-    "modules-right": ["pulseaudio", "cpu", "memory", "battery", "clock", "tray"],
-    // Comma needed after the previous line if modules follow, which they do.
+  "modules-left": ["sway/workspaces", "sway/mode"],
+  "modules-center": ["sway/window"],
+  "modules-right": ["pulseaudio", "cpu", "memory", "battery", "clock", "tray"],
 
-    // Sway Mode Module definition
-    "sway/mode": {
-        "format": "(l)ock (e)xit (s)uspend (r)eboot (Ctrl+s)off",
-        "format-map": {
-            "System (l) lock, (e) logout, (s) suspend, (r) reboot, (CTRL+s) shutdown": "Sys: (L)lck (E)xit (S)lsp (R)eboot (^S)off"
-        },
-        "ignored-modes": ["default"],
-        "tooltip": true
-    }, // <-- VERY IMPORTANT: Comma needed here to separate sway/mode from sway/window
+  "sway/workspaces": {
+    "disable-scroll": true,
+    "all-outputs": true,
+    "warp-on-scroll": false,
+    "format": "{index}: {name}",
+    "escape": true,
+    "tooltip": false
+  },
 
-    // Sway Window Module definition
-    "sway/window": {
-        "format": "{}",
-        "max-length": 50, // Adjust as needed
-        "tooltip": true
-    }, // <-- VERY IMPORTANT: Comma needed here to separate sway/window from the *next* module (e.g., keyboard-state)
+  "sway/mode": {
+    "format": "<span color='#d3869b'>[MODE]</span> {}",
+    "tooltip": true
+  },
 
-    // Keyboard State Module definition (example of next module)
-    "keyboard-state": {
-      "numlock": true,
-      "capslock": true,
-      "format": "{name} {icon}",
-      "format-icons": {
-        "locked": "",
-        "unlocked": ""
-      }
-    }, // <-- Comma needed here if more modules follow...
+  "sway/window": {
+    "format": "{}",
+    "max-length": 50,
+    "tooltip": false
+  },
 
-    // Tray Module definition
-    "tray": {
-      "icon-size": 24,
-      "spacing": 10
-    }, // <-- Comma needed...
+  "tray": {
+    "icon-size": 24, // Increased from 16 to 24
+    "spacing": 10 // Increased spacing for larger icons
+  },
 
-    // Clock Module definition
-    "clock": {
-      "tooltip-format": "{:%Y %B}\n{calendar}",
-      "format-alt": "{:%Y-%m-%d}"
-    }, // <-- Comma needed...
+  "cpu": {
+    "format": "<span color='#e78a4e'>[]</span> {usage}%",
+    "tooltip": false,
+    "interval": 1
+  },
 
-    // CPU Module definition
-     "cpu": {
-      "format": "{usage}% ",
-      "tooltip": false
-    }, // <-- Comma needed...
+  "memory": {
+    "format": "<span color='#458588'>[]</span> {}%",
+    "interval": 2
+  },
 
-    // Memory Module definition
-    "memory": {
-      "format": "{}% "
-    }, // <-- Comma needed...
+  "pulseaudio": {
+    "scroll-step": 5,
+    "format": "<span color='#83a598'>[]</span> {volume}%",
+    "format-muted": "<span color='#ea6962'>[]</span> Muted",
+    "on-click": "pactl set-sink-mute @DEFAULT_SINK@ toggle",
+    "on-click-right": "pavucontrol",
+    "tooltip": false
+  },
 
-    // Battery Module definition
-    "battery": {
-      "states": {
-        "warning": 30,
-        "critical": 15
-      },
-      "format": "{capacity}% {icon}",
-      "format-charging": "{capacity}% 󰂄",
-      "format-plugged": "{capacity}%  ",
-      "format-alt": "{time} {icon}",
-      "format-icons": ["", "", "", "", ""]
-    }, // <-- Comma needed...
+  "battery": {
+    "interval": 10,
+    "states": {
+      "warning": 30,
+      "critical": 20
+    },
+    "format-icons": ["󰂎","󰁺","󰁻","󰁽","󰁾","󰁿","󰂀","󰂁","󰂂","󰁹"],
+    "format": "<span color='#689d6a'>[{icon}]</span> {capacity}%",
+    "format-critical": "<span color='#cc241d'>[{icon}]</span> {capacity}%",
+    "format-warning": "<span color='#e78a4e'>[{icon}]</span> {capacity}%",
+    "format-charging": "<span color='#689d6a'>[󰂅]</span> {capacity}%",
+    "format-plugged": "<span color='#689d6a'>[󰂅]</span> {capacity}%",
+    "format-alt": "<span color='#689d6a'>[󱧥]</span> {time}",
+    "tooltip": false
+  },
 
-    // Pulseaudio Module definition
-    "pulseaudio": {
-      "on-scroll-up": "pactl set-sink-volume @DEFAULT_SINK@ +1%",
-      "on-scroll-down": "pactl set-sink-volume @DEFAULT_SINK@ -1%",
-      "format": "{volume}% {icon} {format_source}",
-      "format-bluetooth": "{volume}% {icon} {format_source}",
-      "format-bluetooth-muted": " {icon} {format_source}",
-      "format-muted": " {format_source}",
-      "format-source": "{volume}% ",
-      "format-source-muted": "",
-      "format-icons": {
-        "headphone": "",
-        "hands-free": "",
-        "headset": "",
-        "phone": "",
-        "portable": "",
-        "car": "",
-        "default": ["", "", ""]
-      },
-      "on-click": "pavucontrol"
-    }, // <-- Comma needed...
-
-    // Height setting (Assuming this is the LAST entry before the final '}')
-    "height": 30 // <-- NO comma here if it's the absolute last item
-
-} // End of main config object
+  "clock": {
+    "format": "<span color='#8ec07c'>[]</span> {:%a %d | %H:%M}",
+    "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
+    "interval": 1
+  }
+}

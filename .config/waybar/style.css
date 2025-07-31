@@ -1,257 +1,114 @@
-/* style.css for waybar (for AI) */
+/* ~/.config/waybar/style.css */
 * {
-  /* `otf-font-awesome` is required to be installed for icons */
-  border-radius: 6px;
-  font-family: FontAwesome, Roboto, Helvetica, Arial, sans-serif;
-  font-size: 20px;
+  padding: 0;
+  margin: 0;
+  border: none;
+  /* Removed all borders initially */
+  min-height: 0;
+  text-shadow: none;
+  transition: none;
+  box-shadow: none;
 }
 
 window#waybar {
-  background-color: rgba(43, 48, 59, 0);
-  border-bottom: 3px solid rgba(100, 114, 125, 0.5);
-  color: #ffffff;
-  transition-property: background-color;
-  transition-duration: .5s;
+  /* GOAL 2: Set the main bar background to be fully transparent */
+  background: transparent;
+  color: rgb(255, 244, 210);
+  font-family: IosevkaTerm Nerd Font Propo, FontAwesome;
+  /* GOAL 1: Increased font size for readability */
+  font-size: 20px;
+  font-weight: 900;
 }
 
-window#waybar.hidden {
-  opacity: 0.2;
-}
-
-window#waybar.termite {
-  background-color: #3F3F3F;
-}
-
-window#waybar.chromium {
-  background-color: #000000;
-  border: none;
-}
-
-button {
-  /* Use box-shadow instead of border so the text isn't offset */
-  box-shadow: inset 0 -3px transparent;
-  /* Avoid rounded borders under each button name */
-  border: 6px;
-  border-radius: 0;
-}
-
-/* https://github.com/Alexays/Waybar/wiki/FAQ#the-workspace-buttons-have-a-strange-hover-effect */
-button:hover {
-  background: inherit;
-  box-shadow: inset 0 -3px #ffffff;
-}
-
-#workspaces button {
-  padding: 0 5px;
-  background-color: transparent;
-  color: #000000;
-}
-
-#workspaces button:hover {
-  background: rgba(0, 0, 0, 0.2);
-}
-
-#workspaces button.focused {
-  background-color: #2ac3de;
-  box-shadow: inset 0 -3px #2ac3de;
-  color: #000000;
-}
-
-#workspaces button.urgent {
-  background-color: #eb4d4b;
-}
-
-/* Style for the sway/mode module (when active/not default) */
-#mode {
-  background-color: #64727D; /* Color from original #mode / workspace 1 */
-  color: #000000;           /* Standard text color for modules */
-  padding: 0 10px;          /* Padding like the original custom script */
-  margin: 0 4px;            /* Standard module margin */
-  font-weight: bold;        /* Make it stand out slightly */
-  border-radius: 0;         /* Ensure sharp corners like other modules */
-  /* border-bottom: 3px solid #ffffff; Optional: remove or keep border */ /* <-- FIXED NESTED COMMENT */
-}
-
-
-#clock,
-#battery,
+/* Common style for all modules to give them a background */
+#workspaces,
+#mode,
+#window,
 #cpu,
 #memory,
 #pulseaudio,
-#tray,
-/* #mode is styled above */
-#scratchpad,
-#window,
-#workspaces {
-  margin: 0 4px;
+#battery,
+#clock,
+#tray {
+  /* GOAL 2: This gives each module its own non-transparent background */
+  background-color: rgba(32, 32, 32, 0.9);
+  margin: 3px 5px;
+  /* Adds space around each module block */
+  padding: 0px 12px;
+  /* Adds space inside each module block */
+  border-radius: 6px;
+  /* Makes the module backgrounds rounded */
 }
 
-/* If workspaces is the leftmost module, omit left margin */
-.modules-left>widget:first-child>#workspaces {
-  margin-left: 0;
+#workspaces button {
+  color: rgb(255, 244, 210);
+  /* Removed individual button background/border, the parent #workspaces has it now */
+  padding: 0 4px;
+  margin: 0px 3px;
 }
 
-/* If mode is the rightmost module in modules-left, omit right margin? No, keep margin */
-/* .modules-left>widget:last-child>#mode { margin-right: 0; } */
-
-/* If workspaces is the rightmost module, omit right margin */
-.modules-right>widget:last-child>#workspaces {
-  margin-right: 0;
+#workspaces button:hover {
+  color: rgb(32, 32, 32);
+  background: rgb(211, 134, 155);
+  border-radius: 5px;
 }
 
-#clock {
-  background-color: #2ac3de;
-  color: #000000;
-  padding: 0 5px
+#workspaces button.focused {
+  color: rgb(32, 32, 32);
+  background-color: rgb(142, 192, 124);
+  border-radius: 5px;
 }
 
-#battery {
-  background-color: #f7768e;
-  color: #000000;
-  padding: 0 10px;
+#workspaces button.urgent {
+  color: rgb(32, 32, 32);
+  background-color: rgb(234, 105, 98);
 }
 
-#battery.charging,
-#battery.plugged {
-  color: #000000;
-  background-color: #bb9af7;
-  padding: 0 5px;
+/* We still use border-bottom to keep the colorful Gruvbox accents */
+#mode {
+  border-bottom: 3px solid rgb(211, 134, 155);
 }
 
-@keyframes blink {
-  to {
-    background-color: #000000;
-    color: #000000;
-  }
-}
-
-#battery.critical:not(.charging) {
-  background-color: #9ece6a;
-  color: #000000;
-  animation-name: blink;
-  animation-duration: 0.5s;
-  animation-timing-function: linear;
-  animation-iteration-count: infinite;
-  animation-direction: alternate;
-}
-
-label:focus {
-  background-color: #000000;
+#window {
+  border-bottom: 3px solid rgb(211, 134, 155);
 }
 
 #cpu {
-  background-color: #e0af68;
-  color: #000000;
-  padding: 0 5px;
+  border-bottom: 3px solid rgb(231, 138, 78);
 }
 
 #memory {
-  background-color: #2ac3de;
-  color: #000000;
-  padding: 0 5px;
+  border-bottom: 3px solid rgb(69, 133, 136);
 }
 
 #pulseaudio {
-  background-color: #2ac3de;
-  color: #000000;
-  padding: 0 5px;
+  border-bottom: 3px solid rgb(131, 165, 152);
 }
 
 #pulseaudio.muted {
-  background-color: #73daca;
-  color: #000000;
-  padding: 0 5px;
+  color: rgb(234, 105, 98);
+  border-bottom: 3px solid rgb(234, 105, 98);
 }
 
-#tray {
-  background-color: #2980b9;
-  color: #000000;
-  padding: 0 5px
+#battery {
+  border-bottom: 3px solid rgb(104, 157, 106);
 }
 
-#tray>.passive {
-  -gtk-icon-effect: dim;
+#battery.critical {
+  color: rgb(204, 36, 29);
+  border-bottom: 3px solid rgb(204, 36, 29);
 }
 
-#tray>.needs-attention {
-  -gtk-icon-effect: highlight;
-  background-color: #2ac3de;
+#battery.warning {
+  color: rgb(231, 138, 78);
+  border-bottom: 3px solid rgb(231, 138, 78);
 }
 
-#keyboard-state {
-  background: #e0af68;
-  color: #000000;
-  /*padding: 0 0px;
-    margin: 0 5px;*/
-  min-width: 16px;
+#battery.charging {
+  color: rgb(104, 157, 106);
+  border-bottom: 3px solid rgb(104, 157, 106);
 }
 
-#keyboard-state>label {
-  padding: 0 5px;
+#clock {
+  border-bottom: 3px solid rgb(142, 192, 124);
 }
-
-#keyboard-state>label.locked {
-  background: rgba(0, 0, 0, 0.2);
-}
-
-#scratchpad {
-  background: rgba(0, 0, 0, 0.2);
-}
-
-#scratchpad.empty {
-  background-color: transparent;
-}
-
-
-
-
-/* for colorful workspace numbers */
-
-#workspaces button.focused {
-  box-shadow: inset 0 -3px #ffffff;
-}
-
-#workspaces button:nth-child(1) {
-  background-color: #64727D;
-  /* similar to #mode */
-}
-
-#workspaces button:nth-child(2) {
-  background-color: #2ac3de;
-  /* similar to #clock, #memory, and #pulseaudio */
-}
-
-#workspaces button:nth-child(3) {
-  background-color: #f7768e;
-  /* similar to #battery */
-}
-
-#workspaces button:nth-child(4) {
-  background-color: #bb9af7;
-  /* similar to #battery.charging and #battery.plugged */
-}
-
-#workspaces button:nth-child(5) {
-  background-color: #9ece6a;
-  /* similar to #battery.critical */
-}
-
-#workspaces button:nth-child(6) {
-  background-color: #e0af68;
-  /* similar to #cpu and #keyboard-state */
-}
-
-#workspaces button:nth-child(7) {
-  background-color: #73daca;
-  /* similar to #pulseaudio.muted */
-}
-
-/* For workspaces beyond 7, repeat the colors */
-#workspaces button:nth-child(8) {
-  background-color: #64727D;
-  /* color for workspace 8 (same as workspace 1) */
-}
-
-/* Removed #custom-system-mode.system-mode-active selector */
-
-/* And so on... */

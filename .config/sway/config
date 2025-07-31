@@ -273,6 +273,7 @@ exec mako
 exec sleep 4s && megasync
 exec nm-applet --indicator
 exec powerprofilesctl set power-saver
+exec sworkstyle
 
 # Mute microphone on startup
 exec sleep 5s && pactl set-source-mute 53 1
