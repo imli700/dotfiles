@@ -4,19 +4,33 @@ fallback = ''
 separator = ' '
 
 [matching]
-# Corrected name for Wezterm
-'org.wezfurlong.wezterm' = '󰧨'
+# Add this new rule for .norg files.
+# It will match any window title containing ".norg".
+# Replace '' with your preferred norg icon.
+'/.*\.norg.*/' = ''
 
-# Browser Icon (likely needs to be corrected)
-'org.qutebrowser.qutebrowser' = '󰈹'
+# --- Existing Rules ---
 
-# Code Editor Icon
-'/(?i)nvim/' = ''
+# Code Editor Icon (This rule will now be a fallback for non-norg files)
+'/Nvim ?\w*/' = ''
+'/npm/' = ''
+'/node/' = ''
+'/yarn/' = ''
+
+# Corrected name for Wezterm (This is an exact match for the app_id, 
+# it will be overridden by a title match like the one for Neovim)
+'org.wezfurlong.wezterm' = ''
+
+# Browser Icon
+'org.qutebrowser.qutebrowser' = ''
 
 # File Manager Icons
 'thunar' = ''
 'nautilus' = ''
 
 # Media Player Icons
-'mpv' = '󱓷'
-'vlc' = '󱓷'
+'mpv' = ''
+'vlc' = ''
+
+# Other
+'anki' = ''

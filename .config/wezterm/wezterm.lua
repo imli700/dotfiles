@@ -140,6 +140,24 @@ for i = 1, 9 do
 	})
 end
 
+-- Add event handler for dynamic window/tab titles to enable sworkstyle matching
+wezterm.on("format-tab-title", function(tab, tabs, panes, config, hover, max_width)
+	local pane = tab.active_pane
+	local title = pane.title:lower() -- Lowercase for case-insensitive matching
+
+	if title:match("nvim") then
+		return "nvim" -- Matches your sworkstyle regex '/nvim ?\\w*/'
+	elseif title:match("npm") then
+		return "npm" -- Matches default sworkstyle regex '/npm/'
+	elseif title:match("node") then
+		return "node" -- Matches default sworkstyle regex '/node/'
+	elseif title:match("yarn") then
+		return "yarn" -- Matches default sworkstyle regex '/yarn/'
+	end
+
+	return pane.title -- Fallback to original title
+end)
+
 --=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 --                            Initial Windows (Disabled)
 --=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=

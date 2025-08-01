@@ -7,7 +7,9 @@
 config_version: 2
 settings:
   content.javascript.clipboard:
+    https://chatgpt.com: access-paste
     https://github.com: access-paste
+    https://www.perplexity.ai: access-paste
   content.register_protocol_handler:
     https://mail.google.com?extsrc=mailto&url=%25s: true
   statusbar.show:

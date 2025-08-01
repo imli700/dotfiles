@@ -65,6 +65,17 @@ export BROWSER_PATH="$(which qutebrowser)"
 # For arch repo refreshment
 alias refreshmirrors='sudo reflector --age 6 --latest 15 --protocol https --sort rate --save /etc/pacman.d/mirrorlist && sudo pacman -Syy'
 
+# Function to set terminal title
+set_term_title() {
+  printf "\033]0;%s\007" "$1"
+}
+
+# Use a DEBUG trap to set the title to the command before it runs.
+# This is the most reliable way in bash.
+trap 'set_term_title "$BASH_COMMAND"' DEBUG
+
+# Use PROMPT_COMMAND to reset the title after a command has finished.
+PROMPT_COMMAND='set_term_title "bash"'
 # to make zathura read shit
 export XDG_CONFIG_HOME="$HOME/.config"
 
