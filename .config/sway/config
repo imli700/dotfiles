@@ -53,7 +53,7 @@ set $up k
 set $right l
 
 # Wallpaper: Update with your correct path
-set $wallpaper_path  $HOME/Pictures/wallpapers/gruvbox1.jpg
+set $wallpaper_path  $HOME/Pictures/wallpapers/gruvbox3.png
 
 ################################
 ### OUTPUT CONFIGURATION     ###
