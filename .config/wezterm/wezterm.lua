@@ -47,7 +47,7 @@ config.colors = {
 }
 
 config.window_background_gradient = {
-	colors = { "#222222cc" },
+	colors = { "#222222e5" },
 }
 
 --=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
