@@ -2,47 +2,89 @@
 * {
   padding: 0;
   margin: 0;
-  border: none;
-  /* Removed all borders initially */
   min-height: 0;
+  border-radius: 0;
+  border: none;
   text-shadow: none;
   transition: none;
   box-shadow: none;
 }
 
 window#waybar {
-  /* GOAL 2: Set the main bar background to be fully transparent */
-  background: transparent;
   color: rgb(255, 244, 210);
+  background: none;
   font-family: IosevkaTerm Nerd Font Propo, FontAwesome;
-  /* GOAL 1: Increased font size for readability */
   font-size: 20px;
+  /* Kept your larger font size */
   font-weight: 900;
 }
 
-/* Common style for all modules to give them a background */
-#workspaces,
-#mode,
-#window,
+/* Base style for most modules */
 #cpu,
 #memory,
 #pulseaudio,
 #battery,
-#clock,
-#tray {
-  /* GOAL 2: This gives each module its own non-transparent background */
+#clock {
+  background: #323232;
+  /* Background for the text part */
+  border: 3px solid #323232;
+  /* Creates a solid block */
+  border-radius: 6px;
+  /* Your original border-radius */
+  padding-right: 10px;
+  /* Padding for the text */
+}
+
+/* Text color for each module */
+#cpu {
+  color: rgb(231, 138, 78);
+}
+
+#memory {
+  color: rgb(69, 133, 136);
+}
+
+#pulseaudio {
+  color: rgb(131, 165, 152);
+}
+
+#pulseaudio.muted {
+  color: rgb(234, 105, 98);
+}
+
+#battery {
+  color: rgb(104, 157, 106);
+}
+
+#battery.critical {
+  color: rgb(204, 36, 29);
+}
+
+#battery.warning {
+  color: rgb(231, 138, 78);
+}
+
+#battery.charging,
+#battery.plugged {
+  color: rgb(104, 157, 106);
+}
+
+#clock {
+  color: rgb(142, 192, 124);
+}
+
+/* --- Special Modules --- */
+
+/* Workspaces use their own styling */
+#workspaces {
   background-color: rgba(32, 32, 32, 0.9);
   margin: 3px 5px;
-  /* Adds space around each module block */
-  padding: 0px 12px;
-  /* Adds space inside each module block */
+  padding: 0px 8px;
   border-radius: 6px;
-  /* Makes the module backgrounds rounded */
 }
 
 #workspaces button {
   color: rgb(255, 244, 210);
-  /* Removed individual button background/border, the parent #workspaces has it now */
   padding: 0 4px;
   margin: 0px 3px;
 }
@@ -64,51 +106,12 @@ window#waybar {
   background-color: rgb(234, 105, 98);
 }
 
-/* We still use border-bottom to keep the colorful Gruvbox accents */
-#mode {
-  border-bottom: 3px solid rgb(211, 134, 155);
-}
-
-#window {
-  border-bottom: 3px solid rgb(211, 134, 155);
-}
-
-#cpu {
-  border-bottom: 3px solid rgb(231, 138, 78);
-}
-
-#memory {
-  border-bottom: 3px solid rgb(69, 133, 136);
-}
-
-#pulseaudio {
-  border-bottom: 3px solid rgb(131, 165, 152);
-}
-
-#pulseaudio.muted {
-  color: rgb(234, 105, 98);
-  border-bottom: 3px solid rgb(234, 105, 98);
-}
-
-#battery {
-  border-bottom: 3px solid rgb(104, 157, 106);
-}
-
-#battery.critical {
-  color: rgb(204, 36, 29);
-  border-bottom: 3px solid rgb(204, 36, 29);
-}
-
-#battery.warning {
-  color: rgb(231, 138, 78);
-  border-bottom: 3px solid rgb(231, 138, 78);
-}
-
-#battery.charging {
-  color: rgb(104, 157, 106);
-  border-bottom: 3px solid rgb(104, 157, 106);
-}
-
-#clock {
-  border-bottom: 3px solid rgb(142, 192, 124);
+/* Mode, Window, and Tray get simpler backgrounds */
+#mode,
+#window,
+#tray {
+  background-color: rgba(32, 32, 32, 0.9);
+  margin: 3px 5px;
+  padding: 0px 12px;
+  border-radius: 6px;
 }
