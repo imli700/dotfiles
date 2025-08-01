@@ -1,4 +1,3 @@
--- Final working WezTerm configuration.
 -- Uses WezTerm default keybinds for splitting and tmux-style leader keys for everything else.
 -- With added smart navigation for Neovim splits.
 
@@ -12,8 +11,6 @@ local config = wezterm.config_builder()
 config.font = wezterm.font("JetBrainsMono Nerd Font Mono")
 config.font_size = 16
 config.term = "xterm-256color"
-
--- This line moves the tab bar to the bottom
 config.tab_bar_at_bottom = true
 
 config.colors = {
@@ -24,26 +21,8 @@ config.colors = {
 	cursor_fg = "#222222",
 	selection_bg = "#fff4d2",
 	selection_fg = "#222222",
-	ansi = {
-		"#1d1d1d",
-		"#cc241d",
-		"#98971a",
-		"#d79921",
-		"#458588",
-		"#b16286",
-		"#689d6a",
-		"#a89984",
-	},
-	brights = {
-		"#a89984",
-		"#fb4934",
-		"#b8bb26",
-		"#fabd2f",
-		"#83a598",
-		"#d3869b",
-		"#8ec07c",
-		"#fff4d2",
-	},
+	ansi = { "#1d1d1d", "#cc241d", "#98971a", "#d79921", "#458588", "#b16286", "#689d6a", "#a89984" },
+	brights = { "#a89984", "#fb4934", "#b8bb26", "#fabd2f", "#83a598", "#d3869b", "#8ec07c", "#fff4d2" },
 }
 
 config.window_background_gradient = {
@@ -71,24 +50,14 @@ end)
 --=-=--=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
 -- Helper function for smart split navigation
-local direction_keys = {
-	h = "Left",
-	j = "Down",
-	k = "Up",
-	l = "Right",
-}
-
+local direction_keys = { h = "Left", j = "Down", k = "Up", l = "Right" }
 local function split_nav(key)
 	return {
 		key = key,
 		mods = "CTRL",
 		action = wezterm.action_callback(function(win, pane)
-			-- This check is now more robust.
 			if pane:get_user_vars().IS_NVIM == "true" then
-				-- pass the keys through to vim/nvim
-				win:perform_action({
-					SendKey = { key = key, mods = "CTRL" },
-				}, pane)
+				win:perform_action({ SendKey = { key = key, mods = "CTRL" } }, pane)
 			else
 				win:perform_action({ ActivatePaneDirection = direction_keys[key] }, pane)
 			end
@@ -104,7 +73,6 @@ config.keys = {
 	{ key = "F1", mods = "NONE", action = wezterm.action.ShowDebugOverlay },
 
 	-- Default WezTerm Split Keybindings
-	-- These do not use the LEADER key.
 	{ key = "%", mods = "CTRL|SHIFT", action = wezterm.action.SplitVertical({ domain = "CurrentPaneDomain" }) },
 	{ key = '"', mods = "CTRL|SHIFT", action = wezterm.action.SplitHorizontal({ domain = "CurrentPaneDomain" }) },
 
@@ -123,12 +91,22 @@ config.keys = {
 	{ key = "z", mods = "LEADER", action = wezterm.action.TogglePaneZoomState },
 	{ key = "[", mods = "LEADER", action = wezterm.action.ActivateCopyMode },
 
-	-- Disable the default fullscreen toggle
+	-- CORRECT AND TESTED keybinding to rename the current tab.
 	{
-		key = "Enter",
-		mods = "ALT",
-		action = wezterm.action.DisableDefaultAssignment,
+		key = ",",
+		mods = "LEADER",
+		action = wezterm.action.PromptInputLine({
+			description = "Enter new name for tab",
+			action = wezterm.action_callback(function(window, pane, line)
+				if line then
+					window:active_tab():set_title(line)
+				end
+			end),
+		}),
 	},
+
+	-- Disable the default fullscreen toggle
+	{ key = "Enter", mods = "ALT", action = wezterm.action.DisableDefaultAssignment },
 }
 
 -- Add numeric tab navigation
@@ -140,22 +118,47 @@ for i = 1, 9 do
 	})
 end
 
--- Add event handler for dynamic window/tab titles to enable sworkstyle matching
-wezterm.on("format-tab-title", function(tab, tabs, panes, config, hover, max_width)
-	local pane = tab.active_pane
-	local title = pane.title:lower() -- Lowercase for case-insensitive matching
+--=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+--                         Tab Title Formatting
+--=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
-	if title:match("nvim") then
-		return "nvim" -- Matches your sworkstyle regex '/nvim ?\\w*/'
-	elseif title:match("npm") then
-		return "npm" -- Matches default sworkstyle regex '/npm/'
-	elseif title:match("node") then
-		return "node" -- Matches default sworkstyle regex '/node/'
-	elseif title:match("yarn") then
-		return "yarn" -- Matches default sworkstyle regex '/yarn/'
+-- This helper function is from the official Wezterm documentation.
+-- It correctly prioritizes an explicitly set tab title over the pane title.
+function get_tab_title(tab_info)
+	-- tab_info.tab_title is the title set by our keybinding (`set_title`)
+	local title = tab_info.tab_title
+	if title and #title > 0 then
+		return title
+	end
+	-- otherwise, fall back to the title of the active program in the pane
+	return tab_info.active_pane.title
+end
+
+wezterm.on("format-tab-title", function(tab, tabs, panes, config, hover, max_width)
+	local title = get_tab_title(tab)
+
+	-- This checks if a custom title has been set.
+	-- `tab.tab_title` is the custom title. If it exists and has content,
+	-- we just display it.
+	if tab.tab_title and #tab.tab_title > 0 then
+		return { { Text = " " .. title .. " " } }
 	end
 
-	return pane.title -- Fallback to original title
+	-- If no custom title is set, we run YOUR original logic to apply
+	-- automatic names based on the running program.
+	local pane_title = title:lower()
+	if pane_title:match("nvim") then
+		title = "nvim"
+	elseif pane_title:match("npm") then
+		title = "npm"
+	elseif pane_title:match("node") then
+		title = "node"
+	elseif pane_title:match("yarn") then
+		title = "yarn"
+	end
+
+	-- Every return path now returns a FormatItem table as the docs recommend.
+	return { { Text = " " .. title .. " " } }
 end)
 
 --=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
