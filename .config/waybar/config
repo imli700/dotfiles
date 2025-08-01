@@ -15,7 +15,7 @@
       "disable-scroll": true,
       "all-outputs": true,
       "warp-on-scroll": false,
-      "format": "{name}", // Kept your format
+      "format": "{index}: {name}", // Kept your format
       "escape": true,
       "tooltip": false
     },
