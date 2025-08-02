@@ -34,3 +34,11 @@ separator = ' '
 
 # Other
 'anki' = ''
+'libreoffice-startcenter' = ''
+'soffice' = ''
+'libreoffice-writer' = ''
+'libreoffice-base' = ''
+'libreoffice-calc' = ''
+'libreoffice-draw' = ''
+'libreoffice-impress' = ''
+'libreoffice-math' = ''
