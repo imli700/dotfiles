@@ -44,7 +44,7 @@ client.urgent                $color3           $color3         $color1          
 
 # Main ones
 set $mod Mod4
-set $term wezterm
+set $term kitty
 
 # Home row direction keys, like vim
 set $left h
