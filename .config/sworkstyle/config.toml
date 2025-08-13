@@ -20,6 +20,7 @@ separator = ' '
 # Corrected name for Wezterm (This is an exact match for the app_id, 
 # it will be overridden by a title match like the one for Neovim)
 'org.wezfurlong.wezterm' = ''
+'kitty' = ''
 
 # Browser Icon
 'org.qutebrowser.qutebrowser' = ''
