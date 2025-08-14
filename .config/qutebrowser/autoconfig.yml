@@ -6,11 +6,25 @@
 
 config_version: 2
 settings:
+  colors.webpage.darkmode.enabled:
+    global: false
+  content.geolocation:
+    https://www.google.com: true
   content.javascript.clipboard:
+    https://aistudio.google.com: access-paste
+    https://aur.archlinux.org: access-paste
     https://chatgpt.com: access-paste
+    https://discord.com: access-paste
+    https://gemini.google.com: access-paste
     https://github.com: access-paste
     https://www.perplexity.ai: access-paste
+  content.media.audio_capture:
+    https://chatgpt.com: true
+  content.notifications.enabled:
+    https://calendar.google.com: true
+    https://community.oneplus.com: true
   content.register_protocol_handler:
+    https://calendar.google.com?cid=%25s: true
     https://mail.google.com?extsrc=mailto&url=%25s: true
   statusbar.show:
     global: always
