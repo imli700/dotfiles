@@ -29,9 +29,10 @@ separator = ' '
 'thunar' = ''
 'nautilus' = ''
 
-# Media Player Icons
+# Media Icons
 'mpv' = ''
 'vlc' = ''
+'swappy' = ''
 
 # Other
 'anki' = ''
