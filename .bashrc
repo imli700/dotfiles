@@ -63,7 +63,7 @@ export BROWSER="qutebrowser"
 export BROWSER_PATH="$(which qutebrowser)"
 
 # For arch repo refreshment
-alias refreshmirrors='sudo reflector --age 6 --latest 15 --protocol https --sort rate --save /etc/pacman.d/mirrorlist && sudo pacman -Syy'
+alias refreshmirrors='rate-mirrors --allow-root arch | grep -v '^#' | sudo tee /etc/pacman.d/mirrorlist && sudo pacman -Syy'
 
 # Function to set terminal title
 set_term_title() {
