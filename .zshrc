@@ -62,18 +62,16 @@ export BROWSER="qutebrowser"
 # For arch repo refreshment
 alias refreshmirrors='sudo reflector --verbose --sort age --download-timeout 60 -n 20 --save /etc/pacman.d/mirrorlist && sudo eos-rankmirrors'
 
-# Function to set terminal title
+# safer set_term_title using printf (avoids prompt-expansion issues)
 set_term_title() {
-  print -Pn "\e]0;%s\a" "$1"
+  # \033 is ESC, \007 is BEL — many terminals accept this OSC sequence
+  printf '\033]0;%s\007' "${1:-}"
 }
 
-# Zsh equivalents for setting the terminal title
-precmd() {
-  set_term_title "zsh"
-}
-preexec() {
-  set_term_title "$1"
-}
+# Keep simple precmd/preexec that call the above
+precmd()  { set_term_title "zsh" }
+preexec() { set_term_title "$1" }
+
 
 # to make zathura read config
 export XDG_CONFIG_HOME="$HOME/.config"
