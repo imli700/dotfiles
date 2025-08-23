@@ -63,7 +63,7 @@ export BROWSER="qutebrowser"
 export BROWSER_PATH="$(which qutebrowser)"
 
 # For arch repo refreshment
-alias refreshmirrors='rate-mirrors --allow-root arch | grep -v ^# | sudo tee /etc/pacman.d/mirrorlist; rate-mirrors --allow-root endeavouros | grep -v ^# | sudo tee /etc/pacman.d/endeavouros-mirrorlist'
+alias refreshmirrors='sudo reflector --verbose --sort age --download-timeout 60 -n 20 --save /etc/pacman.d/mirrorlist && sudo eos-rankmirrors'
 
 # Function to set terminal title
 set_term_title() {

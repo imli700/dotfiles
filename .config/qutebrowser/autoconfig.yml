@@ -21,8 +21,11 @@ settings:
   content.media.audio_capture:
     https://chatgpt.com: true
   content.notifications.enabled:
+    https://account.lenovo.com: true
     https://calendar.google.com: true
     https://community.oneplus.com: true
+    https://www.headphonezone.in: true
+    https://www.lenovo.com: true
   content.register_protocol_handler:
     https://calendar.google.com?cid=%25s: true
     https://mail.google.com?extsrc=mailto&url=%25s: true
