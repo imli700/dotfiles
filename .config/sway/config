@@ -4,7 +4,7 @@
 
 # --- Style preferences from to-copy-config ---
 # New font, but with a larger size (12) for better readability than the original 10.
-font pango: Roboto Condensed Bold 12
+font pango: Roboto Condensed bold 12
 title_align center
 titlebar_padding 1
 titlebar_border_thickness 0
@@ -53,7 +53,7 @@ set $up k
 set $right l
 
 # Wallpaper: Update with your correct path
-set $wallpaper_path  $HOME/Pictures/wallpapers/gruvbox3.png
+set $wallpaper_path $HOME/Pictures/wallpapers/gruvbox3.png
 
 ################################
 ### OUTPUT CONFIGURATION     ###
@@ -279,7 +279,8 @@ exec {
 }
 
 # Wallpaper
-output * bg $wallpaper_path fit
+# output * bg $wallpaper_path fill
+exec swaybg -i ~/Pictures/wallpapers/gruvbox3.png -m fill
 
 exec mako
 exec sleep 4s && megasync
