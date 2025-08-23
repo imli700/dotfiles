@@ -16,7 +16,7 @@ window#waybar {
   font-family: IosevkaTerm Nerd Font Propo, FontAwesome;
   font-size: 20px;
   /* Kept your larger font size */
-  font-weight: 900;
+  font-weight: 600;
 }
 
 /* Base style for most modules */
