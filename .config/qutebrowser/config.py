@@ -2,18 +2,20 @@
 
 # Python standard library imports
 import os
-from urllib.request import urlopen
 
 # For opening pdf files
 import subprocess
+from pathlib import Path  # Still used for _catppuccin_local_theme_script
+from urllib.request import urlopen
+
+from qutebrowser.config.config import ConfigContainer
+
+# Qutebrowser specific imports
+from qutebrowser.config.configfiles import ConfigAPI
 
 # Third-party imports
 # (catppuccin module import removed as it's no longer used directly)
 
-# Qutebrowser specific imports
-from qutebrowser.config.configfiles import ConfigAPI
-from qutebrowser.config.config import ConfigContainer
-from pathlib import Path  # Still used for _catppuccin_local_theme_script
 
 # Qutebrowser objects `c` and `config` are injected globally by qutebrowser.
 config: ConfigAPI = config  # type: ignore
@@ -120,6 +122,10 @@ config.bind("H", "tab-prev", mode="normal")
 # 4. Change Shift+L from default 'forward' (next site in history) to 'tab-next' (right tab)
 #    Note: 'L' in qutebrowser bindings implies Shift+l
 config.bind("L", "tab-next", mode="normal")
+
+# Move current tab to the left (prev) or right (next) using << and >>
+config.bind("<", "tab-move -")
+config.bind(">", "tab-move +")
 
 # ===================================================================
 # === Download bar ===

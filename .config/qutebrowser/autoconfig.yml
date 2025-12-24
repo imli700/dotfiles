@@ -7,23 +7,36 @@
 config_version: 2
 settings:
   colors.webpage.darkmode.enabled:
-    global: false
+    global: true
   content.geolocation:
     https://www.google.com: true
   content.javascript.clipboard:
     https://aistudio.google.com: access-paste
+    https://archive.ics.uci.edu: access-paste
     https://aur.archlinux.org: access-paste
     https://chatgpt.com: access-paste
     https://discord.com: access-paste
+    https://docs.astronvim.com: access-paste
     https://gemini.google.com: access-paste
     https://github.com: access-paste
+    https://mail.google.com: access-paste
+    https://track.headphonezone.in: access-paste
+    https://web.whatsapp.com: access-paste
+    https://www.academia.edu: access-paste
+    https://www.google.com: access-paste
     https://www.perplexity.ai: access-paste
+    https://www.reddit.com: access-paste
+    https://yandex.com: access-paste
   content.media.audio_capture:
     https://chatgpt.com: true
   content.notifications.enabled:
     https://account.lenovo.com: true
     https://calendar.google.com: true
     https://community.oneplus.com: true
+    https://goalietrend.com: false
+    https://hclips.com: false
+    https://www.andropalace.org: true
+    https://www.faceit.com: true
     https://www.headphonezone.in: true
     https://www.lenovo.com: true
   content.register_protocol_handler:
