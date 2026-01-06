@@ -81,3 +81,16 @@ export XDG_CONFIG_HOME="$HOME/.config"
 
 # --- End of additions from .bashrc ---
 eval "$(fnm env --use-on-cd)"
+
+function tc() {
+  # 1. todoist l : output list (with colors)
+  # 2. peco      : select line
+  # 3. sed       : STRIP ANSI COLOR CODES <--- This is the fix
+  # 4. awk       : grab the first column (the ID)
+  local TASK_ID=$(todoist l | peco | sed 's/\x1b\[[0-9;]*m//g' | awk '{print $1}')
+
+  if [ -n "$TASK_ID" ]; then
+    echo "Closing task: $TASK_ID"
+    todoist close "$TASK_ID"
+  fi
+}

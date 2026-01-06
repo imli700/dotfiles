@@ -86,3 +86,16 @@ if [ -d "$FNM_PATH" ]; then
   eval "$(fnm env)"
 fi
 . "$HOME/.cargo/env"
+
+function tc() {
+  # 1. todoist l : output list (with colors)
+  # 2. peco      : select line
+  # 3. sed       : STRIP ANSI COLOR CODES <--- This is the fix
+  # 4. awk       : grab the first column (the ID)
+  local TASK_ID=$(todoist l | peco | sed 's/\x1b\[[0-9;]*m//g' | awk '{print $1}')
+
+  if [ -n "$TASK_ID" ]; then
+    echo "Closing task: $TASK_ID"
+    todoist close "$TASK_ID"
+  fi
+}
