@@ -14,7 +14,7 @@ separator = ' '
 
 # Code Editor Icon (This rule will now be a fallback for non-norg files)
 '/Nvim ?\w*/' = ''
-'/vim ?\w*/' = ''
+'/^vim ?\w*/' = ''
 '/npm/' = ''
 '/node/' = ''
 '/yarn/' = ''
