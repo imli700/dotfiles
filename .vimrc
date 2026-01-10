@@ -3,7 +3,7 @@
 " ==========================================
 if empty(glob('~/.vim/autoload/plug.vim'))
   silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
-    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+        \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
   autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
 
@@ -21,6 +21,8 @@ call plug#end()
 set termguicolors
 set background=dark
 syntax enable 
+" Enable filetype detection and default indent rules
+filetype plugin indent on 
 colorscheme gruvbox
 
 " FIX: Eliminate delay when switching from Insert to Normal
@@ -28,8 +30,6 @@ set ttimeout
 set ttimeoutlen=5
 
 " FIX: Sync Vim clipboard with Linux System clipboard
-" This makes 'p' paste from external apps, and 'y' copy to external apps.
-" Note: On Linux, requires 'vim-gtk3' package or 'xclip' installed.
 set clipboard=unnamedplus
 
 " Cursor: Line in Insert Mode, Block in Normal Mode
@@ -52,19 +52,21 @@ let g:closetag_filenames = '*.html,*.xhtml,*.phtml'
 
 augroup htmlSettings
   autocmd!
-  " Enable spellcheck, wrap, and smart indentation
-  autocmd FileType html setlocal spell spelllang=en_us wrap linebreak breakindent
-augroup END
+  " FIX: Set Indentation to 2 spaces (shiftwidth=2) and use spaces instead of tabs (expandtab)
+  autocmd FileType html setlocal spell spelllang=en_us wrap linebreak breakindent shiftwidth=2 tabstop=2 softtabstop=2 expandtab
 
-  "  FIX: Map j/k to move visually (screen lines) instead of physically
-  " <buffer> ensures this only changes keys for the current HTML file
+  " FIX: Map j/k to move visually
   autocmd FileType html nnoremap <buffer> j gj
   autocmd FileType html nnoremap <buffer> k gk
   autocmd FileType html nnoremap <buffer> <Down> gj
   autocmd FileType html nnoremap <buffer> <Up> gk
 
+  " FIX: Auto-Expand tags on Enter
+  autocmd FileType html inoremap <buffer> <expr> <CR> search('>\%\#<', 'n') ? "\<CR>\<C-o>O" : "\<CR>"
+augroup END
+
 " ==========================================
-"  TRANSPARENCY (let terminal background show through)
+" 5. TRANSPARENCY
 " ==========================================
 highlight Normal       ctermbg=NONE guibg=NONE
 highlight NonText      ctermbg=NONE guibg=NONE
