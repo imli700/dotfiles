@@ -3,7 +3,7 @@
 " ==========================================
 if empty(glob('~/.vim/autoload/plug.vim'))
   silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
-        \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
   autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
 
@@ -24,7 +24,7 @@ syntax enable
 filetype plugin indent on 
 colorscheme gruvbox
 
-" FIX: Enable Hybrid Relative Line Numbering
+" Enable Hybrid Relative Line Numbering
 set number
 set relativenumber
 
@@ -34,6 +34,10 @@ set ttimeoutlen=5
 
 " Sync Vim clipboard with Linux System clipboard
 set clipboard=unnamedplus
+
+" FIX: Persist Clipboard after closing Vim (Wayland/Sway version)
+" This pipes the clipboard content into wl-copy so it survives after Vim exits
+autocmd VimLeave * call system("wl-copy", getreg('+'))
 
 " Cursor: Line in Insert Mode, Block in Normal Mode
 let &t_SI = "\e[6 q"
