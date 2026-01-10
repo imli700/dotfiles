@@ -21,15 +21,18 @@ call plug#end()
 set termguicolors
 set background=dark
 syntax enable 
-" Enable filetype detection and default indent rules
 filetype plugin indent on 
 colorscheme gruvbox
 
-" FIX: Eliminate delay when switching from Insert to Normal
+" FIX: Enable Hybrid Relative Line Numbering
+set number
+set relativenumber
+
+" Eliminate delay when switching from Insert to Normal
 set ttimeout
 set ttimeoutlen=5
 
-" FIX: Sync Vim clipboard with Linux System clipboard
+" Sync Vim clipboard with Linux System clipboard
 set clipboard=unnamedplus
 
 " Cursor: Line in Insert Mode, Block in Normal Mode
@@ -52,16 +55,16 @@ let g:closetag_filenames = '*.html,*.xhtml,*.phtml'
 
 augroup htmlSettings
   autocmd!
-  " FIX: Set Indentation to 2 spaces (shiftwidth=2) and use spaces instead of tabs (expandtab)
+  " Indentation: 2 spaces, expand tabs
   autocmd FileType html setlocal spell spelllang=en_us wrap linebreak breakindent shiftwidth=2 tabstop=2 softtabstop=2 expandtab
 
-  " FIX: Map j/k to move visually
+  " Map j/k to move visually
   autocmd FileType html nnoremap <buffer> j gj
   autocmd FileType html nnoremap <buffer> k gk
   autocmd FileType html nnoremap <buffer> <Down> gj
   autocmd FileType html nnoremap <buffer> <Up> gk
 
-  " FIX: Auto-Expand tags on Enter
+  " Auto-Expand tags on Enter
   autocmd FileType html inoremap <buffer> <expr> <CR> search('>\%\#<', 'n') ? "\<CR>\<C-o>O" : "\<CR>"
 augroup END
 
