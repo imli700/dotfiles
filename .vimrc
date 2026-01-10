@@ -50,3 +50,12 @@ augroup htmlSettings
   " Enable spellcheck, wrap, and smart indentation
   autocmd FileType html setlocal spell spelllang=en_us wrap linebreak breakindent
 augroup END
+
+" ==========================================
+"  TRANSPARENCY (let terminal background show through)
+" ==========================================
+highlight Normal       ctermbg=NONE guibg=NONE
+highlight NonText      ctermbg=NONE guibg=NONE
+highlight LineNr       ctermbg=NONE guibg=NONE
+highlight SignColumn   ctermbg=NONE guibg=NONE
+highlight EndOfBuffer  ctermbg=NONE guibg=NONE
