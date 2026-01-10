@@ -1,8 +1,6 @@
 " ==========================================
 " 1. AUTO-BOOTSTRAP PLUG (Self-Installing)
 " ==========================================
-" This ensures that if you checkout your config on a new machine,
-" it downloads the plugin manager automatically.
 if empty(glob('~/.vim/autoload/plug.vim'))
   silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
     \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
@@ -13,39 +11,42 @@ endif
 " 2. PLUGINS
 " ==========================================
 call plug#begin()
-
-" The Theme
 Plug 'morhetz/gruvbox'
-
-" HTML Auto Closing Tags
 Plug 'alvan/vim-closetag'
-
 call plug#end()
 
 " ==========================================
-" 3. LOOK AND FEEL
+" 3. LOOK AND FEEL & BEHAVIOR
 " ==========================================
-" specific settings for the theme
 set termguicolors
 set background=dark
+syntax enable 
 colorscheme gruvbox
 
-" Cursor settings:
-" 6 q = Vertical Bar (Insert Mode)
-" 2 q = Block (Normal Mode)
+" FIX: Eliminate delay when switching from Insert to Normal
+set ttimeout
+set ttimeoutlen=5
+
+" Cursor: Line in Insert Mode, Block in Normal Mode
 let &t_SI = "\e[6 q"
 let &t_EI = "\e[2 q"
+
+" Force SpellBad to be a visible Red Underline 
+highlight SpellBad cterm=underline ctermfg=203 guifg=#ff5f5f gui=underline guisp=#ff5f5f
 
 " ==========================================
 " 4. HTML SPECIFIC SETTINGS
 " ==========================================
-" Configure closetag to specific filetypes just in case
+" Ensure the spell folder exists to avoid errors
+if empty(glob('~/.vim/spell'))
+  call mkdir($HOME . '/.vim/spell', 'p')
+endif
+
+" Configure closetag filenames
 let g:closetag_filenames = '*.html,*.xhtml,*.phtml'
 
-" Autocommands for HTML files
 augroup htmlSettings
   autocmd!
-  " Enable spellcheck (US English)
-  " Enable Wrap with 'linebreak' (breaks at words) and 'breakindent' (preserves visual structure)
+  " Enable spellcheck, wrap, and smart indentation
   autocmd FileType html setlocal spell spelllang=en_us wrap linebreak breakindent
 augroup END
