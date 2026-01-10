@@ -27,6 +27,11 @@ colorscheme gruvbox
 set ttimeout
 set ttimeoutlen=5
 
+" FIX: Sync Vim clipboard with Linux System clipboard
+" This makes 'p' paste from external apps, and 'y' copy to external apps.
+" Note: On Linux, requires 'vim-gtk3' package or 'xclip' installed.
+set clipboard=unnamedplus
+
 " Cursor: Line in Insert Mode, Block in Normal Mode
 let &t_SI = "\e[6 q"
 let &t_EI = "\e[2 q"
