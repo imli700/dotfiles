@@ -8,11 +8,13 @@ separator = ' '
 # It will match any window title containing ".norg".
 # Replace '' with your preferred norg icon.
 '/.*\.norg.*/' = ''
+'/.*\.org.*/' = ''
 
 # --- Existing Rules ---
 
 # Code Editor Icon (This rule will now be a fallback for non-norg files)
 '/Nvim ?\w*/' = ''
+'/vim ?\w*/' = ''
 '/npm/' = ''
 '/node/' = ''
 '/yarn/' = ''
