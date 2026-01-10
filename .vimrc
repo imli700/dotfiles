@@ -56,6 +56,13 @@ augroup htmlSettings
   autocmd FileType html setlocal spell spelllang=en_us wrap linebreak breakindent
 augroup END
 
+  "  FIX: Map j/k to move visually (screen lines) instead of physically
+  " <buffer> ensures this only changes keys for the current HTML file
+  autocmd FileType html nnoremap <buffer> j gj
+  autocmd FileType html nnoremap <buffer> k gk
+  autocmd FileType html nnoremap <buffer> <Down> gj
+  autocmd FileType html nnoremap <buffer> <Up> gk
+
 " ==========================================
 "  TRANSPARENCY (let terminal background show through)
 " ==========================================
