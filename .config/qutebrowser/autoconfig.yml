@@ -7,7 +7,7 @@
 config_version: 2
 settings:
   colors.webpage.darkmode.enabled:
-    global: true
+    global: false
   content.geolocation:
     https://www.google.com: true
   content.javascript.clipboard:
@@ -15,6 +15,7 @@ settings:
     https://archive.ics.uci.edu: access-paste
     https://aur.archlinux.org: access-paste
     https://chatgpt.com: access-paste
+    https://developer.mozilla.org: access-paste
     https://discord.com: access-paste
     https://docs.astronvim.com: access-paste
     https://gemini.google.com: access-paste
