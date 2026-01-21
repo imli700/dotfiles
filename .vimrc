@@ -13,6 +13,8 @@ endif
 call plug#begin()
 Plug 'morhetz/gruvbox'
 Plug 'alvan/vim-closetag'
+" ADDED: Highlights the area you yanked for a split second (LazyVim style)
+Plug 'machakann/vim-highlightedyank'
 call plug#end()
 
 " ==========================================
@@ -28,6 +30,10 @@ colorscheme gruvbox
 set number
 set relativenumber
 
+" ADDED: Configure Yank Highlight Duration (milliseconds)
+" -1 = persistent, 1000 = 1 sec. 250 is usually the sweet spot.
+let g:highlightedyank_highlight_duration = 250
+
 " Eliminate delay when switching from Insert to Normal
 set ttimeout
 set ttimeoutlen=5
@@ -35,8 +41,7 @@ set ttimeoutlen=5
 " Sync Vim clipboard with Linux System clipboard
 set clipboard=unnamedplus
 
-" FIX: Persist Clipboard after closing Vim (Wayland/Sway version)
-" This pipes the clipboard content into wl-copy so it survives after Vim exits
+" Fix Wayland Clipboard Persistence (keep copied text after exit)
 autocmd VimLeave * call system("wl-copy", getreg('+'))
 
 " Cursor: Line in Insert Mode, Block in Normal Mode
