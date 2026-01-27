@@ -10,7 +10,7 @@ separator = ' '
 '/.*\.norg.*/' = ''
 '/.*\.org.*/' = ''
 
-# --- Existing Rules ---
+'/^vimiv.*/' = ''
 
 # Code Editor Icon (This rule will now be a fallback for non-norg files)
 '/Nvim ?\w*/' = ''
