@@ -82,17 +82,6 @@ export XDG_CONFIG_HOME="$HOME/.config"
 # --- End of additions from .bashrc ---
 eval "$(fnm env --use-on-cd)"
 
-# Temporary: for haddop###############################
-# Java                                               #
-export JAVA_HOME=/usr/lib/jvm/java-11-openjdk        #
-export PATH=$PATH:$JAVA_HOME/bin                     #
-                                                     #
-# Hadoop                                             #
-export HADOOP_HOME=$HOME/hadoop                      #
-export PATH=$PATH:$HADOOP_HOME/bin:$HADOOP_HOME/sbin #
-######################################################
-
-
 function tc() {
   # 1. todoist l : output list (with colors)
   # 2. peco      : select line
