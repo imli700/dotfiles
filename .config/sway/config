@@ -53,7 +53,7 @@ set $up k
 set $right l
 
 # Wallpaper: Update with your correct path
-set $wallpaper_path $HOME/Pictures/wallpapers/gruvbox1.png
+set $wallpaper_path $HOME/Pictures/wallpapers/gruvbox1.jpg
 
 ################################
 ### OUTPUT CONFIGURATION     ###
@@ -282,7 +282,7 @@ exec {
 
 # Wallpaper
 # output * bg $wallpaper_path fill
-exec swaybg -i ~/Pictures/wallpapers/gruvbox3.png -m fill
+exec swaybg -i $wallpaper_path -m fill
 
 exec mako
 exec sleep 4s && megasync
