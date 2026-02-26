@@ -60,6 +60,7 @@ config.source("./themes/gruvbox.py")
 # ===================================================================
 # Enable qutebrowser's built-in dark mode for web pages.
 c.colors.webpage.darkmode.enabled = True
+c.colors.webpage.darkmode.policy.images = "never"
 
 # Optionally, you can also set the preferred color scheme for websites
 # that support CSS `prefers-color-scheme`. This complements darkmode.enabled.
