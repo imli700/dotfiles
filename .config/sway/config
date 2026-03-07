@@ -270,6 +270,11 @@ bindsym --to-code $mod+Shift+R exec $screenrecorder
 bindsym --to-code $mod+Shift+Ctrl+R exec $partialscreenrecorder
 bindsym --to-code $mod+Alt+R exec $screenrecorderwithsound
 
+# Clipboard history
+exec clipse -listen
+bindsym $mod+q exec kitty --class clipse_float -e clipse
+for_window [app_id="clipse_float"] floating enable, move position center, resize set 800 500
+
 ###################################
 ### STARTUP APPLICATIONS & MISC ###
 ###################################
