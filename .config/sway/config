@@ -266,9 +266,9 @@ bindsym $mod+Shift+d exec grim - | swappy -f -
 set $screenrecorder "bash $HOME/.config/sway/scripts/toggle-screen-recorder.sh"
 set $partialscreenrecorder "bash $HOME/.config/sway/scripts/toggle-partial-screen-recorder.sh"
 set $screenrecorderwithsound "bash $HOME/.config/sway/scripts/toggle-screen-recorder-with-sound.sh"
-bindsym --to-code $mod+Shift+R exec $screenrecorder
-bindsym --to-code $mod+Shift+Ctrl+R exec $partialscreenrecorder
-bindsym --to-code $mod+Alt+R exec $screenrecorderwithsound
+bindsym --release --to-code $mod+Shift+R exec $screenrecorder
+bindsym --release --to-code $mod+Shift+Ctrl+R exec $partialscreenrecorder
+bindsym --release --to-code $mod+Alt+R exec $screenrecorderwithsound
 
 # Clipboard history
 exec clipse -listen

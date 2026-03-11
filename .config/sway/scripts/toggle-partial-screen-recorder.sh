@@ -4,7 +4,7 @@
 # ----------------------------------------
 
 PID_FILE="/tmp/current_wf_recorder_partial.pid"
-RAW_PATH_FILE="${PID_FILE}.path"
+RAW_PATH_FILE="/tmp/current_wf_recorder_partial.path"
 REC_DIR="$HOME/Videos/screen-recordings"
 WF_LOG_FILE="/tmp/wf_recorder_partial_output.log"
 
@@ -15,62 +15,72 @@ WA_PROFILE="baseline"
 WA_LEVEL="3.0"
 
 mkdir -p "$REC_DIR"
-[ ! -f "$PID_FILE" ] && >"$WF_LOG_FILE"
 
 if [ -f "$PID_FILE" ]; then
   # --- STOP ---
-  RAW_PID=$(<"$PID_FILE")
-  RAW_FILE=$(<"$RAW_PATH_FILE")
+  CLAIMED_PID_FILE="${PID_FILE}.$$.tmp"
 
-  echo "Stopping partial wf-recorder (PID: $RAW_PID)..." | tee -a "$WF_LOG_FILE"
-  kill -INT "$RAW_PID"
+  if mv "$PID_FILE" "$CLAIMED_PID_FILE" 2>/dev/null; then
+    RAW_PID=$(<"$CLAIMED_PID_FILE")
+    RAW_FILE=$(<"$RAW_PATH_FILE")
 
-  for i in {1..50}; do
-    ps -p "$RAW_PID" &>/dev/null || break
-    sleep 0.1
-  done
-  ps -p "$RAW_PID" &>/dev/null && kill -KILL "$RAW_PID"
+    # Immediate cleanup
+    rm -f "$RAW_PATH_FILE" "$CLAIMED_PID_FILE"
 
-  notify-send -t 3000 -i media-record "Stopped Recording" \
-    "Partial raw file saved: $RAW_FILE"
+    echo "Stopping partial wf-recorder (PID: $RAW_PID)..." >>"$WF_LOG_FILE"
+    kill -INT "$RAW_PID" 2>/dev/null
 
-  # --- TRANSCODE ---
-  WA_OUT="${RAW_FILE%.mkv}_wa.mp4"
-  echo "Transcoding → WhatsApp format: $WA_OUT" | tee -a "$WF_LOG_FILE"
+    for i in {1..50}; do
+      ps -p "$RAW_PID" &>/dev/null || break
+      sleep 0.1
+    done
+    ps -p "$RAW_PID" &>/dev/null && kill -KILL "$RAW_PID" 2>/dev/null
 
-  ffmpeg -y -i "$RAW_FILE" \
-    -c:v libx264 -profile:v $WA_PROFILE -level $WA_LEVEL -pix_fmt yuv420p \
-    -vf "scale=trunc(iw/2)*2:trunc(ih/2)*2" \
-    -b:v $WA_VBITRATE -maxrate $WA_VBITRATE -bufsize $WA_VBITRATE \
-    -c:a aac -b:a $WA_ABITRATE \
-    -movflags +faststart \
-    "$WA_OUT" >>"$WF_LOG_FILE" 2>&1
+    notify-send -t 3000 -i media-record "Stopped Recording" "Partial raw file saved. Transcoding..."
 
-  if [ $? -eq 0 ]; then
-    rm -f "$RAW_FILE" "$RAW_PATH_FILE" "$PID_FILE"
-    notify-send -t 3000 -i video-x-generic "Converted" \
-      "Partial recording → WhatsApp‑ready:\n$WA_OUT"
+    # --- TRANSCODE (IN BACKGROUND) ---
+    WA_OUT="${RAW_FILE%.mkv}_wa.mp4"
+
+    (
+      echo "Transcoding → WhatsApp format: $WA_OUT" >>"$WF_LOG_FILE"
+
+      ffmpeg -y -i "$RAW_FILE" \
+        -c:v libx264 -profile:v "$WA_PROFILE" -level "$WA_LEVEL" -pix_fmt yuv420p \
+        -vf "scale=trunc(iw/2)*2:trunc(ih/2)*2" \
+        -b:v "$WA_VBITRATE" -maxrate "$WA_VBITRATE" -bufsize "$WA_VBITRATE" \
+        -c:a aac -b:a "$WA_ABITRATE" \
+        -movflags +faststart \
+        "$WA_OUT" >>"$WF_LOG_FILE" 2>&1
+
+      if [ $? -eq 0 ]; then
+        rm -f "$RAW_FILE"
+        notify-send -t 4000 -i video-x-generic "Converted Successfully" "Partial recording → WhatsApp‑ready:\n$WA_OUT"
+      else
+        notify-send -u critical -t 5000 -i dialog-error "Conversion Failed" "Transcode FAILED! See $WF_LOG_FILE"
+      fi
+    ) &
+
   else
-    notify-send -u critical -t 3000 -i dialog-error "Converted" \
-      "Transcode FAILED! See $WF_LOG_FILE"
+    exit 0 # Key bounce protection
   fi
 
 else
   # --- START ---
   SELECTION=$(slurp)
   if [ -z "$SELECTION" ]; then
-    notify-send -u critical -t 3000 -i dialog-error "Screen Recording" \
-      "No area selected. Aborted."
+    notify-send -u critical -t 3000 -i dialog-error "Screen Recording" "No area selected. Aborted."
     exit 1
   fi
 
+  echo "--- NEW PARTIAL RECORDING SESSION ---" >>"$WF_LOG_FILE"
   RAW_FILE="$REC_DIR/$(date +'%Y_%m_%d-%H%M%S').mkv"
-  echo "Starting partial wf-recorder → $RAW_FILE" | tee -a "$WF_LOG_FILE"
+  echo "Starting partial wf-recorder → $RAW_FILE" >>"$WF_LOG_FILE"
 
   wf-recorder -g "$SELECTION" -f "$RAW_FILE" &>>"$WF_LOG_FILE" &
-  echo $! >"$PID_FILE"
+  WF_PID=$!
+
+  echo "$WF_PID" >"$PID_FILE"
   echo "$RAW_FILE" >"$RAW_PATH_FILE"
 
-  notify-send -t 3000 -i media-record "Screen Recording" \
-    "Started partial. Raw file:\n$RAW_FILE"
+  notify-send -t 3000 -i media-record "Screen Recording" "Started partial. Raw file:\n$RAW_FILE"
 fi
