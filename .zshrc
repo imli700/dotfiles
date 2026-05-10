@@ -54,7 +54,7 @@ alias fgrep='fgrep --color=auto'
 alias egrep='egrep --color=auto'
 
 # Set default browser
-export BROWSER="qutebrowser"
+export BROWSER="firefox"
 # The following line is generally not needed as long as qutebrowser is in your PATH.
 # You can uncomment it if you have a specific reason to define the path.
 # export BROWSER_PATH="$(which qutebrowser)"
