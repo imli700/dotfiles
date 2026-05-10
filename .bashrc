@@ -1,5 +1,5 @@
 # .bashrc
-
+#
 # Source global definitions
 if [ -f /etc/bashrc ]; then
   . /etc/bashrc
@@ -59,8 +59,8 @@ else
 fi
 
 # Set default browser
-export BROWSER="qutebrowser"
-export BROWSER_PATH="$(which qutebrowser)"
+export BROWSER="firefox"
+export BROWSER_PATH="$(which firefox)"
 
 # For arch repo refreshment
 alias refreshmirrors='sudo reflector --verbose --sort age --download-timeout 60 -n 20 --save /etc/pacman.d/mirrorlist && sudo eos-rankmirrors'
@@ -99,3 +99,11 @@ function tc() {
     todoist close "$TASK_ID"
   fi
 }
+#
+# REMOVE LATER ########################################
+export HADOOP_HOME=/opt/hadoop
+export HADOOP_CONF_DIR=$HADOOP_HOME/etc/hadoop
+export HADOOP_MAPRED_HOME=/opt/hadoop
+export PATH=$PATH:$HADOOP_HOME/bin:$HADOOP_HOME/sbin
+export JAVA_HOME=/usr/lib/jvm/java-17-openjdk
+#######################################################
