@@ -26,6 +26,7 @@ separator = ' '
 
 # Browser Icon
 'org.qutebrowser.qutebrowser' = ''
+'com.brave.Origin.nightly' = ''
 
 # File Manager Icons
 'thunar' = ''
