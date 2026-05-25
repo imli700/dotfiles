@@ -314,6 +314,8 @@ exec /usr/libexec/xdg-desktop-portal-gtk
 exec /usr/libexec/lxqt-policykit-agent
 # Makes the agent's window float nicely.
 for_window [app_id="lxqt-policykit-agent"] floating enable, move position center
+# Polkit is necessary sometimes
+exec /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 
 # 2. Brightness Notifications
 # ---------------------------
