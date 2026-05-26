@@ -275,6 +275,12 @@ exec clipse -listen
 bindsym $mod+q exec kitty --class clipse_float -e clipse
 for_window [app_id="clipse_float"] floating enable, move position center, resize set 800 500
 
+# Toggle Cemu Mouse Mode
+bindsym $mod+m exec ~/.config/sway/cemu_toggle.sh
+
+# Apply Cemu Mouse Mode on boot/reload (checks state)
+exec_always ~/.config/sway/cemu_check.sh
+
 ###################################
 ### STARTUP APPLICATIONS & MISC ###
 ###################################
@@ -367,5 +373,11 @@ set $brightness_notification_cmd command -v notify-send >/dev/null && \
 # Uses rofi's combi mode to show applications (drun) and run commands (run).
 # Requires: rofi
       set $menu "rofi -show combi -combi-modes drun,run -modes combi"
+
+# 6. Mouse sensitivity to max
+# ----------------------
+# Sets mouse sensitivty to max possible and changes color of mouse LED
+# # Requires: ratbagctl
+      exec ratbagctl warbling-mara profile active set 2 && ratbagctl warbling-mara profile 2 dpi set 2500 && ratbagctl warbling-mara led 0 set mode static color ed333b
 
 # --- End of Changes by AI ---

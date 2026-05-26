@@ -24,7 +24,8 @@ window#waybar {
 #memory,
 #pulseaudio,
 #battery,
-#clock {
+#clock,
+#custom-cemu {
   background: #323232;
   /* Background for the text part */
   border: 3px solid #323232;
@@ -114,4 +115,12 @@ window#waybar {
   margin: 3px 5px;
   padding: 0px 12px;
   border-radius: 6px;
+}
+
+#custom-cemu.on {
+  color: rgb(211, 134, 155);
+}
+
+#custom-cemu.off {
+  color: rgb(146, 131, 116);
 }

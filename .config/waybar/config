@@ -1,80 +1,103 @@
 // ~/.config/waybar/config
 {
   "layer": "top",
-    "height": 30,
-    "spacing": 5,
-    "margin-top": 5,
-    "margin-left": 5,
-    "margin-right": 5,
-
-    "modules-left": ["sway/workspaces", "sway/mode"],
-    "modules-center": ["sway/window"],
-    "modules-right": ["pulseaudio", "cpu", "memory", "battery", "clock", "tray"],
-
-    "sway/workspaces": {
-      "disable-scroll": true,
-      "all-outputs": true,
-      "warp-on-scroll": false,
-      "format": "{index}: {name}", // Kept your format
-      "escape": true,
-      "tooltip": false
+  "height": 30,
+  "spacing": 5,
+  "margin-top": 5,
+  "margin-left": 5,
+  "margin-right": 5,
+  "modules-left": [
+    "sway/workspaces",
+    "sway/mode"
+  ],
+  "modules-center": [
+    "sway/window"
+  ],
+  "modules-right": [
+    "custom/cemu",
+    "pulseaudio",
+    "cpu",
+    "memory",
+    "battery",
+    "clock",
+    "tray"
+  ],
+  "sway/workspaces": {
+    "disable-scroll": true,
+    "all-outputs": true,
+    "warp-on-scroll": false,
+    "format": "{index}: {name}", // Kept your format
+    "escape": true,
+    "tooltip": false
+  },
+  "sway/mode": {
+    "format": "<span color='#202020' bgcolor='#d3869b'> {} </span>",
+    "tooltip": true
+  },
+  "sway/window": {
+    "format": "{}",
+    "max-length": 50,
+    "tooltip": false
+  },
+  "tray": {
+    "icon-size": 24,
+    "spacing": 10
+  },
+  "cpu": {
+    "format": "<span color='#202020' bgcolor='#e78a4e'>  </span> {usage}%",
+    "tooltip": false,
+    "interval": 1
+  },
+  "memory": {
+    "format": "<span color='#202020' bgcolor='#458588'>  </span> {}%",
+    "interval": 2
+  },
+  "pulseaudio": {
+    "scroll-step": 5,
+    "format": "<span color='#202020' bgcolor='#83a598'>  </span> {volume}%",
+    "format-muted": "<span color='#202020' bgcolor='#ea6962'>  </span> Muted",
+    "on-click": "pactl set-sink-mute @DEFAULT_SINK@ toggle",
+    "on-click-right": "pavucontrol",
+    "tooltip": false
+  },
+  "battery": {
+    "interval": 10,
+    "states": {
+      "warning": 30,
+      "critical": 20
     },
-
-    "sway/mode": {
-      "format": "<span color='#202020' bgcolor='#d3869b'> {} </span>",
-      "tooltip": true
-    },
-
-    "sway/window": {
-      "format": "{}",
-      "max-length": 50,
-      "tooltip": false
-    },
-
-    "tray": {
-      "icon-size": 24,
-      "spacing": 10
-    },
-
-    "cpu": {
-      "format": "<span color='#202020' bgcolor='#e78a4e'>  </span> {usage}%",
-      "tooltip": false,
-      "interval": 1
-    },
-
-    "memory": {
-      "format": "<span color='#202020' bgcolor='#458588'>  </span> {}%",
-      "interval": 2
-    },
-
-    "pulseaudio": {
-      "scroll-step": 5,
-      "format": "<span color='#202020' bgcolor='#83a598'>  </span> {volume}%",
-      "format-muted": "<span color='#202020' bgcolor='#ea6962'>  </span> Muted",
-      "on-click": "pactl set-sink-mute @DEFAULT_SINK@ toggle",
-      "on-click-right": "pavucontrol",
-      "tooltip": false
-    },
-
-    "battery": {
-      "interval": 10,
-      "states": {
-        "warning": 30,
-        "critical": 20
-      },
-      "format-icons": ["󰂎","󰁺","󰁻","󰁽","󰁾","󰁿","󰂀","󰂁","󰂂","󰁹"],
-      "format": "<span color='#202020' bgcolor='#689d6a'> {icon} </span> {capacity}%",
-      "format-critical": "<span color='#202020' bgcolor='#cc241d'> {icon} </span> {capacity}%",
-      "format-warning": "<span color='#202020' bgcolor='#e78a4e'> {icon} </span> {capacity}%",
-      "format-charging": "<span color='#202020' bgcolor='#689d6a'> 󰂅 </span> {capacity}%",
-      "format-plugged": "<span color='#202020' bgcolor='#689d6a'> 󰂅 </span> {capacity}%",
-      "format-alt": "<span color='#202020' bgcolor='#689d6a'> 󱧥 </span> {time}",
-      "tooltip": false
-    },
-
-    "clock": {
-      "format": "<span color='#202020' bgcolor='#8ec07c'>  </span> {:%a %d | %H:%M}",
-      "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
-      "interval": 1
-    }
+    "format-icons": [
+      "󰂎",
+      "󰁺",
+      "󰁻",
+      "󰁽",
+      "󰁾",
+      "󰁿",
+      "󰂀",
+      "󰂁",
+      "󰂂",
+      "󰁹"
+    ],
+    "format": "<span color='#202020' bgcolor='#689d6a'> {icon} </span> {capacity}%",
+    "format-critical": "<span color='#202020' bgcolor='#cc241d'> {icon} </span> {capacity}%",
+    "format-warning": "<span color='#202020' bgcolor='#e78a4e'> {icon} </span> {capacity}%",
+    "format-charging": "<span color='#202020' bgcolor='#689d6a'> 󰂅 </span> {capacity}%",
+    "format-plugged": "<span color='#202020' bgcolor='#689d6a'> 󰂅 </span> {capacity}%",
+    "format-alt": "<span color='#202020' bgcolor='#689d6a'> 󱧥 </span> {time}",
+    "tooltip": false
+  },
+  "clock": {
+    "format": "<span color='#202020' bgcolor='#8ec07c'>  </span> {:%a %d | %H:%M}",
+    "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
+    "interval": 1
+  },
+  "custom/cemu": {
+    "format": "{}",
+    "exec": "~/.config/waybar/scripts/cemu_status.sh",
+    "return-type": "json",
+    "interval": "once",
+    "signal": 8,
+    "on-click": "~/.config/sway/cemu_toggle.sh",
+    "tooltip": false
+  }
 }
