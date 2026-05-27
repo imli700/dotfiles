@@ -59,8 +59,9 @@ else
 fi
 
 # Set default browser
-export BROWSER="brave-origin-nightly"
-export BROWSER_PATH="$(which brave-origin-nightly)"
+export BROWSER=firefox
+export DEFAULT_BROWSER=firefox
+export BROWSER_PATH="$(which firefox)"
 
 # For arch repo refreshment
 alias refreshmirrors='sudo reflector --verbose --sort age --download-timeout 60 -n 20 --save /etc/pacman.d/mirrorlist && sudo eos-rankmirrors'
