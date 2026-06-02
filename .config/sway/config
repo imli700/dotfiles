@@ -220,6 +220,19 @@ mode "resize" {
 }
 bindsym $mod+r mode "resize"
 
+#
+# Move floating windows
+#
+bindsym $mod+Ctrl+$left  move left  20px
+bindsym $mod+Ctrl+$down  move down  20px
+bindsym $mod+Ctrl+$up    move up    20px
+bindsym $mod+Ctrl+$right move right 20px
+
+bindsym $mod+Ctrl+Left  move left  20px
+bindsym $mod+Ctrl+Down  move down  20px
+bindsym $mod+Ctrl+Up    move up    20px
+bindsym $mod+Ctrl+Right move right 20px
+
 ################################
 ### CUSTOM SETTINGS          ###
 ################################
