@@ -248,6 +248,11 @@ bindsym XF86AudioMicMute exec pactl set-source-mute @DEFAULT_SOURCE@ toggle
 bindsym XF86AudioLowerVolume exec pactl set-sink-volume @DEFAULT_SINK@ -5%
 bindsym XF86AudioRaiseVolume exec pactl set-sink-volume @DEFAULT_SINK@ +5%
 
+# Media playback control
+bindsym XF86AudioPlay exec playerctl play-pause
+bindsym XF86AudioNext exec playerctl next
+bindsym XF86AudioPrev exec playerctl previous
+
 # Brightness
 # bindsym XF86MonBrightnessDown exec brightnessctl s 5%- # Replaced by binding with notification in "Changes by AI" section
 # bindsym XF86MonBrightnessUp exec brightnessctl s +5%   # Replaced by binding with notification in "Changes by AI" section
