@@ -145,14 +145,28 @@ c.zoom.default = "150%"
 # ===================================================================
 # === Ad-blocking ===
 # ===================================================================
+# 1. Ensure the core blocking system is active
 c.content.blocking.enabled = True
+
+# 2. Force the use of the advanced Brave/ABP component over simple host blocking
+c.content.blocking.method = "both"
+
+# 3. Comprehensive filter list array (Adguard, uBlock, EasyList, and regional blocks)
 c.content.blocking.adblock.lists = [
-    "https://raw.githubusercontent.com/ewpratten/youtube_ad_blocklist/master/blocklist.txt",
-    "https://easylist.to/easylist/easylist.txt",
-    "https://easylist.to/easylist/easyprivacy.txt",
-    "https://raw.githubusercontent.com/uBlockOrigin/uAssets/master/filters/annoyances.txt",
-    "https://raw.githubusercontent.com/uBlockOrigin/uAssets/master/filters/badware.txt",
+    "https://easylist.to",
+    "https://easylist.to",
+    "https://easylist.to",
+    "https://githubusercontent.com",
+    "https://githubusercontent.com",
+    "https://githubusercontent.com",
+    "https://githubusercontent.com",
+    "https://githubusercontent.com",
+    "https://githubusercontent.com",
+    "https://githubusercontent.com",
 ]
+
+# 4. Clear the default simpler whitelist to prevent accidental bypasses
+c.content.blocking.whitelist = []
 
 # ===================================================================
 # === Other useful settings (optional) ===
