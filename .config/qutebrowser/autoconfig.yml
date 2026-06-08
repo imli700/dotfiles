@@ -7,7 +7,7 @@
 config_version: 2
 settings:
   colors.webpage.darkmode.enabled:
-    global: true
+    global: false
   content.geolocation:
     https://www.google.com: true
   content.javascript.clipboard:
@@ -15,12 +15,14 @@ settings:
     https://archive.ics.uci.edu: access-paste
     https://aur.archlinux.org: access-paste
     https://chatgpt.com: access-paste
+    https://claude.ai: access-paste
     https://developer.mozilla.org: access-paste
     https://discord.com: access-paste
     https://docs.astronvim.com: access-paste
     https://gemini.google.com: access-paste
     https://github.com: access-paste
     https://mail.google.com: access-paste
+    https://mega.nz: access-paste
     https://track.headphonezone.in: access-paste
     https://web.whatsapp.com: access-paste
     https://www.academia.edu: access-paste
