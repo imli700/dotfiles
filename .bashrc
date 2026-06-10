@@ -66,6 +66,9 @@ export BROWSER_PATH="$(which firefox)"
 # For arch repo refreshment
 alias refreshmirrors='sudo reflector --verbose --sort age --download-timeout 60 -n 20 --save /etc/pacman.d/mirrorlist && sudo eos-rankmirrors'
 
+# List in proper order
+alias ls='ls -v --color=auto'
+
 # Function to set terminal title
 set_term_title() {
   printf "\033]0;%s\007" "$1"

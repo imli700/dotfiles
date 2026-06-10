@@ -62,6 +62,9 @@ export BROWSER="firefox"
 # For arch repo refreshment
 alias refreshmirrors='sudo reflector --verbose --sort age --download-timeout 60 -n 20 --save /etc/pacman.d/mirrorlist && sudo eos-rankmirrors'
 
+# List in proper order
+alias ls='ls -v --color=auto'
+
 # safer set_term_title using printf (avoids prompt-expansion issues)
 set_term_title() {
   # \033 is ESC, \007 is BEL — many terminals accept this OSC sequence
