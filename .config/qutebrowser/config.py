@@ -128,6 +128,9 @@ config.bind("L", "tab-next", mode="normal")
 config.bind("<", "tab-move -")
 config.bind(">", "tab-move +")
 
+# Bitwarden autofill - trigger with ,p in normal mode
+config.bind(",p", "spawn --userscript qute-bitwarden")
+
 # ===================================================================
 # === Download bar ===
 # ===================================================================
@@ -145,28 +148,34 @@ c.zoom.default = "150%"
 # ===================================================================
 # === Ad-blocking ===
 # ===================================================================
-# 1. Ensure the core blocking system is active
 c.content.blocking.enabled = True
-
-# 2. Force the use of the advanced Brave/ABP component over simple host blocking
 c.content.blocking.method = "both"
+c.content.blocking.whitelist = []
 
-# 3. Comprehensive filter list array (Adguard, uBlock, EasyList, and regional blocks)
+# ABP-style (Brave engine) — quality over quantity
 c.content.blocking.adblock.lists = [
-    "https://easylist.to",
-    "https://easylist.to",
-    "https://easylist.to",
-    "https://githubusercontent.com",
-    "https://githubusercontent.com",
-    "https://githubusercontent.com",
-    "https://githubusercontent.com",
-    "https://githubusercontent.com",
-    "https://githubusercontent.com",
-    "https://githubusercontent.com",
+    # Core ad + tracker blocking
+    "https://easylist.to/easylist/easylist.txt",
+    "https://easylist.to/easylist/easyprivacy.txt",
+    # uBlock's own filters (the ones that actually matter)
+    "https://raw.githubusercontent.com/uBlockOrigin/uAssets/master/filters/filters.txt",
+    "https://raw.githubusercontent.com/uBlockOrigin/uAssets/master/filters/privacy.txt",
+    "https://raw.githubusercontent.com/uBlockOrigin/uAssets/master/filters/quick-fixes.txt",
+    "https://raw.githubusercontent.com/uBlockOrigin/uAssets/master/filters/unbreak.txt",
+    "https://raw.githubusercontent.com/uBlockOrigin/uAssets/master/filters/badware.txt",
+    "https://raw.githubusercontent.com/uBlockOrigin/uAssets/master/filters/resource-abuse.txt",
+    # Annoyances (cookie banners, overlays, newsletter popups)
+    "https://raw.githubusercontent.com/uBlockOrigin/uAssets/master/filters/annoyances-cookies.txt",
+    "https://raw.githubusercontent.com/uBlockOrigin/uAssets/master/filters/annoyances-others.txt",
+    "https://secure.fanboy.co.nz/fanboy-cookiemonster.txt",
+    # AdGuard base (catches things EasyList misses)
+    "https://filters.adtidy.org/extension/ublock/filters/2.txt",
 ]
 
-# 4. Clear the default simpler whitelist to prevent accidental bypasses
-c.content.blocking.whitelist = []
+# Host-based (complements above, very low overhead)
+c.content.blocking.hosts.lists = [
+    "https://raw.githubusercontent.com/StevenBlack/hosts/master/hosts",
+]
 
 # ===================================================================
 # === Other useful settings (optional) ===
