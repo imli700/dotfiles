@@ -1,0 +1,54 @@
+[
+  {
+    "input_combination": [
+      {
+        "type": 2,
+        "code": 0
+      }
+    ],
+    "target_uinput": "gamepad",
+    "output_type": 3,
+    "output_code": 3,
+    "mapping_type": "analog",
+    "deadzone": 0.0,
+    "gain": 2.0,
+    "expo": 1.0
+  },
+  {
+    "input_combination": [
+      {
+        "type": 2,
+        "code": 1
+      }
+    ],
+    "target_uinput": "gamepad",
+    "output_type": 3,
+    "output_code": 4,
+    "mapping_type": "analog",
+    "deadzone": 0.0,
+    "gain": 2.0,
+    "expo": 1.0
+  },
+  {
+    "input_combination": [
+      {
+        "type": 1,
+        "code": 272
+      }
+    ],
+    "target_uinput": "gamepad",
+    "output_symbol": "BTN_IST",
+    "mapping_type": "key_macro"
+  },
+  {
+    "input_combination": [
+      {
+        "type": 1,
+        "code": 273
+      }
+    ],
+    "target_uinput": "gamepad",
+    "output_symbol": "BTN_EAST",
+    "mapping_type": "key_macro"
+  }
+]

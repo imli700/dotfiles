@@ -1,0 +1,7 @@
+{
+    "version": "2.2.0",
+    "autoload": {
+        "Logitech G300s Optical Gaming Mouse": "botw",
+        "AT Translated Set 2 keyboard": "botw"
+    }
+}

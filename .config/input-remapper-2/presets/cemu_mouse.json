@@ -1,0 +1,21 @@
+{
+  "input-remapper-preset-version": "1.0.0",
+  "mapping": {
+    "mouse move x": {
+      "action": "joystick axis",
+      "arguments": [
+        "Right Stick X",
+        1.5,
+        0
+      ]
+    },
+    "mouse move y": {
+      "action": "joystick axis",
+      "arguments": [
+        "Right Stick Y",
+        1.5,
+        0
+      ]
+    }
+  }
+}
