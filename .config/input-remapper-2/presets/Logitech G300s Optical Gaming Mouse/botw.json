@@ -37,7 +37,7 @@
       }
     ],
     "target_uinput": "gamepad",
-    "output_symbol": "BTN_IST",
+    "output_symbol": "BTN_WEST",
     "mapping_type": "key_macro"
   },
   {
