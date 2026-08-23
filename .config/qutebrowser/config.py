@@ -129,7 +129,9 @@ config.bind("<", "tab-move -")
 config.bind(">", "tab-move +")
 
 # Bitwarden autofill - trigger with ,p in normal mode
-config.bind(",p", "spawn --userscript qute-bitwarden")
+config.bind(",p", "spawn --userscript qute-rbw")
+config.bind(",pu", "spawn --userscript qute-rbw user")
+config.bind(",pp", "spawn --userscript qute-rbw pass")
 
 # ===================================================================
 # === Download bar ===
