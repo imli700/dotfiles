@@ -53,7 +53,7 @@ set $up k
 set $right l
 
 # Wallpaper: Update with your correct path
-set $wallpaper_path $HOME/Pictures/wallpapers/studying-girl.jpg
+set $wallpaper_path $HOME/Pictures/wallpapers/seinen-big-3.png
 
 ################################
 ### OUTPUT CONFIGURATION     ###
