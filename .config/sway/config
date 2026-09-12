@@ -77,14 +77,11 @@ set $right l
 set $gnome-schema org.gnome.desktop.interface
 
 # Wallpaper: Update with your correct path
-set $wallpaper_path $HOME/Pictures/wallpapers/seinen-big-3.png
+set $wallpaper_path $HOME/Pictures/wallpapers/capttuccin-landscape.png
 
 ################################
 ### OUTPUT CONFIGURATION     ###
 ################################
-
-# Fallback background color just in case the wallpaper takes a second to load
-output * bg $base solid_color
 
 output eDP-1 mode 1920x1080@60.001Hz position 0,0
 
