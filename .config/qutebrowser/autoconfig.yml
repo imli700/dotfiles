@@ -15,6 +15,7 @@ settings:
   content.javascript.clipboard:
     https://aistudio.google.com: access-paste
     https://annas-archive.gl: access-paste
+    https://annas-archive.pk: access-paste
     https://archive.ics.uci.edu: access-paste
     https://aur.archlinux.org: access-paste
     https://chatgpt.com: access-paste
@@ -48,10 +49,12 @@ settings:
     https://community.oneplus.com: true
     https://goalietrend.com: false
     https://hclips.com: false
+    https://videocelebs.net: false
     https://www.andropalace.org: true
     https://www.faceit.com: true
     https://www.headphonezone.in: true
     https://www.lenovo.com: true
+    https://www.sportskeeda.com: false
   content.register_protocol_handler:
     https://calendar.google.com?cid=%25s: true
     https://mail.google.com?extsrc=mailto&url=%25s: true
