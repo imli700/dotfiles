@@ -77,7 +77,8 @@ set $right l
 set $gnome-schema org.gnome.desktop.interface
 
 # Wallpaper: Update with your correct path
-set $wallpaper_path $HOME/Pictures/wallpapers/capttuccin-landscape.png
+set $wallpaper_path $HOME/Pictures/wallpapers/catppuccin-landscape.png
+
 
 ################################
 ### OUTPUT CONFIGURATION     ###
@@ -318,7 +319,7 @@ exec {
 }
 
 # Wallpaper
-exec swaybg -i $wallpaper_path -m fill -c $base
+output * bg $wallpaper_path fill
 
 exec mako
 exec sleep 4s && megasync
