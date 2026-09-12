@@ -36,8 +36,8 @@
     
     transparent: #00000000;
     
-    /* Matches search queries with a bold underline in Mauve */
-    highlight: underline bold #cba6f7;
+    /* FIX: Removed explicit color so it dynamically inherits the current text color */
+    highlight: bold underline;
 
     padding: 0;
     margin: 0;
@@ -63,7 +63,7 @@ window {
     width: 25%;
     location: center;
     background-color: @base;
-    orientation: horizontal; /* Fixed typo from orientaion */
+    orientation: horizontal;
 }
 
 mainbox {
@@ -72,7 +72,6 @@ mainbox {
 
 inputbar {
     margin: 8px 8px 3px 8px;
-    /* Uses Mauve to create that cool wrap-around accent border you had */
     background-color: @mauve;
     children: [prompt, entry];
 }
