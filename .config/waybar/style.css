@@ -1,4 +1,30 @@
 /* ~/.config/waybar/style.css */
+/* Catppuccin Mocha */
+
+/* ---- Catppuccin Mocha palette ---- */
+@define-color rosewater #f5e0dc;
+@define-color flamingo #f2cdcd;
+@define-color pink #f5c2e7;
+@define-color mauve #cba6f7;
+@define-color red #f38ba8;
+@define-color maroon #eba0ac;
+@define-color peach #fab387;
+@define-color yellow #f9e2af;
+@define-color green #a6e3a1;
+@define-color teal #94e2d5;
+@define-color sky #89dceb;
+@define-color sapphire #74c7ec;
+@define-color blue #89b4fa;
+@define-color lavender #b4befe;
+@define-color text #cdd6f4;
+@define-color subtext1 #bac2de;
+@define-color overlay0 #6c7086;
+@define-color surface2 #585b70;
+@define-color surface1 #45475a;
+@define-color surface0 #313244;
+@define-color mantle #181825;
+@define-color crust #11111b;
+
 * {
   padding: 0;
   margin: 0;
@@ -11,7 +37,7 @@
 }
 
 window#waybar {
-  color: rgb(255, 244, 210);
+  color: @text;
   background: none;
   font-family: IosevkaTerm Nerd Font Propo, FontAwesome;
   font-size: 20px;
@@ -19,108 +45,204 @@ window#waybar {
   font-weight: 600;
 }
 
-/* Base style for most modules */
+/* ---- Motion reserved for the two states that genuinely need attention ---- */
+@keyframes urgent-pulse {
+  0% {
+    background-color: @red;
+    box-shadow: 0 0 0 1px alpha(@red, 0.6);
+  }
+
+  50% {
+    background-color: @maroon;
+    box-shadow: 0 0 6px 2px alpha(@red, 0.75);
+  }
+
+  100% {
+    background-color: @red;
+    box-shadow: 0 0 0 1px alpha(@red, 0.6);
+  }
+}
+
+@keyframes critical-pulse {
+  0% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0.55;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+/* Base style for most modules - soft pills floating on the mocha surface */
 #cpu,
 #memory,
 #pulseaudio,
 #battery,
 #clock,
 #custom-cemu {
-  background: #323232;
-  /* Background for the text part */
-  border: 3px solid #323232;
-  /* Creates a solid block */
-  border-radius: 6px;
-  /* Your original border-radius */
+  background-color: @surface0;
+  /* Elevated surface for the text part */
+  border: 1px solid alpha(@overlay0, 0.35);
+  /* Thin neutral edge, tinted per-module below */
+  border-radius: 12px;
   padding-right: 10px;
   /* Padding for the text */
+  box-shadow: 0 2px 5px alpha(@crust, 0.4);
+  transition: all 200ms ease;
 }
 
-/* Text color for each module */
+/* Text/icon accent color for each module */
 #cpu {
-  color: rgb(231, 138, 78);
+  color: @peach;
+  border-color: alpha(@peach, 0.4);
 }
 
 #memory {
-  color: rgb(69, 133, 136);
+  color: @blue;
+  border-color: alpha(@blue, 0.4);
 }
 
 #pulseaudio {
-  color: rgb(131, 165, 152);
+  color: @sapphire;
+  border-color: alpha(@sapphire, 0.4);
 }
 
 #pulseaudio.muted {
-  color: rgb(234, 105, 98);
+  color: @maroon;
+  border-color: alpha(@maroon, 0.4);
 }
 
 #battery {
-  color: rgb(104, 157, 106);
+  color: @green;
+  border-color: alpha(@green, 0.4);
 }
 
 #battery.critical {
-  color: rgb(204, 36, 29);
+  color: @red;
+  border-color: alpha(@red, 0.5);
+  animation-name: critical-pulse;
+  animation-duration: 1.3s;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
 }
 
 #battery.warning {
-  color: rgb(231, 138, 78);
+  color: @yellow;
+  border-color: alpha(@yellow, 0.4);
 }
 
 #battery.charging,
 #battery.plugged {
-  color: rgb(104, 157, 106);
+  color: @teal;
+  border-color: alpha(@teal, 0.4);
 }
 
 #clock {
-  color: rgb(142, 192, 124);
+  color: @lavender;
+  border-color: alpha(@lavender, 0.4);
+}
+
+/* Gentle hover feedback on the pills you can actually click */
+#custom-cemu:hover,
+#pulseaudio:hover {
+  background-color: @surface1;
 }
 
 /* --- Special Modules --- */
 
 /* Workspaces use their own styling */
 #workspaces {
-  background-color: rgba(32, 32, 32, 0.9);
+  background-color: alpha(@mantle, 0.9);
+  border: 1px solid alpha(@surface2, 0.6);
   margin: 3px 5px;
   padding: 0px 8px;
-  border-radius: 6px;
+  border-radius: 12px;
+  box-shadow: 0 2px 6px alpha(@crust, 0.45);
 }
 
 #workspaces button {
-  color: rgb(255, 244, 210);
-  padding: 0 4px;
+  color: @subtext1;
+  padding: 0 8px;
   margin: 0px 3px;
+  transition: all 200ms ease;
 }
 
 #workspaces button:hover {
-  color: rgb(32, 32, 32);
-  background: rgb(211, 134, 155);
-  border-radius: 5px;
+  color: @crust;
+  background-color: @pink;
+  border-radius: 9px;
 }
 
 #workspaces button.focused {
-  color: rgb(32, 32, 32);
-  background-color: rgb(142, 192, 124);
-  border-radius: 5px;
+  color: @crust;
+  background-color: @mauve;
+  background-image: linear-gradient(135deg, @mauve, @pink);
+  box-shadow: 0 0 10px alpha(@mauve, 0.55);
+  border-radius: 9px;
 }
 
 #workspaces button.urgent {
-  color: rgb(32, 32, 32);
-  background-color: rgb(234, 105, 98);
+  color: @crust;
+  background-color: @red;
+  border-radius: 9px;
+  animation-name: urgent-pulse;
+  animation-duration: 1.4s;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
 }
 
-/* Mode, Window, and Tray get simpler backgrounds */
+/* Mode, Window, and Tray get simpler, glassy backgrounds */
 #mode,
 #window,
 #tray {
-  background-color: rgba(32, 32, 32, 0.9);
+  background-color: alpha(@mantle, 0.9);
+  border: 1px solid alpha(@surface2, 0.6);
   margin: 3px 5px;
   padding: 0px 12px;
-  border-radius: 6px;
+  border-radius: 12px;
+  box-shadow: 0 2px 6px alpha(@crust, 0.45);
+}
+
+/* Waybar tags the whole bar `.empty` when the workspace has no windows -
+   use that to collapse the window-title capsule down to nothing */
+window#waybar.empty #window {
+  background-color: transparent;
+  border-color: transparent;
+  box-shadow: none;
+  padding: 0;
+  margin: 0;
+  min-width: 0;
+}
+
+#window {
+  color: @subtext1;
+}
+
+#mode {
+  color: @flamingo;
+}
+
+tooltip {
+  background-color: @mantle;
+  border: 1px solid alpha(@mauve, 0.4);
+  border-radius: 10px;
+  padding: 6px;
+}
+
+tooltip label {
+  color: @text;
 }
 
 #custom-cemu.on {
-  color: rgb(211, 134, 155);
+  color: @sky;
+  border-color: alpha(@sky, 0.45);
 }
 
 #custom-cemu.off {
-  color: rgb(146, 131, 116);
+  color: @overlay0;
+  border-color: alpha(@overlay0, 0.3);
 }

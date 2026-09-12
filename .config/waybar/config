@@ -31,7 +31,7 @@
     "tooltip": false
   },
   "sway/mode": {
-    "format": "<span color='#202020' bgcolor='#d3869b'> {} </span>",
+    "format": " {} ",
     "tooltip": true
   },
   "sway/window": {
@@ -44,18 +44,18 @@
     "spacing": 10
   },
   "cpu": {
-    "format": "<span color='#202020' bgcolor='#e78a4e'>  </span> {usage}%",
+    "format": "   {usage}%",
     "tooltip": false,
     "interval": 1
   },
   "memory": {
-    "format": "<span color='#202020' bgcolor='#458588'>  </span> {}%",
+    "format": "   {}%",
     "interval": 2
   },
   "pulseaudio": {
     "scroll-step": 5,
-    "format": "<span color='#202020' bgcolor='#83a598'>  </span> {volume}%",
-    "format-muted": "<span color='#202020' bgcolor='#ea6962'>  </span> Muted",
+    "format": "   {volume}%",
+    "format-muted": "   Muted",
     "on-click": "pactl set-sink-mute @DEFAULT_SINK@ toggle",
     "on-click-right": "pavucontrol",
     "tooltip": false
@@ -78,16 +78,16 @@
       "󰂂",
       "󰁹"
     ],
-    "format": "<span color='#202020' bgcolor='#689d6a'> {icon} </span> {capacity}%",
-    "format-critical": "<span color='#202020' bgcolor='#cc241d'> {icon} </span> {capacity}%",
-    "format-warning": "<span color='#202020' bgcolor='#e78a4e'> {icon} </span> {capacity}%",
-    "format-charging": "<span color='#202020' bgcolor='#689d6a'> 󰂅 </span> {capacity}%",
-    "format-plugged": "<span color='#202020' bgcolor='#689d6a'> 󰂅 </span> {capacity}%",
-    "format-alt": "<span color='#202020' bgcolor='#689d6a'> 󱧥 </span> {time}",
+    "format": " {icon}  {capacity}%",
+    "format-critical": " {icon}  {capacity}%",
+    "format-warning": " {icon}  {capacity}%",
+    "format-charging": " 󰂅  {capacity}%",
+    "format-plugged": " 󰂅  {capacity}%",
+    "format-alt": " 󱧥  {time}",
     "tooltip": false
   },
   "clock": {
-    "format": "<span color='#202020' bgcolor='#8ec07c'>  </span> {:%a %d | %H:%M}",
+    "format": "   {:%a %d | %H:%M}",
     "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
     "interval": 1
   },
