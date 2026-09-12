@@ -1,8 +1,8 @@
-# Colors
-background-color=#d8a657
-text-color=#595959
-border-color=#222222
-progress-color=over #313244
+# Catppuccin Mocha (Mauve Accent)
+background-color=#1e1e2e
+text-color=#cdd6f4
+border-color=#cba6f7
+progress-color=over #45475a
 
 [urgency=high]
-border-color=#fab387
+border-color=#f38ba8
