@@ -2,41 +2,62 @@
 ### GENERAL SETTINGS AND STYLE  ###
 ###################################
 
-# --- Style preferences from to-copy-config ---
-# New font, but with a larger size (12) for better readability than the original 10.
+# --- Style preferences ---
 font pango: Roboto Condensed bold 12
 title_align center
 titlebar_padding 1
 titlebar_border_thickness 0
 
-# Borders: Using the style from to-copy-config but keeping your 1px size.
+# Borders: Bumped to 2px so the vibrant Catppuccin colors actually pop!
 default_border none
 default_floating_border none
-for_window [app_id="^.*"] border pixel 1
+for_window [app_id="^.*"] border pixel 2
 for_window [class=".*"] title_format "*%title"
+for_window [class=".*"] border pixel 2
 
-# smart_borders no_gaps # Removed in favor of the new border style
 smart_gaps on
 
-# --- Gaps settings from your original config (preserved for size) ---
+# --- Gaps settings ---
 gaps top 10
 gaps inner 10
 gaps bottom 0
 gaps left 5
 gaps right 5
-#
-# --- Color variables from to-copy-config ---
-set $color1     #222222
-set $color2     #d8a657
-set $color3     #ea6962
 
-# --- Window colors from to-copy-config ---
-#app_id                          border          bground         text            indicator       child_border
-client.focused               $color2           $color2         $color1           $color2         $color2
-client.unfocused             $color2           $color1         $color2           $color1         $color1
-client.focused_inactive      $color2           $color1         $color2           $color1         $color1
-client.urgent                $color3           $color3         $color1           $color3         $color1
+# --- CATPPUCCIN MOCHA PALETTE ---
+set $rosewater #f5e0dc
+set $flamingo  #f2cdcd
+set $pink      #f5c2e7
+set $mauve     #cba6f7
+set $red       #f38ba8
+set $maroon    #eba0ac
+set $peach     #fab387
+set $yellow    #f9e2af
+set $green     #a6e3a1
+set $teal      #94e2d5
+set $sky       #89dceb
+set $sapphire  #74c7ec
+set $blue      #89b4fa
+set $lavender  #b4befe
+set $text      #cdd6f4
+set $subtext1  #bac2de
+set $subtext0  #a6adc8
+set $overlay2  #9399b2
+set $overlay1  #7f849c
+set $overlay0  #6c7086
+set $surface2  #585b70
+set $surface1  #45475a
+set $surface0  #313244
+set $base      #1e1e2e
+set $mantle    #181825
+set $crust     #11111b
 
+# --- Window colors ---
+# class                  border    bground   text    indicator child_border
+client.focused           $mauve    $mauve    $base   $pink     $mauve
+client.focused_inactive  $surface2 $surface2 $text   $rosewater $surface2
+client.unfocused         $surface1 $surface1 $text   $rosewater $surface1
+client.urgent            $red      $red      $base   $peach    $red
 
 ###################################
 ### VARIABLES AND CUSTOMIZATION ###
@@ -52,6 +73,9 @@ set $down j
 set $up k
 set $right l
 
+# GTK Schema variable for your startup applications
+set $gnome-schema org.gnome.desktop.interface
+
 # Wallpaper: Update with your correct path
 set $wallpaper_path $HOME/Pictures/wallpapers/seinen-big-3.png
 
@@ -59,10 +83,9 @@ set $wallpaper_path $HOME/Pictures/wallpapers/seinen-big-3.png
 ### OUTPUT CONFIGURATION     ###
 ################################
 
-# Add output configuration here
-# Example: output HDMI-A-1 resolution 1920x1080 position 1920,0
+# Fallback background color just in case the wallpaper takes a second to load
+output * bg $base solid_color
 
-# **Original setting restored:**
 output eDP-1 mode 1920x1080@60.001Hz position 0,0
 
 ################################
@@ -155,8 +178,6 @@ input type:touchpad {
     bindsym $mod+Shift+8 move container to workspace number 8
     bindsym $mod+Shift+9 move container to workspace number 9
     bindsym $mod+Shift+0 move container to workspace number 10
-    # Note: workspaces can have any name you want, not just numbers.
-    # We just use 1-10 as the default.
 #
 # Layout stuff:
 #
@@ -186,9 +207,6 @@ input type:touchpad {
 #
 # Scratchpad:
 #
-    # Sway has a "scratchpad", which is a bag of holding for windows.
-    # You can send windows there and get them back later.
-
     # Move the currently focused window to the scratchpad
     bindsym $mod+Shift+minus move scratchpad
 
@@ -199,10 +217,6 @@ input type:touchpad {
 # Resizing containers:
 #
 mode "resize" {
-    # left will shrink the containers width
-    # right will grow the containers width
-    # up will shrink the containers height
-    # down will grow the containers height
     bindsym $left resize shrink width 10px
     bindsym $down resize grow height 10px
     bindsym $up resize shrink height 10px
@@ -253,16 +267,13 @@ bindsym XF86AudioPlay exec playerctl play-pause
 bindsym XF86AudioNext exec playerctl next
 bindsym XF86AudioPrev exec playerctl previous
 
-# Brightness
-# bindsym XF86MonBrightnessDown exec brightnessctl s 5%- # Replaced by binding with notification in "Changes by AI" section
-# bindsym XF86MonBrightnessUp exec brightnessctl s +5%   # Replaced by binding with notification in "Changes by AI" section
-
 # Shutdown / Restart / Suspend
-set $Locker swaylock -i "~/Pictures/wallpapers/moon.jpg", mode "default"
+# The lock screen will also use a sleek default look now!
+set $Locker swaylock -c 1e1e2e -i "~/Pictures/wallpapers/moon.jpg", mode "default"
 set $mode_system System (l) lock, (e) logout, (s) suspend, (r) reboot, (CTRL+s) shutdown
 
 mode "$mode_system" {
-    bindsym l exec --no-startup-id swaylock
+    bindsym l exec --no-startup-id swaylock -c 1e1e2e
     bindsym e exec --no-startup-id swaymsg exit, mode "default"
     bindsym s exec --no-startup-id systemctl suspend && $Locker
     bindsym r exec --no-startup-id systemctl reboot, mode "default"
@@ -310,8 +321,7 @@ exec {
 }
 
 # Wallpaper
-# output * bg $wallpaper_path fill
-exec swaybg -i $wallpaper_path -m fill
+exec swaybg -i $wallpaper_path -m fill -c $base
 
 exec mako
 exec sleep 4s && megasync
@@ -332,20 +342,11 @@ exec /usr/libexec/xdg-desktop-portal-gtk
 ##############################################################################
 
 # 1. Graphical PolicyKit Authentication Agent
-# -------------------------------------------
-# Starts a graphical agent for handling privilege escalation prompts.
-# Requires: lxqt-policykit (or similar Wayland-compatible agent)
 exec /usr/libexec/lxqt-policykit-agent
-# Makes the agent's window float nicely.
 for_window [app_id="lxqt-policykit-agent"] floating enable, move position center
-# Polkit is necessary sometimes
 exec /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 
 # 2. Brightness Notifications
-# ---------------------------
-# Requires: brightnessctl, libnotify (for notify-send)
-# Defines a command to show a brightness notification.
-# This is the NEW, FIXED line. Replace the old one with this.
 set $brightness_notification_cmd command -v notify-send >/dev/null && \
       CURRENT=$(brightnessctl get) && \
       MAX=$(brightnessctl max) && \
@@ -353,49 +354,25 @@ set $brightness_notification_cmd command -v notify-send >/dev/null && \
       notify-send -e -h string:x-canonical-private-synchronous:brightness \
       -h "int:value:$PERCENTAGE" -t 800 "Brightness: ${PERCENTAGE}%"
 
-# Bindings for brightness control with notification.
-      bindsym XF86MonBrightnessDown exec brightnessctl -q set 5%- && $brightness_notification_cmd
-      bindsym XF86MonBrightnessUp exec brightnessctl -q set +5% && $brightness_notification_cmd
+bindsym XF86MonBrightnessDown exec brightnessctl -q set 5%- && $brightness_notification_cmd
+bindsym XF86MonBrightnessUp exec brightnessctl -q set +5% && $brightness_notification_cmd
 
-# 3. Application-Specific Rules (Beyond Polkit)
-# ---------------------------------------------
-# Automatically float pavucontrol (Volume Control) if installed.
-# Requires: pavucontrol
-      for_window [app_id="pavucontrol"] floating enable, move position center
+# 3. Application-Specific Rules
+for_window [app_id="pavucontrol"] floating enable, move position center
 
-# Mark browser windows for specific rules. Adjust app_id/class as needed.
-# Requires: A web browser like firefox, chromium-browser, brave-browser
-      for_window [app_id="firefox"] mark Browser
-      for_window [app_id="chromium-browser"] mark Browser # For Chromium/Chrome
-      for_window [app_id="Brave-browser"] mark Browser # For Brave
-# You might also need class-based rules for XWayland versions:
-# for_window [class="firefox"] mark Browser
-# for_window [class="Chromium-browser"] mark Browser
-# for_window [class="Brave-browser"] mark Browser
+for_window [app_id="firefox"] mark Browser
+for_window [app_id="chromium-browser"] mark Browser 
+for_window [app_id="Brave-browser"] mark Browser 
 
-# Inhibit idle (screen blanking/locking) when a marked browser is fullscreen.
-      for_window [con_mark="Browser"] inhibit_idle fullscreen
-
-# Float the Firefox screensharing indicator window.
-# Requires: firefox
-      for_window [app_id="firefox" title="Firefox — Sharing Indicator"] floating enable
+for_window [con_mark="Browser"] inhibit_idle fullscreen
+for_window [app_id="firefox" title="Firefox — Sharing Indicator"] floating enable
 
 # 4. XDG User Directories Update
-# ------------------------------
-# Ensures standard user directories (Downloads, Documents, etc.) are set up.
-# Requires: xdg-user-dirs
-      exec /usr/bin/xdg-user-dirs-update
+exec /usr/bin/xdg-user-dirs-update
 
 # 5. Robust Rofi Command
-# ----------------------
-# Uses rofi's combi mode to show applications (drun) and run commands (run).
-# Requires: rofi
-      set $menu "rofi -show combi -combi-modes drun,run -modes combi"
+set $menu "rofi -show combi -combi-modes drun,run -modes combi"
 
 # 6. Mouse sensitivity to max
-# ----------------------
-# Sets mouse sensitivty to max possible and changes color of mouse LED
-# # Requires: ratbagctl
-      exec ratbagctl warbling-mara profile active set 2 && ratbagctl warbling-mara profile 2 dpi set 2500 && ratbagctl warbling-mara led 0 set mode static color ed333b
-
-# --- End of Changes by AI ---
+# Sets mouse sensitivty to max possible and changes color of mouse LED to Catppuccin Red equivalent (f38ba8)
+exec ratbagctl warbling-mara profile active set 2 && ratbagctl warbling-mara profile 2 dpi set 2500 && ratbagctl warbling-mara led 0 set mode static color f38ba8
