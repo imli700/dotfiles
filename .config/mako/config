@@ -6,3 +6,10 @@ progress-color=over #45475a
 
 [urgency=high]
 border-color=#f38ba8
+
+# Global fallback timeout (10000 ms = 10 seconds)
+default-timeout=10000
+
+# Force critically urgent notifications to also expire in 10s
+[urgency=high]
+default-timeout=10000
