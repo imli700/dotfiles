@@ -1,0 +1,42 @@
+#!/usr/bin/env bash
+
+list_history() {
+  makoctl history -j 2>/dev/null | jq -r '.[] | "[\(.app_name)] \(.summary) ➜ \(.body)"' 2>/dev/null
+}
+
+clear_history() {
+  # mako has no native "clear history" command, so we pop each entry back to
+  # active (restore) and immediately drop it without re-adding it to history.
+  # Bounded by the actual entry count (rather than trusting restore's exit
+  # code) so a stuck/no-op dbus call can't spin this into an infinite loop.
+  local count
+  count=$(makoctl history -j 2>/dev/null | jq 'length' 2>/dev/null)
+  [[ "$count" =~ ^[0-9]+$ ]] || count=0
+  for ((i = 0; i < count; i++)); do
+    timeout 2s makoctl restore >/dev/null 2>&1 || break
+    timeout 2s makoctl dismiss --no-history >/dev/null 2>&1
+  done
+}
+
+case "${1:-}" in
+  --list)
+    list_history
+    exit 0
+    ;;
+  --clear-history)
+    clear_history
+    exit 0
+    ;;
+esac
+
+list_history | fzf --layout=reverse \
+  --border=rounded \
+  --border-label=" 🔔 Notification History " \
+  --delimiter=" ➜ " \
+  --preview="echo {2} | fmt -s -w 50" \
+  --preview-window=bottom:3:wrap \
+  --bind='j:down,k:up' \
+  --bind="ctrl-d:execute-silent($0 --clear-history)+reload($0 --list)"
+
+# Always exit cleanly so the kitty popup closes regardless of how fzf was dismissed
+exit 0

@@ -302,6 +302,12 @@ exec clipse -listen
 bindsym $mod+q exec kitty --class clipse_float -e clipse
 for_window [app_id="clipse_float"] floating enable, move position center, resize set 800 500
 
+# Notification history
+bindsym $mod+n exec kitty -o close_on_child_death=yes --class="mako-history" ~/.local/bin/mako-collector
+
+# Force the notification window to float in the center, matching a clipse-style layout
+for_window [app_id="mako-history"] floating enable, resize set 800 500, move position center
+
 # Toggle Cemu Mouse Mode
 bindsym $mod+m exec ~/.config/sway/cemu_toggle.sh
 
