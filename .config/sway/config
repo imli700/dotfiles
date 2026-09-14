@@ -77,7 +77,7 @@ set $right l
 set $gnome-schema org.gnome.desktop.interface
 
 # Wallpaper: Update with your correct path
-set $wallpaper_path $HOME/Pictures/wallpapers/catppuccin-landscape.png
+set $wallpaper_path $HOME/Pictures/wallpapers/catppuccin1.png
 
 
 ################################
