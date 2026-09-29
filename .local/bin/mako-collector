@@ -1,14 +1,16 @@
 #!/usr/bin/env bash
 
 list_history() {
-  makoctl history -j 2>/dev/null | jq -r '.[] | "[\(.app_name)] \(.summary) ➜ \(.body)"' 2>/dev/null
+  makoctl history -j 2>/dev/null | jq -r '
+    .[] |
+    (.app_name // .["app-name"] // "Unknown") as $app |
+    ((.summary // "") | tostring | gsub("[\r\n]+"; " ")) as $summary |
+    ((.body // "") | tostring | gsub("\r?\n"; " ↵ ")) as $body |
+    "[\($app)] \($summary) ➜ \($body)"
+  ' 2>/dev/null
 }
 
 clear_history() {
-  # mako has no native "clear history" command, so we pop each entry back to
-  # active (restore) and immediately drop it without re-adding it to history.
-  # Bounded by the actual entry count (rather than trusting restore's exit
-  # code) so a stuck/no-op dbus call can't spin this into an infinite loop.
   local count
   count=$(makoctl history -j 2>/dev/null | jq 'length' 2>/dev/null)
   [[ "$count" =~ ^[0-9]+$ ]] || count=0
@@ -19,24 +21,68 @@ clear_history() {
 }
 
 case "${1:-}" in
-  --list)
-    list_history
-    exit 0
-    ;;
-  --clear-history)
-    clear_history
-    exit 0
-    ;;
+--list)
+  list_history
+  exit 0
+  ;;
+--clear-history)
+  clear_history
+  exit 0
+  ;;
 esac
 
-list_history | fzf --layout=reverse \
-  --border=rounded \
-  --border-label=" 🔔 Notification History " \
-  --delimiter=" ➜ " \
-  --preview="echo {2} | fmt -s -w 50" \
-  --preview-window=bottom:3:wrap \
-  --bind='j:down,k:up' \
-  --bind="ctrl-d:execute-silent($0 --clear-history)+reload($0 --list)"
+# Capture both the pressed key and the selected item
+mapfile -t result < <(
+  list_history | fzf --layout=reverse \
+    --border=rounded \
+    --border-label=" 🔔 Notification History " \
+    --delimiter=" ➜ " \
+    --preview="echo {2} | sed 's/ ↵ /\n/g'" \
+    --preview-window=bottom:5:wrap \
+    --bind='j:down,k:up' \
+    --bind="ctrl-d:execute-silent($0 --clear-history)+reload($0 --list)" \
+    --expect=ctrl-y,ctrl-o
+)
 
-# Always exit cleanly so the kitty popup closes regardless of how fzf was dismissed
+key="${result[0]:-}"
+selected="${result[1]:-}"
+
+# Exit cleanly if dismissed with Escape or Ctrl+C
+[[ -z "$selected" ]] && exit 0
+
+header="${selected%% ➜ *}"
+raw_body="${selected#* ➜ }"
+# Restore newlines for the actual clipboard text
+body=$(echo "$raw_body" | sed 's/ ↵ /\n/g')
+
+copy_to_clip() {
+  if command -v wl-copy >/dev/null 2>&1; then
+    echo -n "$1" | wl-copy
+  elif command -v xclip >/dev/null 2>&1; then
+    echo -n "$1" | xclip -selection clipboard
+  fi
+}
+
+case "$key" in
+ctrl-o)
+  # Open URL in default browser if one exists in the notification
+  url=$(grep -oP 'https?://[^\s]+' <<<"$selected" | head -n1)
+  if [[ -n "$url" ]]; then
+    xdg-open "$url" >/dev/null 2>&1 &
+  fi
+  ;;
+ctrl-y)
+  # Copy full notification: [App] Summary + Body
+  copy_to_clip "${header}"$'\n'"${body}"
+  ;;
+*)
+  # Enter: Copy the notification body (or header if body is empty)
+  if [[ -n "$body" && "$body" != "$header" ]]; then
+    copy_to_clip "$body"
+  else
+    copy_to_clip "$header"
+  fi
+  ;;
+esac
+
 exit 0
