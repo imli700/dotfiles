@@ -36,6 +36,7 @@ separator = ' '
 'mpv' = ''
 'vlc' = ''
 'swappy' = ''
+'readest' = ""
 
 # Other
 'anki' = ''
