@@ -317,6 +317,16 @@ exec_always ~/.config/sway/cemu_check.sh
 ###################################
 ### STARTUP APPLICATIONS & MISC ###
 ###################################
+#
+
+# --- Keyring / Secret Service ---
+exec --no-startup-id gnome-keyring-daemon --start --components=secrets
+
+# For XWayland (CEF uses class instead of app_id)
+# --- Readest / CEF Window Rules ---
+# Prevents XWayland sizing crashes on child modals/settings
+for_window [class="(?i)readest"] floating enable
+for_window [app_id="(?i)readest"] floating enable
 
 # Wayland GTK Settings:
 exec {
