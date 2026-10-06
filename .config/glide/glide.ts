@@ -22,10 +22,9 @@
 // =============================================================================
 // FIREFOX PREFERENCES (user.js replacements)
 // =============================================================================
-// Glide uses glide.prefs.set() to configure Firefox/about:config options directly.
 glide.prefs.set("browser.tabs.loadInBackground", true);
 
-// Disable all smooth scrolling
+// Disable all smooth scrolling (instant scroll)
 glide.prefs.set("general.smoothScroll", false);
 glide.prefs.set("general.smoothScroll.mouseWheel", false);
 glide.prefs.set("general.smoothScroll.pages", false);
@@ -35,7 +34,7 @@ glide.prefs.set("general.smoothScroll.scrollbars", false);
 glide.prefs.set("general.smoothScroll.other", false);
 glide.prefs.set("general.smoothScroll.msdPhysics.enabled", false);
 
-// Optional: same distance per wheel notch
+// Consistent distance per wheel notch
 glide.prefs.set("mousewheel.acceleration.start", -1);
 
 // =============================================================================
@@ -79,25 +78,12 @@ async function historyNavigate(delta: -1 | 1): Promise<void> {
   } else if (delta === 1 && typeof browser.tabs.goForward === "function") {
     await browser.tabs.goForward(tab.id);
   } else if (glide.content && typeof glide.content.execute === "function") {
-    const code = delta === -1 ? "window.history.back()" : "window.history.forward()";
-    await glide.content.execute(code);
+    const fn = delta === -1 ? () => window.history.back() : () => window.history.forward();
+    await glide.content.execute(fn, { tab_id: tab.id });
   }
 }
 
-/** Execute instant scroll in content window */
-function scrollPage(x: number, y: number): void {
-  if (glide.content && typeof glide.content.execute === "function") {
-    glide.content.execute(`window.scrollBy({ left: ${x}, top: ${y}, behavior: 'instant' });`);
-  }
-}
-
-function scrollToBoundary(position: "top" | "bottom"): void {
-  if (glide.content && typeof glide.content.execute === "function") {
-    const target = position === "top" ? "0" : "document.body.scrollHeight";
-    glide.content.execute(`window.scrollTo({ top: ${target}, behavior: 'instant' });`);
-  }
-
-}/** URL path navigation ('gu') */
+/** URL path navigation ('gu') */
 async function navigatePathUp(): Promise<void> {
   const tab = await getActiveTab();
   if (!tab?.url || !tab.id) return;
@@ -153,6 +139,16 @@ function updateUI(): void {
 // 1. YOUR PERSONAL OVERRIDES
 // =============================================================================
 
+// Prevent Ctrl+[ from triggering Firefox history back; sends Escape instead
+glide.keymaps.set(
+  ["hint", "insert", "normal"],
+  "<C-[>",
+  async () => {
+    await glide.keys.send("<Esc>");
+  },
+  { description: "Ctrl+[ acts as Escape" }
+);
+
 // Tab switching (H = Left tab, L = Right tab)
 glide.keymaps.set("normal", "H", async () => await cycleTab(-1), { description: "Previous tab" });
 glide.keymaps.set("normal", "L", async () => await cycleTab(1), { description: "Next tab" });
@@ -187,38 +183,53 @@ glide.keymaps.set("normal", "xx", () => {
 glide.keymaps.set("normal", "<C-S-m>", async () => {
   const tab = await getActiveTab();
   if (tab?.url) {
-    // If native runner is configured, or copy to clipboard as fallback
-    navigator.clipboard.writeText(`mpv "${tab.url}"`);
+    await navigator.clipboard.writeText(`mpv "${tab.url}"`);
   }
 }, { description: "Play current tab in mpv" });
 
 glide.keymaps.set("normal", "<C-m>", () => {
   glide.hints.show({
-    callback: (url: string) => {
+    action: (target: any) => {
+      const url = typeof target === "string" ? target : target?.href || target?.src;
       if (url) navigator.clipboard.writeText(`mpv "${url}"`);
     },
   });
 }, { description: "Hint link to play in mpv" });
 
-// Bitwarden rbw (copies hint trigger / command)
+// Bitwarden rbw bindings
 glide.keymaps.set("normal", ",b", () => console.log("rbw trigger"), { description: "rbw autofill" });
 glide.keymaps.set("normal", ",u", () => console.log("rbw user"), { description: "rbw user" });
 glide.keymaps.set("normal", ",p", () => console.log("rbw pass"), { description: "rbw pass" });
 
-
 // =============================================================================
-// 2. QUTEBROWSER DEFAULTS
+// 2. SCROLLING & NAVIGATION
 // =============================================================================
-// NOTE: Basic scrolling (h, j, k, l), insert mode (i), command prompt (:),
-// and link hints (f) are handled by Glide natively. Do not bind them here.
+// NOTE: h, j, k, l, gg, G, <C-d>, and <C-u> are built into Glide natively
+// and will follow the instant scroll preferences above. Do not override them.
 
-// Extended page navigation
-glide.keymaps.set("normal", "gg", () => scrollToBoundary("top"), { description: "Scroll to top" });
-glide.keymaps.set("normal", "G", () => scrollToBoundary("bottom"), { description: "Scroll to bottom" });
-glide.keymaps.set("normal", "<C-d>", () => scrollPage(0, 400), { description: "Half page down" });
-glide.keymaps.set("normal", "<C-u>", () => scrollPage(0, -400), { description: "Half page up" });
-glide.keymaps.set("normal", "<C-f>", () => scrollPage(0, 800), { description: "Full page down" });
-glide.keymaps.set("normal", "<C-b>", () => scrollPage(0, -800), { description: "Full page up" });
+glide.keymaps.set(
+  "normal",
+  "<C-f>",
+  async ({ tab_id }) => {
+    await glide.content.execute(
+      () => window.scrollBy({ top: window.innerHeight, behavior: "instant" }),
+      { tab_id }
+    );
+  },
+  { description: "Full page down" }
+);
+
+glide.keymaps.set(
+  "normal",
+  "<C-b>",
+  async ({ tab_id }) => {
+    await glide.content.execute(
+      () => window.scrollBy({ top: -window.innerHeight, behavior: "instant" }),
+      { tab_id }
+    );
+  },
+  { description: "Full page up" }
+);
 
 // Zoom
 glide.keymaps.set("normal", "-", async () => {
@@ -247,6 +258,11 @@ glide.keymaps.set("normal", "d", async () => {
   const tab = await getActiveTab();
   if (tab?.id) await browser.tabs.remove(tab.id);
 }, { description: "Close tab" });
+
+// Open new tab with Shift+O (like Ctrl+T)
+glide.keymaps.set("normal", "O", async () => {
+  await browser.tabs.create({});
+}, { description: "Open new tab" });
 
 glide.keymaps.set("normal", "u", async () => {
   if (browser.sessions?.restore) await browser.sessions.restore();
