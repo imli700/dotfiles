@@ -27,6 +27,7 @@ separator = ' '
 # Browser Icon
 'org.qutebrowser.qutebrowser' = ''
 '/.*Brave.*/' = ''
+'/.*Glide Browser.*/' = ''
 
 # File Manager Icons
 'thunar' = ''
