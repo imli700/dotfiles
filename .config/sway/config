@@ -319,6 +319,9 @@ exec_always ~/.config/sway/cemu_check.sh
 ###################################
 #
 
+# For opentabletdriver
+exec otd-daemon
+
 # --- Keyring / Secret Service ---
 exec --no-startup-id gnome-keyring-daemon --start --components=secrets
 
