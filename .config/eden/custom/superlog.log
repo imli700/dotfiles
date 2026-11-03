@@ -1,0 +1,73 @@
+TIME: 20:49:17,636 - Logger - INFO: 
+
+
+
+Attempting to start Application.
+__SystemINFO__
+System: Linux
+GPU: /bin/sh: symbol lookup error: /bin/sh: undefined symbol: rl_trim_arg_from_keyseq
+RAM: 21 GB - MHz and used 29.9%
+CPU: /bin/sh: symbol lookup error: /bin/sh: undefined symbol: rl_trim_arg_from_keyseq
+
+TIME: 20:49:17,695 - Logger - INFO: Version : manager-3.2.0
+TIME: 20:49:17,755 - Logger - INFO: Looking for supported games...
+TIME: 20:49:20,891 - Logger - INFO: Loading Cheats for Tears Of The Kingdom 3.0.0 Version Version - 1.4.2
+TIME: 20:49:20,907 - Logger - INFO: Found Legacy Emu folder at: /home/imli700/.local/share/eden
+TIME: 20:49:20,915 - Logger - INFO: Found Legacy Emu folder at: /home/imli700/.local/share/eden
+TIME: 20:49:20,921 - Logger - INFO: Detected a Linux based SYSTEM!
+TIME: 20:50:55,156 - Logger - INFO: STARTING None
+TIME: 20:50:55,162 - Logger - INFO: Starting TASKs for Normal Patch..
+TIME: 20:50:55,205 - Logger - INFO: Version : manager-3.2.0
+TIME: 20:50:55,538 - Logger - INFO: Tasks have been COMPLETED. Feel free to Launch the game.
+TIME: 20:50:57,917 - Logger - CRITICAL: User Exit Application.
+TIME: 20:52:51,809 - Logger - INFO: 
+
+
+
+Attempting to start Application.
+__SystemINFO__
+System: Linux
+GPU: /bin/sh: symbol lookup error: /bin/sh: undefined symbol: rl_trim_arg_from_keyseq
+RAM: 21 GB - MHz and used 31.1%
+CPU: /bin/sh: symbol lookup error: /bin/sh: undefined symbol: rl_trim_arg_from_keyseq
+
+TIME: 20:52:51,870 - Logger - INFO: Version : manager-3.2.0
+TIME: 20:52:51,931 - Logger - INFO: Looking for supported games...
+TIME: 20:52:55,74 - Logger - INFO: Loading Cheats for Breath of The Wild Version Version - 1.6.0
+TIME: 20:52:55,108 - Logger - INFO: Detected a Linux based SYSTEM!
+TIME: 20:53:23,377 - Logger - INFO: Loading Cheats for Tears Of The Kingdom 3.0.0 Version Version - 1.4.2
+TIME: 20:53:23,391 - Logger - INFO: Found Legacy Emu folder at: /home/imli700/.local/share/eden
+TIME: 20:53:40,731 - Logger - INFO: Loading Cheats for Tears Of The Kingdom 3.0.0 Version Version - 1.4.2
+TIME: 20:53:40,745 - Logger - INFO: Found Legacy Emu folder at: /home/imli700/.local/share/eden
+TIME: 20:54:46,812 - Logger - INFO: STARTING Cheats
+TIME: 20:54:46,820 - Logger - INFO: Starting TASKs for Cheat Patch..
+TIME: 20:54:46,935 - Logger - INFO: Starting Cheat patcher.
+TIME: 20:54:46,946 - Logger - INFO: Applied cheats successfully.
+TIME: 20:54:46,946 - Logger - INFO: Version : manager-3.2.0
+TIME: 20:54:47,23 - Logger - INFO: Tasks have been COMPLETED. Feel free to Launch the game.
+TIME: 20:54:52,38 - Logger - INFO: STARTING None
+TIME: 20:54:52,42 - Logger - INFO: Starting TASKs for Normal Patch..
+TIME: 20:54:52,71 - Logger - INFO: Version : manager-3.2.0
+TIME: 20:54:52,402 - Logger - INFO: Tasks have been COMPLETED. Feel free to Launch the game.
+TIME: 20:55:22,296 - Logger - INFO: Launching game None
+TIME: 20:55:24,670 - Logger - INFO: STARTING None
+TIME: 20:55:24,674 - Logger - INFO: Starting TASKs for Normal Patch..
+TIME: 20:55:24,706 - Logger - INFO: Version : manager-3.2.0
+TIME: 20:55:25,36 - Logger - INFO: Tasks have been COMPLETED. Feel free to Launch the game.
+TIME: 20:55:26,789 - Logger - CRITICAL: User Exit Application.
+TIME: 20:58:41,380 - Logger - INFO: 
+
+
+
+Attempting to start Application.
+__SystemINFO__
+System: Linux
+GPU: /bin/sh: symbol lookup error: /bin/sh: undefined symbol: rl_trim_arg_from_keyseq
+RAM: 21 GB - MHz and used 31.0%
+CPU: /bin/sh: symbol lookup error: /bin/sh: undefined symbol: rl_trim_arg_from_keyseq
+
+TIME: 20:58:41,440 - Logger - INFO: Version : manager-3.2.0
+TIME: 20:58:41,500 - Logger - INFO: Looking for supported games...
+TIME: 20:58:44,636 - Logger - INFO: Loading Cheats for Breath of The Wild Version Version - 1.6.0
+TIME: 20:58:44,659 - Logger - INFO: Detected a Linux based SYSTEM!
+TIME: 20:58:48,604 - Logger - CRITICAL: User Exit Application.

@@ -1,0 +1,154 @@
+TIME: 20:49:17,755 - root - INFO: Xenoblade Chronicles X 1.0 [0100453019AA8000] : ['1.0.1', '1.0.2']
+TIME: 20:49:17,755 - root - INFO: Tears Of The Kingdom 3.0.0 [0100F2C0115B6000] : ['1.1.0', '1.1.1', '1.1.2', '1.2.0', '1.2.1', '1.4.0', '1.4.1', '1.4.2']
+TIME: 20:49:17,756 - root - INFO: Tears Of The Kingdom 2.7.1 [0100F2C0115B6000] : ['1.1.0', '1.1.1', '1.1.2', '1.2.0', '1.2.1']
+TIME: 20:49:17,756 - root - INFO: Pokemon Violet [01008F6008C5E000] : ['3.0.1']
+TIME: 20:49:17,756 - root - ERROR: Couldn't fetch benchmarks for Pokemon Violet
+TIME: 20:49:17,756 - root - ERROR: Couldn't fetch benchmarks_version for Pokemon Violet
+TIME: 20:49:17,756 - root - ERROR: Couldn't fetch benchmarks_file for Pokemon Violet
+TIME: 20:49:17,756 - root - INFO: Pokemon Scarlet [0100A3D008C5C000] : ['3.0.1']
+TIME: 20:49:17,756 - root - ERROR: Couldn't fetch benchmarks for Pokemon Scarlet
+TIME: 20:49:17,756 - root - ERROR: Couldn't fetch benchmarks_version for Pokemon Scarlet
+TIME: 20:49:17,756 - root - ERROR: Couldn't fetch benchmarks_file for Pokemon Scarlet
+TIME: 20:49:17,756 - root - INFO: Echoes of Wisdom [01008CF01BAAC000] : ['1.0.1']
+TIME: 20:49:17,756 - root - ERROR: Couldn't fetch benchmarks for Echoes of Wisdom
+TIME: 20:49:17,756 - root - ERROR: Couldn't fetch benchmarks_version for Echoes of Wisdom
+TIME: 20:49:17,757 - root - ERROR: Couldn't fetch benchmarks_file for Echoes of Wisdom
+TIME: 20:49:17,757 - root - INFO: Breath of The Wild [01007EF00011E000] : ['1.6.0']
+TIME: 20:49:19,434 - root - WARNING: Initialize AnimationQueue
+TIME: 20:49:19,871 - root - INFO: Hiding extra
+TIME: 20:49:20,906 - root - INFO: NX-Mode Changed to Legacy from Legacy
+TIME: 20:49:20,907 - root - INFO: user
+TIME: 20:49:20,908 - root - INFO: Found Config File /home/imli700/.config/eden/qt-config.ini
+TIME: 20:49:20,915 - root - INFO: user
+TIME: 20:49:20,915 - root - INFO: Found Config File /home/imli700/.config/eden/qt-config.ini
+TIME: 20:49:20,921 - root - INFO: Loading Benchmark Reader
+TIME: 20:49:20,921 - root - WARNING: Benchmark File Not Found. /home/imli700/.local/share/eden/sdmc/UltraCam/TOTK/Benchmark
+TIME: 20:49:20,959 - root - INFO: Checking for Updates!
+TIME: 20:49:21,581 - root - INFO: No Updates Found. Your app is up to date.
+TIME: 20:50:55,160 - root - INFO: ProgressBar Start.
+TIME: 20:50:55,162 - root - INFO: Platform is not Windows, No need to check for Executable running.
+TIME: 20:50:55,173 - root - INFO: Copying Mod Folder. /tmp/_MEIV895eU/PatchInfo/Tears Of The Kingdom/UltraCam to /home/imli700/.local/share/eden/load/0100F2C0115B6000/!!!!TOTK Optimizer
+TIME: 20:50:55,173 - root - INFO: Saving user choices in TOTKOptimizer.ini
+TIME: 20:50:55,191 - root - INFO: User choices saved in Memory,Attempting to write into file.
+TIME: 20:50:55,191 - root - INFO: Successfully written into log file
+TIME: 20:50:55,192 - root - INFO: Generating mod at /home/imli700/.local/share/eden/load/0100F2C0115B6000
+TIME: 20:50:55,192 - root - WARNING: Creating !!!!TOTK Optimizer config File Path... /home/imli700/.local/share/eden/sdmc/UltraCam/TOTK/Config/maxlastbreath.ini
+
+TIME: 20:50:55,192 - root - INFO: Opening !!!!TOTK Optimizer config file...
+TIME: 20:50:55,192 - root - INFO: Starting !!!!TOTK Optimizer Patcher...
+TIME: 20:50:55,197 - root - INFO: Starting !!!!TOTK Optimizer Patcher has finished running...
+TIME: 20:50:55,198 - root - INFO: Disabling Outdated Mods...
+TIME: 20:50:55,511 - root - WARNING: ProgressBar Ended.
+TIME: 20:52:51,931 - root - INFO: Xenoblade Chronicles X 1.0 [0100453019AA8000] : ['1.0.1', '1.0.2']
+TIME: 20:52:51,932 - root - INFO: Tears Of The Kingdom 3.0.0 [0100F2C0115B6000] : ['1.1.0', '1.1.1', '1.1.2', '1.2.0', '1.2.1', '1.4.0', '1.4.1', '1.4.2']
+TIME: 20:52:51,932 - root - INFO: Tears Of The Kingdom 2.7.1 [0100F2C0115B6000] : ['1.1.0', '1.1.1', '1.1.2', '1.2.0', '1.2.1']
+TIME: 20:52:51,932 - root - INFO: Pokemon Violet [01008F6008C5E000] : ['3.0.1']
+TIME: 20:52:51,932 - root - ERROR: Couldn't fetch benchmarks for Pokemon Violet
+TIME: 20:52:51,932 - root - ERROR: Couldn't fetch benchmarks_version for Pokemon Violet
+TIME: 20:52:51,932 - root - ERROR: Couldn't fetch benchmarks_file for Pokemon Violet
+TIME: 20:52:51,932 - root - INFO: Pokemon Scarlet [0100A3D008C5C000] : ['3.0.1']
+TIME: 20:52:51,932 - root - ERROR: Couldn't fetch benchmarks for Pokemon Scarlet
+TIME: 20:52:51,933 - root - ERROR: Couldn't fetch benchmarks_version for Pokemon Scarlet
+TIME: 20:52:51,933 - root - ERROR: Couldn't fetch benchmarks_file for Pokemon Scarlet
+TIME: 20:52:51,933 - root - INFO: Echoes of Wisdom [01008CF01BAAC000] : ['1.0.1']
+TIME: 20:52:51,933 - root - ERROR: Couldn't fetch benchmarks for Echoes of Wisdom
+TIME: 20:52:51,933 - root - ERROR: Couldn't fetch benchmarks_version for Echoes of Wisdom
+TIME: 20:52:51,933 - root - ERROR: Couldn't fetch benchmarks_file for Echoes of Wisdom
+TIME: 20:52:51,933 - root - INFO: Breath of The Wild [01007EF00011E000] : ['1.6.0']
+TIME: 20:52:53,618 - root - WARNING: Initialize AnimationQueue
+TIME: 20:52:54,57 - root - INFO: Hiding extra
+TIME: 20:52:55,82 - root - INFO: NX-Mode Changed to Legacy from Legacy
+TIME: 20:52:55,90 - root - INFO: user
+TIME: 20:52:55,91 - root - INFO: Found Config File /home/imli700/.config/eden/qt-config.ini
+TIME: 20:52:55,101 - root - INFO: user
+TIME: 20:52:55,102 - root - INFO: Found Config File /home/imli700/.config/eden/qt-config.ini
+TIME: 20:52:55,108 - root - INFO: Loading Benchmark Reader
+TIME: 20:52:55,108 - root - WARNING: Benchmark File Not Found. /home/imli700/.local/share/eden/sdmc/BOTWBenchmark.txt
+TIME: 20:52:55,147 - root - INFO: Checking for Updates!
+TIME: 20:52:55,714 - root - INFO: No Updates Found. Your app is up to date.
+TIME: 20:53:23,321 - root - WARNING: Loading Game Info Tears Of The Kingdom 3.0.0
+TIME: 20:53:23,337 - root - INFO: Hiding extra
+TIME: 20:53:23,391 - root - INFO: user
+TIME: 20:53:23,392 - root - INFO: Found Config File /home/imli700/.config/eden/qt-config.ini
+TIME: 20:53:23,398 - root - INFO: Loading Benchmark Reader
+TIME: 20:53:23,399 - root - WARNING: Benchmark File Not Found. /home/imli700/.local/share/eden/sdmc/UltraCam/TOTK/Benchmark
+TIME: 20:53:40,711 - root - WARNING: Loading Game Info Tears Of The Kingdom 3.0.0
+TIME: 20:53:40,728 - root - INFO: Hiding extra
+TIME: 20:53:40,745 - root - INFO: user
+TIME: 20:53:40,745 - root - INFO: Found Config File /home/imli700/.config/eden/qt-config.ini
+TIME: 20:53:40,751 - root - INFO: Loading Benchmark Reader
+TIME: 20:53:40,752 - root - WARNING: Benchmark File Not Found. /home/imli700/.local/share/eden/sdmc/UltraCam/TOTK/Benchmark
+TIME: 20:54:46,819 - root - INFO: ProgressBar Start.
+TIME: 20:54:46,820 - root - INFO: Saving user choices in TOTKOptimizer.ini
+TIME: 20:54:46,934 - root - INFO: User choices saved in Memory,Attempting to write into file.
+TIME: 20:54:46,935 - root - INFO: Successfully written into log file
+TIME: 20:54:46,944 - root - WARNING: Applying Cheats in /home/imli700/.local/share/eden/load/0100F2C0115B6000/Cheat Manager Patch/cheats
+TIME: 20:54:46,945 - root - WARNING: Applying Cheats in /home/imli700/.local/share/eden/load/0100F2C0115B6000/Cheat Manager Patch/cheats
+TIME: 20:54:46,945 - root - WARNING: Applying Cheats in /home/imli700/.local/share/eden/load/0100F2C0115B6000/Cheat Manager Patch/cheats
+TIME: 20:54:46,945 - root - WARNING: Applying Cheats in /home/imli700/.local/share/eden/load/0100F2C0115B6000/Cheat Manager Patch/cheats
+TIME: 20:54:46,945 - root - WARNING: Applying Cheats in /home/imli700/.local/share/eden/load/0100F2C0115B6000/Cheat Manager Patch/cheats
+TIME: 20:54:46,945 - root - WARNING: Applying Cheats in /home/imli700/.local/share/eden/load/0100F2C0115B6000/Cheat Manager Patch/cheats
+TIME: 20:54:46,945 - root - WARNING: Applying Cheats in /home/imli700/.local/share/eden/load/0100F2C0115B6000/Cheat Manager Patch/cheats
+TIME: 20:54:46,997 - root - WARNING: ProgressBar Ended.
+TIME: 20:54:52,40 - root - INFO: ProgressBar Start.
+TIME: 20:54:52,42 - root - INFO: Platform is not Windows, No need to check for Executable running.
+TIME: 20:54:52,53 - root - INFO: Copying Mod Folder. /tmp/_MEIWpEP9j/PatchInfo/Tears Of The Kingdom/UltraCam to /home/imli700/.local/share/eden/load/0100F2C0115B6000/!!!!TOTK Optimizer
+TIME: 20:54:52,53 - root - INFO: Saving user choices in TOTKOptimizer.ini
+TIME: 20:54:52,55 - root - INFO: User choices saved in Memory,Attempting to write into file.
+TIME: 20:54:52,55 - root - INFO: Successfully written into log file
+TIME: 20:54:52,55 - root - INFO: Generating mod at /home/imli700/.local/share/eden/load/0100F2C0115B6000
+TIME: 20:54:52,55 - root - WARNING: Creating !!!!TOTK Optimizer config File Path... /home/imli700/.local/share/eden/sdmc/UltraCam/TOTK/Config/maxlastbreath.ini
+
+TIME: 20:54:52,56 - root - INFO: Opening !!!!TOTK Optimizer config file...
+TIME: 20:54:52,56 - root - INFO: Starting !!!!TOTK Optimizer Patcher...
+TIME: 20:54:52,62 - root - INFO: Starting !!!!TOTK Optimizer Patcher has finished running...
+TIME: 20:54:52,63 - root - INFO: Disabling Outdated Mods...
+TIME: 20:54:52,377 - root - WARNING: ProgressBar Ended.
+TIME: 20:54:54,355 - root - WARNING: Game not found in None
+ Please select your game file.
+TIME: 20:55:22,298 - root - WARNING: Couldn`t detect if yuzu.exe is running.
+TIME: 20:55:23,853 - root - INFO: Saving user choices in TOTKOptimizer.ini
+TIME: 20:55:23,854 - root - INFO: User choices saved in Memory,Attempting to write into file.
+TIME: 20:55:23,855 - root - INFO: Successfully written into log file
+TIME: 20:55:23,855 - root - INFO: Launching : ['', '-u', '1', '-f', '-g', 'None']
+TIME: 20:55:24,673 - root - INFO: ProgressBar Start.
+TIME: 20:55:24,674 - root - INFO: Platform is not Windows, No need to check for Executable running.
+TIME: 20:55:24,685 - root - INFO: Copying Mod Folder. /tmp/_MEIWpEP9j/PatchInfo/Tears Of The Kingdom/UltraCam to /home/imli700/.local/share/eden/load/0100F2C0115B6000/!!!!TOTK Optimizer
+TIME: 20:55:24,685 - root - INFO: Saving user choices in TOTKOptimizer.ini
+TIME: 20:55:24,688 - root - INFO: User choices saved in Memory,Attempting to write into file.
+TIME: 20:55:24,688 - root - INFO: Successfully written into log file
+TIME: 20:55:24,688 - root - INFO: Generating mod at /home/imli700/.local/share/eden/load/0100F2C0115B6000
+TIME: 20:55:24,692 - root - WARNING: Creating !!!!TOTK Optimizer config File Path... /home/imli700/.local/share/eden/sdmc/UltraCam/TOTK/Config/maxlastbreath.ini
+
+TIME: 20:55:24,693 - root - INFO: Opening !!!!TOTK Optimizer config file...
+TIME: 20:55:24,693 - root - INFO: Starting !!!!TOTK Optimizer Patcher...
+TIME: 20:55:24,699 - root - INFO: Starting !!!!TOTK Optimizer Patcher has finished running...
+TIME: 20:55:24,699 - root - INFO: Disabling Outdated Mods...
+TIME: 20:55:25,12 - root - WARNING: ProgressBar Ended.
+TIME: 20:58:41,500 - root - INFO: Xenoblade Chronicles X 1.0 [0100453019AA8000] : ['1.0.1', '1.0.2']
+TIME: 20:58:41,500 - root - INFO: Tears Of The Kingdom 3.0.0 [0100F2C0115B6000] : ['1.1.0', '1.1.1', '1.1.2', '1.2.0', '1.2.1', '1.4.0', '1.4.1', '1.4.2']
+TIME: 20:58:41,501 - root - INFO: Tears Of The Kingdom 2.7.1 [0100F2C0115B6000] : ['1.1.0', '1.1.1', '1.1.2', '1.2.0', '1.2.1']
+TIME: 20:58:41,501 - root - INFO: Pokemon Violet [01008F6008C5E000] : ['3.0.1']
+TIME: 20:58:41,501 - root - ERROR: Couldn't fetch benchmarks for Pokemon Violet
+TIME: 20:58:41,501 - root - ERROR: Couldn't fetch benchmarks_version for Pokemon Violet
+TIME: 20:58:41,501 - root - ERROR: Couldn't fetch benchmarks_file for Pokemon Violet
+TIME: 20:58:41,501 - root - INFO: Pokemon Scarlet [0100A3D008C5C000] : ['3.0.1']
+TIME: 20:58:41,501 - root - ERROR: Couldn't fetch benchmarks for Pokemon Scarlet
+TIME: 20:58:41,501 - root - ERROR: Couldn't fetch benchmarks_version for Pokemon Scarlet
+TIME: 20:58:41,501 - root - ERROR: Couldn't fetch benchmarks_file for Pokemon Scarlet
+TIME: 20:58:41,501 - root - INFO: Echoes of Wisdom [01008CF01BAAC000] : ['1.0.1']
+TIME: 20:58:41,502 - root - ERROR: Couldn't fetch benchmarks for Echoes of Wisdom
+TIME: 20:58:41,502 - root - ERROR: Couldn't fetch benchmarks_version for Echoes of Wisdom
+TIME: 20:58:41,502 - root - ERROR: Couldn't fetch benchmarks_file for Echoes of Wisdom
+TIME: 20:58:41,502 - root - INFO: Breath of The Wild [01007EF00011E000] : ['1.6.0']
+TIME: 20:58:43,178 - root - WARNING: Initialize AnimationQueue
+TIME: 20:58:43,615 - root - INFO: Hiding extra
+TIME: 20:58:44,643 - root - INFO: NX-Mode Changed to Legacy from Legacy
+TIME: 20:58:44,645 - root - INFO: user
+TIME: 20:58:44,645 - root - INFO: Found Config File /home/imli700/.config/eden/qt-config.ini
+TIME: 20:58:44,653 - root - INFO: user
+TIME: 20:58:44,654 - root - INFO: Found Config File /home/imli700/.config/eden/qt-config.ini
+TIME: 20:58:44,660 - root - INFO: Loading Benchmark Reader
+TIME: 20:58:44,660 - root - WARNING: Benchmark File Not Found. /home/imli700/.local/share/eden/sdmc/BOTWBenchmark.txt
+TIME: 20:58:44,698 - root - INFO: Checking for Updates!
+TIME: 20:58:45,298 - root - INFO: No Updates Found. Your app is up to date.
