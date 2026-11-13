@@ -24,6 +24,7 @@ settings:
     https://discord.com: access-paste
     https://docs.astronvim.com: access-paste
     https://drive.google.com: access-paste
+    https://esajournals.onlinelibrary.wiley.com: access-paste
     https://gemini.google.com: access-paste
     https://github.com: access-paste
     https://mail.google.com: access-paste
@@ -40,6 +41,7 @@ settings:
     https://aistudio.google.com: true
     https://chatgpt.com: true
     https://discord.com: true
+    https://web.whatsapp.com: true
   content.media.audio_video_capture:
     https://app.zoom.us: true
   content.notifications.enabled:
@@ -49,11 +51,13 @@ settings:
     https://community.oneplus.com: true
     https://goalietrend.com: false
     https://hclips.com: false
+    https://morungexpress.com: false
     https://videocelebs.net: false
     https://www.andropalace.org: true
     https://www.faceit.com: true
     https://www.headphonezone.in: true
     https://www.lenovo.com: true
+    https://www.morungexpress.com: false
     https://www.sportskeeda.com: false
   content.register_protocol_handler:
     https://calendar.google.com?cid=%25s: true
